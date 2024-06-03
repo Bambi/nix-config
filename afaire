@@ -1,0 +1,38 @@
+~ conf hyprland
+  - bar
+    - https://github.com/Aylur/dotfiles
+    - https://github.com/thyeun/dotfiles
+    - https://codeberg.org/JustineSmithies/hyprland-dotfiles
+    - https://github.com/adishourya/wayland_dotfiles
+    - https://github.com/smravec/.dotfiles-hyprland
+  - wallpaper
+- host
+  - font console
+  + conf ssh CA
+    https://dev.to/gvelrajan/how-to-configure-and-setup-ssh-certificates-for-ssh-authentication-b52
+    https://jamesog.net/2023/03/03/setting-up-nixos-to-use-an-ssh-ca/
+  + nebula
+  - mDNS
+    https://www.baeldung.com/linux/resolve-conf-systemd-avahi
+    https://brokkr.net/2022/07/03/switching-to-systemd-resolved-for-mdns/
+    https://discourse.nixos.org/t/how-to-make-systemd-resolved-and-mdns-work-together/10910
+    https://github.com/wuyuansushen/systemd-resolved
+  - slit-horizon dns
+- clé TPM
+- as@work
+  ~ conf ssh
+~ firefox: https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265/26
+- generalisation theme Catppuccin
+- bootstrap
+  - conf host minimal?
+  - move interface from hardware to network
+- Refs
+  - https://bmcgee.ie/posts/2022/12/setting-up-my-new-laptop-nix-style/
+  - clean gnome conf: https://git.histb.com/itswil/nixos
+  - https://dee.underscore.world/blog/installing-nixos-unconventionally/
+  - https://git.belanyi.fr/ambroisie/nix-config
+https://sr.ht/~bwolf/dotfiles/
+https://konradmalik.com/posts/2023/02/sops-nix-simple-secrets-management-for-nix/
+https://www.reddit.com/r/NixOS/comments/17tpjgj/nixsops_and_homemanager_flake_setup_in_a_not/
+Example:
+https://github.com/AlphaTechnolog/nixdots

@@ -1,0 +1,90 @@
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash -p bitwarden-cli jq ssh-to-age
+# shellcheck shell=bash
+
+# Command failure is script failure
+set -Eeuo pipefail
+
+usage() {
+    cat <<EOF
+Usage: $(basename "${BASH_SOURCE[0]}") [-i] <machine> [-s]
+
+bootstrap (install) a machine
+
+Available options:
+
+-h, --help     Print this help and exit
+-i, --install  Install the OS
+-s, --secrets  Install secrets
+<machine>      Machine name
+EOF
+    exit
+}
+
+get_doc() {
+    # $1: name of folder which contains the wanted document
+    # $2: name of the document
+    # $3: destination
+    # $4: permissions
+
+    local FOLDER_ID
+    local NOTES
+    FOLDER_ID="$(bw list folders |
+        jq '.[] | select(.name == "'"$1"'") | .id' |
+        cut -d'"' -f2)"
+
+    NOTES="$(bw list items --folderid "$FOLDER_ID" |
+        jq '.[] | select(.name == "'"$2"'") | .notes' |
+        cut -d'"' -f2)"
+
+    printf "%b" "$NOTES" > "$3"
+    chmod "$4" "$3"
+}
+
+get_identities() {
+    [ -d ~/.ssh ] || mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+    [ -d ~/.config/sops/age ] || mkdir -p ~/.config/sops/age
+
+    [ -f ~/.ssh/id_ed25519_as ] || get_doc Identités ed25519_as ~/.ssh/id_ed25519_as 600
+    [ -f ~/.ssh/id_rsa_as ] || get_doc Identités rsa_as ~/.ssh/id_rsa_as 600
+    [ -f ~/.config/sops/age/keys.txt ] || (
+        ssh-to-age -private-key -i ~/.ssh/id_ed25519_as -o ~/.config/sops/age/keys.txt
+        chmod 600 ~/.config/sops/age/keys.txt
+    )
+}
+
+get_creds() {
+    BW_SESSION="$(bw login --raw || bw unlock --raw)"
+    export BW_SESSION
+
+    get_identities
+}
+
+install() {
+    [ -d ./hosts/$MNAME ] || (echo machine $MNAME not found! >&2; exit 1)
+    # sudo nix --experimental-features "nix-command flakes"\
+    #     run 'github:nix-community/disko#disko-install' --\
+    #     --write-efi-boot-entries --flake ".#$MNAME" --disk main /dev/sda
+    sudo nix --experimental-features "nix-command flakes"\
+        run 'github:nix-community/disko#disko' --\
+        --mode disko ./hosts/"$MNAME"/disk-config.nix
+    sudo nixos-install --flake ".#$MNAME"
+}
+
+# parse params
+while :; do
+    case "${1-}" in
+        -h | --help) usage ;;
+        -i | --install) MNAME="${2-}"; shift ;;
+        -s | --secrets) GETCREDS=1 ;;
+        -?*) (echo "Unknown option: $1" >&2; exit 1) ;;
+        *) break ;;
+    esac
+    shift
+done
+
+# first install os
+[ -n "${MNAME:-}" ] && install
+# then inject secrets
+[ -n "${GETCREDS:-}" ] && get_creds

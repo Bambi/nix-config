@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+PREFIX="${1:-}"
+[ -n "$PREFIX" ] || (echo No prefix path! >&2; exit 1)
+hash nixos-install &> /dev/null || (echo No nixos-install command! install the nixos-install-tools package >&2; exit 1)
+
+mountpoint -q "$PREFIX" || mount /dev/mapper/vg0-nixos "$PREFIX"
+[ -d /mnt/tmp/nix ] || mkdir "$PREFIX/nix"
+mountpoint -q "$PREFIX/nix" || mount /dev/mapper/nvme-nixos--nix "$PREFIX/nix"
+[ -d /mnt/tmp/boot ] || mkdir "$PREFIX/boot"
+mountpoint -q "$PREFIX/boot" || mount --bind /boot/efi "$PREFIX/boot"
+
+nixos-generate-config --root "$PREFIX" --dir "$PWD"
+
+# generate host private key
+cd "${PREFIX}/etc/ssh"
+ssh-genkey -t rsa
+ssh-genkey -t ed25519
+
+# generate host private key
+hash tpm2_ptool &> /dev/null || (echo No TPM tools! install the tpm2-tools nix package >&2; exit 1)
+tpm2_ptool init
+tpm2_ptool addtoken --pid=1 --label=ssh --userpin=MyPassword --sopin=MyRecoveryPassword
+tpm2_ptool addkey --label=ssh --userpin=MyPassword --algorithm=ecc256
+# get public key
+ssh-keygen -D /usr/lib/x86_64-linux-gnu/libtpm2_pkcs11.so.1
+
+# PATH="$PATH:/usr/sbin" NIX_PATH="$NIX_PATH" $(which nixos-install) --root /mnt/tmp --flake .#bambi

@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Create and sign (generate a certificate) host/user ssh keys
+# for host key:
+#   casign -h [host name]
+# for user key:
+#   casign -u
+set -Eeuo pipefail
+
+CAKEY=~/.ssh/id_ed25519_ca_sk
+ROOTDIR=${ROOTDIR:-/etc/ssh}
+
+[ -f "$CAKEY" ] || (echo No CA key >&2; exit 1)
+[ -d $ROOTDIR ] || (echo $ROOTDIR directory does not exist >&2; exit 1)
+
+# host keys
+[ $1 = -h ] && (
+  HOST=${2:-$(hostname)}
+  ssh-keygen -t ed25519 -C "root@$HOST" -f $ROOTDIR/ssh_host_ed25519
+  ssh-keygen -s "$CAKEY" \
+       -I "$HOST host key" \
+       -V -1m:+3650d \
+       -h \
+       $ROOTDIR/ssh_host_*.pub && \
+    echo $ROOTDIR/*-cert.pub |tr ' ' '\n' |xargs -L 1 ssh-keygen -L -f
+)
+
+# user keys
+[ $1 = -u ] && (
+  ssh-keygen -f ~/.ssh/id_ed25519 -t ed25519
+  ssh-keygen -s "$CAKEY" \
+      -I "$(whoami)@$(hostname) user key" \
+      -n "$(whoami)" \
+      -V -1m:+3650d \
+      ~/.ssh/id_ed25519.pub && \
+  ssh-keygen -L -f id_ed25519-cert.pub
+)

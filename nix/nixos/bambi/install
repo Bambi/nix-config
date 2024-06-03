@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+PREFIX="${1:-}"
+[ -n "$PREFIX" ] || (echo No prefix path! >&2; exit 1)
+# hash nixos-install &> /dev/null || (echo No nixos-install command! >&2; exit 1)
+
+mountpoint -q "$PREFIX" || mount /dev/mapper/vg0-nixos "$PREFIX"
+[ -d /mnt/tmp/nix ] || mkdir "$PREFIX/nix"
+mountpoint -q "$PREFIX/nix" || mount /dev/mapper/nvme-nixos--nix "$PREFIX/nix"
+[ -d /mnt/tmp/boot ] || mkdir "$PREFIX/boot"
+mountpoint -q "$PREFIX/boot" || mount --bind /boot/efi "$PREFIX/boot"
+
+# PATH="$PATH:/usr/sbin" NIX_PATH="$NIX_PATH" $(which nixos-install) --root /mnt/tmp --flake .#bambi

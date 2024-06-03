@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Create credentials for a new node (private key & certificate).
+# nebula_new_node <nebula-cert options>
+# Ex: nebula_new_node -name popeye -ip 192.168.100.6/24
+set -Eeuo pipefail
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
+get_doc() {
+  # $1: name of folder which contains the wanted document
+  # $2: name of the document
+  # $3: destination
+  # $4: permissions
+
+  local FOLDER_ID
+  local NOTES
+  FOLDER_ID="$(bw list folders |
+      jq '.[] | select(.name == "'"$1"'") | .id' |
+      cut -d'"' -f2)"
+
+  NOTES="$(bw list items --folderid "$FOLDER_ID" |
+      jq '.[] | select(.name == "'"$2"'") | .notes' |
+      cut -d'"' -f2)"
+
+  printf "%b" "$NOTES" > "$3"
+  chmod "$4" "$3"
+}
+
+# Create a temporary directory
+temp=$(mktemp -d)
+
+# Function to cleanup temporary directory on exit
+cleanup() {
+  rm -rf "$temp"
+}
+trap cleanup EXIT
+
+# Retreive CA key
+export BW_SESSION="$(bw login --raw || bw unlock --raw)"
+get_doc Identités ca_nebula $temp/ca.key 600
+
+nebula-cert sign -ca-key $temp/ca.key -ca-crt "$SCRIPT_DIR"/../nix/nixosModules/nebula/ca.crt "$@"

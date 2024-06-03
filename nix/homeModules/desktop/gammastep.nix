@@ -1,0 +1,16 @@
+{ pkgs, ... }: {
+  services.gammastep = {
+    enable = true;
+    temperature.day = 6500;
+    temperature.night = 3600;
+    provider = "geoclue2";
+    settings = {
+      general = {
+        fade = true;
+        brightness-day = 1;
+        brightness-night = 0.75;
+        adjustment-method = "wayland";
+      };
+    };
+  };
+}
