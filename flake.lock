@@ -419,7 +419,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "unbound-block-list": "unbound-block-list"
       }
     },
     "sops-nix": {
@@ -487,6 +488,23 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "unbound-block-list": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717513628,
+        "narHash": "sha256-j1ns/0i//ikp3zWqD6i2RSTcA7r9n8viRc1bZNzJPMw=",
+        "owner": "hagezi",
+        "repo": "dns-blocklists",
+        "rev": "eaadb5aa185e59f47226a6b444ab3b3895439e3b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hagezi",
+        "ref": "12024.155.1",
+        "repo": "dns-blocklists",
         "type": "github"
       }
     },

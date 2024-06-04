@@ -19,6 +19,7 @@ in
       inputs.self.nixosModules.common
       inputs.self.nixosModules.systemd-boot
       inputs.self.nixosModules.sdwan
+      inputs.self.nixosModules.unbound
     ];
 
   networking = {
