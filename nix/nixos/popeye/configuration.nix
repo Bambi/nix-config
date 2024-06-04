@@ -16,7 +16,7 @@ in
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-gpu-intel-disable
       inputs.nixos-hardware.nixosModules.common-pc-ssd
-      inputs.self.nixosModules.common
+      inputs.self.nixosModules.minimal
       inputs.self.nixosModules.systemd-boot
       inputs.self.nixosModules.sdwan
       inputs.self.nixosModules.unbound
