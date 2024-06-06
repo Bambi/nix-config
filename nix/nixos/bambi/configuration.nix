@@ -14,8 +14,8 @@
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.sdwan
     ];
-  services.nebula.networks.mesh.isLighthouse = false;
 
+  my.nebula.enable = true;
   networking = {
     hostName = "bambi";
     networkmanager.enable = false;

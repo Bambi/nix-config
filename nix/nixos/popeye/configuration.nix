@@ -23,7 +23,10 @@ in
       ./git-user.nix
     ];
 
-  services.nebula.networks.mesh.isLighthouse = true;
+  my.nebula = {
+    enable = true;
+    isLighthouse = true;
+  };
   networking = {
     hostName = "popeye";
     networkmanager = {
