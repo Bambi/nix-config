@@ -7,7 +7,6 @@
   };
   services.nebula.networks.mesh = {
     enable = true;
-    isLighthouse = false;
     cert = ../../nixos/${config.networking.hostName}/nebula.crt;
     key = config.sops.secrets.nebula_key.path;
     ca = ./ca.crt;

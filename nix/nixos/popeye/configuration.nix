@@ -20,8 +20,10 @@ in
       inputs.self.nixosModules.systemd-boot
       inputs.self.nixosModules.sdwan
       inputs.self.nixosModules.unbound
+      ./git-user.nix
     ];
 
+  services.nebula.networks.mesh.isLighthouse = true;
   networking = {
     hostName = "popeye";
     networkmanager = {

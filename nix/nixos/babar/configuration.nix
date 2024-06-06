@@ -22,6 +22,7 @@ in
       inputs.self.nixosModules.wireless
       inputs.self.nixosModules.sdwan
     ];
+  services.nebula.networks.mesh.isLighthouse = false;
 
   networking = {
     hostName = "babar";
