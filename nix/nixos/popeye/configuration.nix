@@ -29,10 +29,7 @@ in
   };
   networking = {
     hostName = "popeye";
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-    };
+    networkmanager.enable = false;
   };
   time.timeZone = "Europe/Paris";
 

@@ -19,6 +19,7 @@
         }
       )
       config.networking.interfaces;
+    wait-online.anyInterface = true;
   };
   networking = {
     extraHosts = ''
