@@ -1,15 +1,7 @@
-{ config, lib, ... }: {
+{ config, lib, inputs, ... }: {
   options.my.nebula = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable Nebula Overlay.";
-    };
-    isLighthouse = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Is the node a lighthouse.";
-    };
+    enable = inputs.self.lib.mkBoolOpt false "Enable Nebula Overlay.";
+    isLighthouse = inputs.self.lib.mkBoolOpt false "Is the node a lighthouse.";
   };
 
   config = lib.mkIf config.my.nebula.enable {

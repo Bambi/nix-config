@@ -1,10 +1,6 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, inputs, ... }: {
   options.my.wireless = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable Wifi/Bluetooh support.";
-    };
+    enable = inputs.self.lib.mkBoolOpt false "Enable Wifi/Bluetooh support.";
   };
 
   config = lib.mkIf config.my.wireless.enable {
