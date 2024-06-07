@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
-    ./modules/libvirt-networking.nix
+    ./libvirt-networking.nix
   ];
   virtualisation = {
     podman = {

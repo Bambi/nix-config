@@ -1,7 +1,7 @@
 { lib, config, inputs, ... }:
 let
   inherit (config.networking) hostName;
-  pubKey = host: ../nixos/${host}/ssh_host_ed25519.pub;
+  pubKey = host: ../../nixos/${host}/ssh_host_ed25519.pub;
 in
 {
   services.openssh = {
@@ -30,7 +30,7 @@ in
     '';
   };
 
-  environment.etc."ssh/trusted_user_ca".source = ../../identities/id_ed25519_ca_sk.pub;
+  environment.etc."ssh/trusted_user_ca".source = ../../../identities/id_ed25519_ca_sk.pub;
 
   programs.ssh = {
     startAgent = true;
@@ -43,7 +43,7 @@ in
       })
       inputs.self.nixosConfigurations // {
       "*" = {
-        publicKeyFile = ../../identities/id_ed25519_ca_sk.pub;
+        publicKeyFile = ../../../identities/id_ed25519_ca_sk.pub;
         certAuthority = true;
       };
     };

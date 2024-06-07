@@ -1,6 +1,4 @@
 { pkgs, ... }: {
-  imports = [ ./nebula ];
-
   environment.systemPackages = [ pkgs.zerotierone ];
   services.zerotierone = {
     enable = true;

@@ -9,18 +9,24 @@
       ./hardware-configuration.nix
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-ssd
+      inputs.self.nixosModules.profiles
       inputs.self.nixosModules.common
-      inputs.self.nixosModules.grub
+      inputs.self.nixosModules.virtualization
       inputs.self.nixosModules.desktop
-      inputs.self.nixosModules.sdwan
+      inputs.self.nixosModules.zerotier
     ];
 
-  my.nebula.enable = true;
+  my = {
+    nebula.enable = true;
+    desktop.enable = true;
+    grub.enable = true;
+  };
   networking = {
     hostName = "bambi";
     networkmanager.enable = false;
   };
   time.timeZone = "Europe/Paris";
+  boot.kernelParams = [ "fbcon=nodefer" "vt.global_cursor_default=0" "video4linux" ];
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

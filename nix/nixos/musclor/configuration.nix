@@ -10,11 +10,14 @@
       inputs.disko.nixosModules.disko
       ./disk-config.nix
       inputs.self.nixosModules.common
-      inputs.self.nixosModules.grub
+      inputs.self.nixosModules.profiles
     ];
 
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
+  my = {
+    grub = inputs.self.lib.enabled;
+  };
   networking = {
     hostName = "musclor";
     networkmanager.enable = false;

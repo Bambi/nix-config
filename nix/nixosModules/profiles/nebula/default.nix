@@ -7,14 +7,14 @@
   config = lib.mkIf config.my.nebula.enable {
     # node key stored through sops
     sops.secrets.nebula_key = {
-      sopsFile = ../../nixos/${config.networking.hostName}/secrets.yaml;
+      sopsFile = ../../../nixos/${config.networking.hostName}/secrets.yaml;
       owner = "nebula-mesh";
       mode = "0440";
     };
     services.nebula.networks.mesh = {
       inherit (config.my.nebula) isLighthouse;
       enable = true;
-      cert = ../../nixos/${config.networking.hostName}/nebula.crt;
+      cert = ../../../nixos/${config.networking.hostName}/nebula.crt;
       key = config.sops.secrets.nebula_key.path;
       ca = ./ca.crt;
       lighthouses = lib.mkIf (!config.my.nebula.isLighthouse)

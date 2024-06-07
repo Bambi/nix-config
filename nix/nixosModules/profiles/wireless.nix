@@ -6,7 +6,7 @@
   config = lib.mkIf config.my.wireless.enable {
     # Wireless secrets stored through sops
     sops.secrets.wireless = {
-      sopsFile = ../nixos/${config.networking.hostName}/secrets.yaml;
+      sopsFile = ../../nixos/${config.networking.hostName}/secrets.yaml;
       neededForUsers = true;
     };
 
