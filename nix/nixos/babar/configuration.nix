@@ -23,7 +23,10 @@ in
       inputs.self.nixosModules.sdwan
     ];
 
-  my.nebula.enable = true;
+  my = {
+    nebula.enable = true;
+    wireless.enable = true;
+  };
   networking = {
     hostName = "babar";
     networkmanager = {
