@@ -15,5 +15,5 @@
       authorizedPrincipals = [ "as" ];
     };
   };
-  users.groups.git = {};
+  users.groups.git = { };
 }

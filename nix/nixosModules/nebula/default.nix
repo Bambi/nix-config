@@ -25,7 +25,8 @@
       cert = ../../nixos/${config.networking.hostName}/nebula.crt;
       key = config.sops.secrets.nebula_key.path;
       ca = ./ca.crt;
-      lighthouses = [ "192.168.100.1" ];
+      lighthouses = lib.mkIf (!config.my.nebula.isLighthouse)
+        [ "192.168.100.1" ];
       staticHostMap = {
         "192.168.100.1" = [ "82.64.181.55:4242" ];
       };
