@@ -22,9 +22,12 @@ in
       ./git-user.nix
     ];
 
-  my.nebula = {
-    enable = true;
-    isLighthouse = true;
+  my = {
+    nebula = {
+      enable = true;
+      isLighthouse = true;
+    };
+    networkAccess = "enp1s0";
   };
   networking = {
     hostName = "popeye";
