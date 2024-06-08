@@ -24,6 +24,7 @@ in
     ];
 
   my = {
+    user = "as";
     nebula.enable = true;
     laptop.enable = true;
     wireless.enable = true;

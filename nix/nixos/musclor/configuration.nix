@@ -16,6 +16,7 @@
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   my = {
+    user = "as";
     grub = inputs.self.lib.enabled;
   };
   networking = {

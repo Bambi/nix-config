@@ -17,6 +17,7 @@
     ];
 
   my = {
+    user = "as";
     nebula.enable = true;
     desktop.enable = true;
     grub.enable = true;

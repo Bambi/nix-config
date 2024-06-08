@@ -1,7 +1,7 @@
 { pkgs, inputs, lib, config, ... }: {
   options.my.networkAccess = inputs.self.lib.mkOpt lib.types.str null "Interface used for Internet access.";
 
-  config = {
+  config = lib.mkIf (config.my.networkAccess != null) {
     services.unbound = {
       enable = true;
       resolveLocalQueries = true;

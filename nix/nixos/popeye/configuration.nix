@@ -28,6 +28,7 @@ in
       isLighthouse = true;
     };
     networkAccess = "enp1s0";
+    user = "as";
   };
   networking = {
     hostName = "popeye";
