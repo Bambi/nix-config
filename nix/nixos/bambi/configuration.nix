@@ -10,7 +10,7 @@
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-ssd
       inputs.self.nixosModules.profiles
-      inputs.self.nixosModules.common
+      inputs.self.nixosModules.tpm2
       inputs.self.nixosModules.virtualization
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.zerotier

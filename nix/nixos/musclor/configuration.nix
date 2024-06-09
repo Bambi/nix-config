@@ -9,7 +9,6 @@
       ./hardware-configuration.nix
       inputs.disko.nixosModules.disko
       ./disk-config.nix
-      inputs.self.nixosModules.common
       inputs.self.nixosModules.profiles
     ];
 

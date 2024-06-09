@@ -17,7 +17,6 @@ in
       inputs.nixos-hardware.nixosModules.common-gpu-intel-disable
       inputs.nixos-hardware.nixosModules.common-pc-ssd
       inputs.self.nixosModules.profiles
-      inputs.self.nixosModules.minimal
       inputs.self.nixosModules.unbound
       ./git-user.nix
     ];

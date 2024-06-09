@@ -17,7 +17,7 @@ in
       inputs.nixos-hardware.nixosModules.common-pc-laptop
       inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
       inputs.self.nixosModules.profiles
-      inputs.self.nixosModules.common
+      inputs.self.nixosModules.tpm2
       inputs.self.nixosModules.virtualization
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.zerotier
