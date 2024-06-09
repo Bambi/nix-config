@@ -17,6 +17,7 @@
         ethtool
         htop
         kmon
+        tcpdump
       ];
     }
     (lib.mkIf config.my.desktop.enable {
