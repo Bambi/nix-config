@@ -38,4 +38,4 @@ trap cleanup EXIT
 export BW_SESSION="$(bw login --raw || bw unlock --raw)"
 get_doc Identités ca_nebula $temp/ca.key 600
 
-nebula-cert sign -ca-key $temp/ca.key -ca-crt "$SCRIPT_DIR"/../nix/nixosModules/profiles/nebula/ca.crt "$@"
+nebula-cert sign -ca-key $temp/ca.key -ca-crt "$SCRIPT_DIR"/../nix/nixosModules/nebula/ca.crt "$@"

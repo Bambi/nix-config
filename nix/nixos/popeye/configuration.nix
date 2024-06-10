@@ -16,7 +16,8 @@ in
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-gpu-intel-disable
       inputs.nixos-hardware.nixosModules.common-pc-ssd
-      inputs.self.nixosModules.profiles
+      inputs.self.nixosModules.common
+      inputs.self.nixosModules.nebula
       inputs.self.nixosModules.unbound
       ./git-user.nix
     ];
@@ -26,8 +27,11 @@ in
       enable = true;
       isLighthouse = true;
     };
-    networkAccess = "enp1s0";
     user = "as";
+    interfaces.enp1s0 = {
+      networkAccess = true;
+      trusted = true;
+    };
   };
   networking = {
     hostName = "popeye";

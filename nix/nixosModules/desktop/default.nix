@@ -1,9 +1,13 @@
 { config, lib, pkgs, ... }: {
   imports = [
+    ./display-manager.nix
     ./screen-brightness.nix
     ./services.nix
     ./opengl.nix
     ./security.nix
+    ./python.nix
+    ./sound.nix
+    ./system.nix
   ];
 
   environment.systemPackages = with pkgs; [

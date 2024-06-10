@@ -9,7 +9,8 @@
       ./hardware-configuration.nix
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-ssd
-      inputs.self.nixosModules.profiles
+      inputs.self.nixosModules.common
+      inputs.self.nixosModules.nebula
       inputs.self.nixosModules.tpm2
       inputs.self.nixosModules.virtualization
       inputs.self.nixosModules.desktop
@@ -19,8 +20,10 @@
   my = {
     user = "as";
     nebula.enable = true;
-    desktop.enable = true;
     grub.enable = true;
+    interfaces.eno1 = {
+      networkAccess = true;
+    };
   };
   networking = {
     hostName = "bambi";

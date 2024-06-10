@@ -16,18 +16,23 @@ in
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-laptop
       inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-      inputs.self.nixosModules.profiles
+      inputs.self.nixosModules.common
       inputs.self.nixosModules.tpm2
       inputs.self.nixosModules.virtualization
       inputs.self.nixosModules.desktop
+      inputs.self.nixosModules.laptop
+      inputs.self.nixosModules.nebula
       inputs.self.nixosModules.zerotier
     ];
 
   my = {
     user = "as";
     nebula.enable = true;
-    laptop.enable = true;
     wireless.enable = true;
+    interfaces = {
+      eno1.networkAccess = true;
+      wlp2s0.networkAccess = true;
+    };
   };
   networking = {
     hostName = "babar";

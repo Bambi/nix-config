@@ -1,13 +1,25 @@
 { pkgs, ... }: {
+  console.useXkbConfig = true; # use xkbOptions in tty.
   services = {
+    xserver = {
+      enable = false;
+      layout = "us";
+      xkbVariant = "intl";
+    };
     dbus.packages = with pkgs; [
       xfce.xfconf
       gnome2.GConf
     ];
     tumbler.enable = true;
     flatpak.enable = true;
+    geoclue2.enable = true;
   };
-  programs.thunar.enable = true;
+  programs = {
+    thunar.enable = true;
+    direnv.enable = true;
+    fish.enable = true;
+  };
+  location.provider = "geoclue2";
 
   xdg = {
     portal = {
@@ -21,7 +33,22 @@
   };
 
   environment.systemPackages = with pkgs; [
+    git
+    tig
+    jq
+    ipcalc
+    nvme-cli
+    dterm
+    at-spi2-atk
+    psi-notify
+    psmisc
+    clipboard-jh
     qutebrowser
     kitty
+    nuspell
+    hyphen
+    hunspell
+    hunspellDicts.en_US
+    hunspellDicts.fr-any
   ];
 }
