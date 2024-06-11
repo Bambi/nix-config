@@ -15,6 +15,7 @@
       inputs.self.nixosModules.virtualization
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.zerotier
+      inputs.self.nixosModules.syncthing
     ];
 
   my = {
@@ -24,6 +25,7 @@
     interfaces.eno1 = {
       networkAccess = true;
     };
+    syncthingId = "LUAVW4J-L3ZAIHO-IWH34V3-DRPJUCC-6RESAJH-NDZJ5M5-R2XRKPO-7X7OSAC";
   };
   networking = {
     hostName = "bambi";

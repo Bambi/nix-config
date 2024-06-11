@@ -19,6 +19,7 @@ in
       inputs.self.nixosModules.common
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.unbound
+      inputs.self.nixosModules.syncthing
       ./git-user.nix
     ];
 
@@ -32,6 +33,7 @@ in
       networkAccess = true;
       trusted = true;
     };
+    syncthingId = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
   };
   networking = {
     hostName = "popeye";

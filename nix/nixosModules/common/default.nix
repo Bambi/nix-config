@@ -8,5 +8,6 @@
     ./usb.nix
     ./networking.nix
     ./system.nix
+    ./services.nix
   ];
 }

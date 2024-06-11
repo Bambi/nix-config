@@ -23,6 +23,7 @@ in
       inputs.self.nixosModules.laptop
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.zerotier
+      inputs.self.nixosModules.syncthing
     ];
 
   my = {
@@ -33,6 +34,7 @@ in
       eno1.networkAccess = true;
       wlp2s0.networkAccess = true;
     };
+    syncthingId = "KVX5R5E-VSRCLFM-SDFGUJY-QBWEOHD-6PPHNWA-RZFGIFM-OHE4ZBV-TMQFWAR";
   };
   networking = {
     hostName = "babar";
