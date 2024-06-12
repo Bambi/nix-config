@@ -5,7 +5,7 @@
   home.sessionVariables = {
     GTK_THEME = "Catppuccin-Macchiato-Standard-Teal-Dark";
     XCURSOR_THEME = "Catppuccin-Macchiato-Teal";
-    XCURSOR_SIZE = "24";
+    # XCURSOR_SIZE = "20";
   };
 
   # Override packages

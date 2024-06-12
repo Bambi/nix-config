@@ -43,7 +43,7 @@ in
       x11.enable = true;
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Amber";
-      size = 24;
+      size = 20;
     };
   };
   xdg = {

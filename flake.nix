@@ -35,7 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     unbound-block-list = {
-      url = "github:hagezi/dns-blocklists?ref=12024.155.1";
+      url = "github:hagezi/dns-blocklists?ref=12024.163.1";
       flake = false;
     };
   };
