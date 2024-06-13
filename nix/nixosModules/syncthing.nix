@@ -1,5 +1,6 @@
 { pkgs, config, lib, inputs, ... }: {
-  options.my.syncthingId = inputs.self.lib.mkOpt lib.types.str null "Syncthing device id.";
+  options.my.syncthing.id = inputs.self.lib.mkOpt lib.types.str null "Syncthing device id.";
+  options.my.syncthing.backup = inputs.self.lib.mkBoolOpt false "Is the device used as a backup server.";
 
   config = {
     sops.secrets.syncthing_key = {
@@ -10,7 +11,21 @@
     services.syncthing =
       let
         # all devices with a syncthingId
-        syncHosts = lib.filterAttrs (n: v: (builtins.hasAttr "syncthingId" v.config.my)) inputs.self.nixosConfigurations;
+        syncHosts = lib.filterAttrs (n: v: (builtins.hasAttr "syncthing" v.config.my)) inputs.self.nixosConfigurations;
+        backupHosts = lib.filterAttrs (n: v: v.config.my.syncthing.backup) syncHosts;
+        # non backup syncthing servers
+        userHosts = lib.filterAttrs (n: v: !v.config.my.syncthing.backup) syncHosts;
+        backupHostsList = lib.mapAttrsToList (n: v: "${n}") backupHosts;
+        folder = name: devices: {
+          path = "~/Sync/${name}";
+          id = "${name}";
+          devices = devices;
+          ignorePerms = true;
+        };
+        # folders configured on the backup server
+        backupConf = lib.mapAttrs (n: v: folder n [ "${n}" ]) userHosts;
+        # folder configured on each non backup servers
+        localConf = lib.mapAttrs (n: v: folder config.networking.hostName backupHostsList) backupHosts;
       in
       {
         enable = true;
@@ -25,18 +40,16 @@
         overrideFolders = true;
         overrideDevices = true;
         settings = {
-          devices = lib.mapAttrs (n: v: { id = v.config.my.syncthingId; }) syncHosts;
-          folders = {
-            sync = {
-              path = "~/.local/share/sync";
-              devices = lib.mapAttrsToList (n: v: "${n}") syncHosts;
-              ignorePerms = true;
-            };
-          };
+          devices = lib.mapAttrs (n: v: { id = v.config.my.syncthing.id; }) syncHosts;
+          folders = lib.mkMerge
+            [
+              # common folder shared by all devices
+              { common = folder "common" (lib.mapAttrsToList (n: v: "${n}") syncHosts); }
+              (if config.my.syncthing.backup then backupConf else localConf)
+            ];
         };
       };
     # networking.firewall.allowedTCPPorts = [ 8384 ]; # GUI
-    systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
     environment.etc."syncthing/cert.pem".source = ../nixos/${config.networking.hostName}/syncthing_cert.pem;
   };
 }

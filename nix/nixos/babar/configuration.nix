@@ -34,7 +34,7 @@ in
       eno1.networkAccess = true;
       wlp2s0.networkAccess = true;
     };
-    syncthingId = "KVX5R5E-VSRCLFM-SDFGUJY-QBWEOHD-6PPHNWA-RZFGIFM-OHE4ZBV-TMQFWAR";
+    syncthing.id = "KVX5R5E-VSRCLFM-SDFGUJY-QBWEOHD-6PPHNWA-RZFGIFM-OHE4ZBV-TMQFWAR";
   };
   networking = {
     hostName = "babar";
