@@ -1,14 +1,14 @@
+# More terminal user configuration
 { config, pkgs, lib, inputs, ... }: {
-  imports = with inputs.self.homeModules; [
+  imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    minimal
-    bash
-    kakoune
-    tmux
-    dev
-    nixvim
-    bottom
-    yazi
+    ./common/bash.nix
+    ./common/kakoune.nix
+    ./common/tmux
+    ./common/dev.nix
+    ./common/nixvim.nix
+    ./common/bottom.nix
+    ./common/yazi.nix
   ]; # ++ pkgs.lib.optionals config.home.guiApps [ ./gui ];
 
   home = {

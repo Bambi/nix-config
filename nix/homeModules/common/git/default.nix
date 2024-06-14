@@ -39,7 +39,17 @@
         prompt = "enabled";
       };
     };
+    jujutsu = {
+      enable = true;
+      enableFishIntegration = true;
+      settings = {
+        user = {
+          name = "Antoine Sgambato";
+          email = "176003+Bambi@users.noreply.github.com";
+        };
+      };
+    };
   };
   home.file.".ssh/allowed_signers".text =
-    "* ${builtins.readFile ../../../identities/id_ed25519_as.pub}";
+    "* ${builtins.readFile ../../../../identities/id_ed25519_as.pub}";
 }
