@@ -6,7 +6,6 @@
     inputs.self.homeModules.tui
     inputs.self.homeModules.tui2
     inputs.self.homeModules.desktop
-    inputs.sops-nix.homeManagerModules.sops
     {
       home = {
         username = "as";

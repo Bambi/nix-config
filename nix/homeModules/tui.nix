@@ -89,14 +89,6 @@
 
   targets.genericLinux.enable = true;
 
-  sops = {
-    age = {
-      keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-      generateKey = false;
-    };
-    defaultSopsFile = ./secrets.yaml;
-  };
-
   # Workaround home-manager bug with flakes
   # - https://github.com/nix-community/home-manager/issues/2033
   news.display = "silent";

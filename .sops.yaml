@@ -6,7 +6,7 @@ keys:
     - &bambi age1gpr9qf00t50yyu4m9jp0r8rkxk32zxlclyylrmzfrcmwfyjdrvfs3uerdh
     - &popeye age122drj0k8kyelzx54ekwqjudzx5qumc53pw9lpnyvv6h44wxhs3wq5ptw05
 creation_rules:
-  - path_regex: nix/home/secrets.yaml
+  - path_regex: nix/home/work/secrets.yaml
     key_groups:
       - age:
           - *as

@@ -12,6 +12,7 @@
     activation.setupEtc = config.lib.dag.entryAfter [ "writeBoundary" ] ''
       /usr/bin/systemctl start --user sops-nix
     '';
+    stateVersion = "23.11";
   };
   xdg.configFile."pet/config.toml".source = ./pet/config.toml;
   sops = {
@@ -19,6 +20,11 @@
       pet_snippet.path = "${config.home.homeDirectory}/.config/pet/snippet.toml";
       id_rsa_ipanema.path = "${config.home.homeDirectory}/.ssh/id_rsa_ipanema";
     };
+    age = {
+      keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+      generateKey = false;
+    };
+    defaultSopsFile = ./secrets.yaml;
   };
   programs = {
     git.package = pkgs.gitSVN;

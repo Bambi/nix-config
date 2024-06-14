@@ -3,7 +3,6 @@
   modules = [
     ./common/home.nix
     inputs.self.homeModules.minimal
-    inputs.sops-nix.homeManagerModules.sops
     {
       home = {
         username = "as";

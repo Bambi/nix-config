@@ -31,7 +31,4 @@ in
 
     stateVersion = "23.11";
   };
-  sops = {
-    secrets = { };
-  };
 }
