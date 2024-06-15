@@ -24,6 +24,7 @@ in
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.zerotier
       inputs.self.nixosModules.syncthing
+      inputs.self.nixosModules.hm-user
     ];
 
   my = {

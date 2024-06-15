@@ -4,6 +4,11 @@ let
   localHostnames = builtins.map (x: x + ".local") hostnames;
 in
 {
+  imports = [
+    ./minimal.nix
+    ./tui.nix
+    ./tui2.nix
+  ];
   programs.ssh = {
     enable = true;
     matchBlocks = {

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   home = {
     packages = with pkgs; [
       clang-tools
@@ -46,6 +46,14 @@
           identityFile = "~/.ssh/id_rsa_ipanema";
         };
       };
+    };
+  };
+  services.ssh-agent.enable = true;
+  nix = {
+    extraOptions = "experimental-features = nix-command flakes";
+    package = pkgs.nix;
+    settings = {
+      auto-optimise-store = true;
     };
   };
 }

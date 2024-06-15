@@ -16,6 +16,7 @@
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.zerotier
       inputs.self.nixosModules.syncthing
+      inputs.self.nixosModules.hm-user
     ];
 
   my = {

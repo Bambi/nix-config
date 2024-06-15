@@ -1,14 +1,14 @@
 # Terminal user configuration
 { config, pkgs, lib, inputs, ... }: {
   imports = [
-    ./common/fish.nix
-    ./common/fzf.nix
-    ./common/git
-    ./common/lf
-    ./common/nnn.nix
-    ./common/helix.nix
-    ./common/starship
-    ./common/yazi.nix
+    ../common/fish.nix
+    ../common/fzf.nix
+    ../common/git
+    ../common/lf
+    ../common/nnn.nix
+    ../common/helix.nix
+    ../common/starship
+    ../common/yazi.nix
   ]; # ++ pkgs.lib.optionals config.home.guiApps [ ./gui ];
 
   # enable unfree packages
