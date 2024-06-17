@@ -8,6 +8,7 @@ in
     ./minimal.nix
     ./tui.nix
     ./tui2.nix
+    ../desktop
   ];
   programs.ssh = {
     enable = true;

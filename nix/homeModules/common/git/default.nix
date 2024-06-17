@@ -47,6 +47,11 @@
           name = "Antoine Sgambato";
           email = "176003+Bambi@users.noreply.github.com";
         };
+        signing = {
+          sign-all = true;
+          backend = "ssh";
+          key = "/home/as/.ssh/id_ed25519_as";
+        };
       };
     };
   };
