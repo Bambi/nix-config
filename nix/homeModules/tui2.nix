@@ -2,13 +2,13 @@
 { config, pkgs, lib, inputs, ... }: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    ../common/bash.nix
-    ../common/kakoune.nix
-    ../common/tmux
-    ../common/dev.nix
-    ../common/nixvim.nix
-    ../common/bottom.nix
-    ../common/yazi.nix
+    ./common/bash.nix
+    ./common/kakoune.nix
+    ./common/tmux
+    ./common/dev.nix
+    ./common/nixvim.nix
+    ./common/bottom.nix
+    ./common/yazi.nix
   ]; # ++ pkgs.lib.optionals config.home.guiApps [ ./gui ];
 
   home = {

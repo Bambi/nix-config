@@ -11,4 +11,5 @@
       auto-optimise-store = true;
     };
   };
+  programs.home-manager.enable = true;
 }

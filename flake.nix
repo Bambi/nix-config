@@ -64,10 +64,5 @@
         formatter = pkgs: pkgs.nixpkgs-fmt;
       } // {
       deploy = import ./deploy.nix { inherit inputs; };
-      homeConfigurations = {
-        "as@bambi" = inputs.self.nixosConfigurations.bambi.config.home_manager.users.as.home;
-        "as@babar" = inputs.self.nixosConfigurations.babar.config.home_manager.users.as.home;
-      };
-      # homeConfigurations."as@bambi".config = inputs.self.nixosConfigurations.bambi.config.home_manager.users.as;
     };
 }

@@ -5,10 +5,10 @@ let
 in
 {
   imports = [
-    ./minimal.nix
-    ./tui.nix
-    ./tui2.nix
-    ../desktop
+    inputs.self.homeModules.minimal
+    inputs.self.homeModules.tui
+    inputs.self.homeModules.tui2
+    inputs.self.homeModules.desktop
   ];
   programs.ssh = {
     enable = true;
@@ -30,6 +30,7 @@ in
     };
   };
   home = {
+    homeDirectory = "/home/as";
     file.".ssh/id_rsa_as.pub".source = ../../../identities/id_rsa_as.pub;
     file.".ssh/id_rsa_as-cert.pub".source = ../../../identities/id_rsa_as-cert.pub;
     file.".ssh/id_ed25519_as.pub".source = ../../../identities/id_ed25519_as.pub;

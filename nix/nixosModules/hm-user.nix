@@ -6,7 +6,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = false;
-    users.${config.my.user} = import ../homeModules/users/${config.my.user}-user.nix;
+    users.${config.my.user} = import ../home/${config.my.user}/home.nix;
     extraSpecialArgs = {
       inherit inputs;
     };
