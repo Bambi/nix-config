@@ -2,13 +2,13 @@
   description = "NixOS/home-manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     flakelight = {
       url = "github:nix-community/flakelight";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
@@ -27,7 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-23.11";
+      url = "github:nix-community/nixvim/nixos-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs = {
@@ -35,7 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     unbound-block-list = {
-      url = "github:hagezi/dns-blocklists?ref=12024.163.1";
+      url = "github:hagezi/dns-blocklists";
       flake = false;
     };
   };

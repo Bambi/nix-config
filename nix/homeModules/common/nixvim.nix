@@ -9,7 +9,7 @@
       nvim-autopairs.enable = true;
       gitsigns = {
         enable = true;
-        currentLineBlame = true;
+        settings.current_line_blame = true;
         # trouble = true;
       };
       telescope = {
@@ -18,7 +18,7 @@
           "<leader>fg" = "live_grep";
           "<C-p>" = {
             action = "git_files";
-            desc = "Telescope Git Files";
+            options.desc = "Telescope Git Files";
           };
         };
         extensions.fzf-native = { enable = true; };
@@ -30,7 +30,7 @@
       };
       treesitter-context = {
         enable = true;
-        maxLines = 2;
+        settings.maxLines = 2;
       };
       rainbow-delimiters.enable = true;
       bufferline.enable = true;

@@ -41,7 +41,6 @@
     };
     jujutsu = {
       enable = true;
-      enableFishIntegration = true;
       settings = {
         user = {
           name = "Antoine Sgambato";

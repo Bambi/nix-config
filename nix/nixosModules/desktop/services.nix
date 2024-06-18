@@ -3,8 +3,10 @@
   services = {
     xserver = {
       enable = false;
-      layout = "us";
-      xkbVariant = "intl";
+      xkb = {
+        layout = "us";
+        variant = "intl";
+      };
     };
     dbus.packages = with pkgs; [
       xfce.xfconf

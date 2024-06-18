@@ -11,7 +11,5 @@
       #   persist = true;
       # }];
     };
-    # Passwordless sudo when SSH'ing with keys
-    pam.enableSSHAgentAuth = true;
   };
 }
