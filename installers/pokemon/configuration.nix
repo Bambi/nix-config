@@ -22,21 +22,24 @@
 
   environment.systemPackages = [ pkgs.helix pkgs.git ];
 
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-    extraConfig = "PermitUserEnvironment yes";
-    hostKeys = [
-      {
-        path = "/etc/ssh/ssh_host_ed25519";
-        type = "ed25519";
-      }
-    ];
+  services = {
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      extraConfig = "PermitUserEnvironment yes";
+      hostKeys = [
+        {
+          path = "/etc/ssh/ssh_host_ed25519";
+          type = "ed25519";
+        }
+      ];
+    };
+    sshd.enable = true;
+    qemuGuest.enable = true;
   };
 
   programs.ssh.startAgent = true;
 
-  services.sshd.enable = true;
 
   security.pam = {
     enableSSHAgentAuth = true;

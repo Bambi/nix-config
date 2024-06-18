@@ -57,4 +57,11 @@ in
       download = "${config.home.homeDirectory}/Téléchargements";
     };
   };
+  # connect virt-manager with qemu hypervisor
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
+    };
+  };
 }

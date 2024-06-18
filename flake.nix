@@ -59,6 +59,7 @@
             ssh-to-age
             pv
             deploy-rs
+            nh
           ];
         };
         formatter = pkgs: pkgs.nixpkgs-fmt;

@@ -5,9 +5,9 @@
 "margin-bottom":0,
 "margin-top":0,
 
-"modules-left": ["sway/mode","cpu","memory","network"],
+"modules-left": ["custom/launcher","cpu","memory","network"],
 "modules-center": ["sway/workspaces","hyprland/workspaces"],
-"modules-right":  ["tray","idle_inhibitor","pulseaudio","backlight","battery","clock"],
+"modules-right":  ["tray","idle_inhibitor","pulseaudio","backlight","battery","clock","custom/power"],
 
 "battery": {
   "states": {
@@ -19,6 +19,15 @@
   "format-plugged": "&#8239;{capacity}%",
   "format-alt": "{icon} {time}",
   "format-icons": ["", "", "", "", "", "", ""]
+},
+"custom/launcher":{
+    "format": "",
+    "on-click": "rofi -show drun",
+    "on-click-right": "killall rofi"
+},
+"custom/power":{
+    "format": " ",
+    "on-click": "bash ~/.config/waybar/leave.sh",
 },
 "hyprland/workspaces": {
      "sort-by-name": true,
@@ -37,17 +46,17 @@
 },
 "clock": {
     "locale": "C", 
-    "format": " {:%H:%M}",
-    "format-alt": " {:%a %d %b}" // Icon: calendar-alt
+    "format": "  {:%H:%M}",
+    "format-alt": "  {:%a %d %b}" // Icon: calendar-alt
 },
 "cpu": {
-    "format": "&#8239;{usage}%",
+    "format": "&#8239; {usage}%",
     "tooltip": false,
     "on-click": "kitty -e 'htop'"
 },
 "memory": {
     "interval": 30,
-    "format": " {used:0.2f}GB",
+    "format": "  {used:0.2f}GB",
     "max-length": 10,
     "tooltip": false,
     "warning": 70,
@@ -74,7 +83,7 @@
 },
 "backlight": {
     // "device": "acpi_video1",
-    "format": "{icon}&#8239;{percent}%",
+    "format": "{icon}&#8239; {percent}%",
     "format-icons": ["", ""],
     "on-scroll-down": "brightnessctl -c backlight set 1%-",
     "on-scroll-up": "brightnessctl -c backlight set +1%"

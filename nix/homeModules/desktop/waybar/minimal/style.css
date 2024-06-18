@@ -3,6 +3,8 @@
     font-size: 13px;
     min-height: 0;
     color: white;
+    padding-left: 5;
+    padding-right: 5;
 }
 
 window#waybar {
