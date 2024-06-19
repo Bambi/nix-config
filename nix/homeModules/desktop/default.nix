@@ -12,6 +12,7 @@ in
     ./gammastep.nix
     ./theme.nix
     ./emanote.nix
+    ./foot.nix
   ];
   colorScheme = lib.mkDefault colorSchemes.catppuccin-macchiato;
   home = {

@@ -46,7 +46,7 @@
     psmisc
     clipboard-jh
     qutebrowser
-    kitty
+    foot
     nuspell
     hyphen
     hunspell

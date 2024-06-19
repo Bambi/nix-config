@@ -27,7 +27,7 @@ with lib; {
       input = {
         kb_layout = "us";
         kb_variant = "intl";
-      	kb_options = [ "grp:alt_shift_toggle" "caps:super" ];
+        kb_options = [ "grp:alt_shift_toggle" "caps:super" ];
         follow_mouse = true;
         touchpad = {
           natural_scroll = false;
@@ -103,7 +103,7 @@ with lib; {
       ];
       "$modifier" = "SUPER";
       bind = [
-        "$modifier,Return,exec,kitty"
+        "$modifier,Return,exec,footclient"
         "$modifier SHIFT,Return,exec,rofi -show drun -show-icons"
         "$modifier SHIFT,W,exec,web-search"
         "$modifier,W,exec,firefox"
@@ -188,6 +188,7 @@ with lib; {
           exec-once = waybar
           exec-once = dunst
           exec-once = hyprctl setcursor Bibata-Modern-Amber 20
+          exec-once = foot --server
           #exec-once = nm-applet --indicator
         ''
       ];
