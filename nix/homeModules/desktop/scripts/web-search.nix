@@ -7,7 +7,7 @@ pkgs.writeShellScriptBin "web-search" ''
       ["🌎 Search"]="https://search.brave.com/search?q="
       ["❄️  Unstable Packages"]="https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query="
       ["🎞️ YouTube"]="https://www.youtube.com/results?search_query="
-      ["🦥 Arch Wiki"]="https://wiki.archlinux.org/title/"
+      ["🦥 Home Manager"]="https://home-manager-options.extranix.com/?release=master&query="
       ["🐃 Gentoo Wiki"]="https://wiki.gentoo.org/index.php?title="
     )
 
@@ -27,10 +27,10 @@ pkgs.writeShellScriptBin "web-search" ''
         query=$( (echo ) | ${pkgs.rofi-wayland}/bin/rofi -dmenu )
 
         if [[ -n "$query" ]]; then
-  	url=''${URLS[$platform]}$query
-  	xdg-open "$url"
+        	url=''${URLS[$platform]}$query
+        	xdg-open "$url"
         else
-  	exit
+        	exit
         fi
       else
         exit

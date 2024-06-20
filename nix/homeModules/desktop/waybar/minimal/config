@@ -5,7 +5,7 @@
 "margin-bottom":0,
 "margin-top":0,
 
-"modules-left": ["custom/launcher","cpu","memory","network"],
+"modules-left": ["custom/launcher","custom/browser","custom/filemanager","cpu","memory","network","hyprland/window"],
 "modules-center": ["hyprland/workspaces"],
 "modules-right":  ["tray","idle_inhibitor","pulseaudio","backlight","battery","clock","custom/power"],
 
@@ -24,6 +24,16 @@
     "format": "",
     "on-click": "rofi -show drun",
     "on-click-right": "killall rofi"
+},
+"custom/browser": {
+    "format": "<U+F2D0>",
+    "on-click": "firefox",
+    "tooltip": false
+},
+"custom/filemanager": {
+    "format": "<U+F07B>",
+    "on-click": "thunar",
+    "tooltip": false
 },
 "custom/power":{
     "format": " ",
@@ -60,9 +70,9 @@
     "critical": 90
 },
 "network": {
-  "interval": 2,
+  "interval": 10,
   "format-wifi": " {signalStrength}%",
-  "format-ethernet": "",
+  "format-ethernet": "  {ipaddr}",
   "format-linked": " {ipaddr}",
   "format-disconnected": " Disconnected",
   "format-disabled": "",

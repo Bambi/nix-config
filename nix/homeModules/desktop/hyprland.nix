@@ -186,18 +186,13 @@ with lib; {
           #exec-once = dbus-update-activation-environment --systemd --all
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = waybar
-          exec-once = dunst
+          exec-once = ${pkgs.dunst}/bin/dunst
           exec-once = hyprctl setcursor Bibata-Modern-Amber 20
           exec-once = foot --server
           #exec-once = nm-applet --indicator
         ''
       ];
   };
-  home.packages = with pkgs; [
-    dunst
-    wlogout
-    # pyprland
-  ];
   programs.hyprlock = {
     enable = true;
     settings = {

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   services.geoclue2.appConfig = {
     "gammastep" = {
       isAllowed = true;
@@ -10,10 +8,4 @@
   };
 
   programs.light.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    # wlsunset
-    gammastep
-    brightnessctl
-  ];
 }
