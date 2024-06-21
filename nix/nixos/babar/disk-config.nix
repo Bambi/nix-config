@@ -11,7 +11,7 @@
               priority = 1;
               name = "ESP";
               start = "1M";
-              end = "256M";
+              end = "350M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -20,7 +20,7 @@
               };
             };
             luks = {
-              size = "120G";
+              size = "350G";
               content = {
                 type = "luks";
                 name = "crypted";
@@ -56,7 +56,7 @@
               };
             };
             encryptedSwap = {
-              size = "1G";
+              size = "2G";
               content = {
                 type = "swap";
                 randomEncryption = true;

@@ -22,7 +22,7 @@
           format-charging = "&#8239;{capacity}%";
           format-plugged = "&#8239;{capacity}%";
           format-alt = "{icon} {time}";
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂"];
+          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" ];
         };
         "custom/launcher" = {
           format = "";

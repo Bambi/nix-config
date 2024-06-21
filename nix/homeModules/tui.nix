@@ -9,6 +9,7 @@
     ./common/helix.nix
     ./common/starship
     ./common/yazi.nix
+    ./common/taskwarrior.nix
   ]; # ++ pkgs.lib.optionals config.home.guiApps [ ./gui ];
 
   # enable unfree packages

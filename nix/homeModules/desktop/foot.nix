@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       main = {
-        font = "Monospace:size=11";
+        font = "Monospace:size=12";
         # dpi-aware = "no";
         # resize-delay-ms = 0;
         # pad = "20x20";

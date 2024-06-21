@@ -15,8 +15,8 @@ h-install CONF:
 clochette:
 	nix build ./installers#nixosConfigurations.clochette.config.system.build.isoImage -o iso-installer
 
-r-install HOST KEYS:
-	./scripts/remote_install {{HOST}} {{KEYS}}
+r-install HOST KEYS *DEST:
+	./scripts/remote_install {{HOST}} {{KEYS}} {{DEST}}
 
 flash:
 	#!/usr/bin/env bash

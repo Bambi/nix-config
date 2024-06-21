@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-# remote_install <machine conf> <key directory>
+# remote_install <machine conf> <key directory> [<host>]
 set -Eeuo pipefail
 
-MACH="${1:-}"
+MACH="${1:-}" # Machine configuration to install (there must be a .#MACH NixOS flake)
 KEYDIR="${2:-}"
+HOST="${3:-}" # Running host name/user where to install configuration
 [ -n "$MACH" ] || (echo Remote machine configuration not specified >&2; exit 1)
 [ -d "$KEYDIR" ] || (echo Key directory $KEYDIR does not exist >&2; exit 1)
+[ -n "$HOST" ] || HOST=root@clochette.local
 
 # Create a temporary directory
 temp=$(mktemp -d)
@@ -19,11 +21,16 @@ trap cleanup EXIT
 # Create the directory where sshd expects to find the host keys
 install -d -m755 "$temp/etc/ssh"
 
+# copy host keys and certificate
 cp "$KEYDIR"/ssh_host_ed25519* "$temp/etc/ssh"
 
 # Set the correct permissions so sshd will accept the key
 chmod 600 "$temp/etc/ssh/ssh_host_ed25519"
 
+# generate public key if not present
+[ -f "$temp"/etc/ssh/ssh_host_ed25519.pub ] || \
+  ssh-keygen -y -f "$temp"/etc/ssh/ssh_host_ed25519 > "$temp"/etc/ssh/ssh_host_ed25519.pub
+
 # Install NixOS to the host system with our secrets
 nix run github:nix-community/nixos-anywhere -- -i ~/.ssh/id_ed25519_as \
-  --extra-files "$temp" --flake ".#$MACH" root@clochette.local
+  --extra-files "$temp" --flake ".#$MACH" "$HOST"
