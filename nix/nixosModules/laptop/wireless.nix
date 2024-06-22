@@ -7,12 +7,12 @@
     # Wireless secrets stored through sops
     sops.secrets.wireless = {
       sopsFile = ../../nixos/${config.networking.hostName}/secrets.yaml;
-      neededForUsers = true;
+      neededForUsers = false;
     };
 
     networking.wireless = {
       enable = true;
-      fallbackToWPA2 = false;
+      fallbackToWPA2 = true;
       # Declarative
       environmentFile = config.sops.secrets.wireless.path;
       networks = {
@@ -41,17 +41,17 @@
       # };
       extraConfig = ''
         update_config=1
+        ctrl_interface=DIR=/run/wpa_supplicant.sock GROUP=wheel
       '';
     };
 
     networking.networkmanager = {
       wifi.powersave = true;
+      unmanaged = [ "*,except:type:wifi,except:type:wwan,except:type:ethernet" ];
     };
 
     # Ensure group exists
     users.groups.network = { };
-
-    systemd.services.wpa_supplicant.preStart = "touch /etc/wpa_supplicant.conf";
 
     # bluetooth
     hardware.bluetooth = {
