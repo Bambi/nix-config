@@ -8,7 +8,6 @@
     ./common/dev.nix
     ./common/nixvim.nix
     ./common/bottom.nix
-    ./common/yazi.nix
   ]; # ++ pkgs.lib.optionals config.home.guiApps [ ./gui ];
 
   home = {

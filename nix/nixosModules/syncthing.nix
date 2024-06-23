@@ -30,8 +30,10 @@
       {
         enable = true;
         openDefaultPorts = true;
-        # dataDir = "/home/${user}/.local/share/syncthing";
-        configDir = "/home/${config.my.user}/.config/syncthing";
+        # do not put configDir in ~/.config: as this is a NixOS service
+        # ~/.config will be created as root and home-manager will fail
+        # to start because of wrong permissions on ~/.config.
+        configDir = "/home/${config.my.user}/.syncthing";
         user = "${config.my.user}";
         group = "users";
         key = "${config.sops.secrets.syncthing_key.path}";

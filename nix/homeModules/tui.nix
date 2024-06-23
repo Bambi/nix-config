@@ -8,7 +8,7 @@
     ./common/nnn.nix
     ./common/helix.nix
     ./common/starship
-    ./common/yazi.nix
+    ./common/yazi
     ./common/taskwarrior.nix
   ]; # ++ pkgs.lib.optionals config.home.guiApps [ ./gui ];
 
