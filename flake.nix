@@ -44,6 +44,8 @@
     flakelight ./.
       {
         inherit inputs;
+        systems = [ "x86_64-linux" ];
+        # withOverlays = [ inputs.self.overlays.nebula ];
         devShell = pkgs: {
           env.NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
           packages = with pkgs; [
@@ -59,6 +61,7 @@
             ssh-to-age
             pv
             deploy-rs
+            nebula
             nh
           ];
         };

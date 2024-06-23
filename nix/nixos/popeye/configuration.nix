@@ -27,6 +27,7 @@ in
     nebula = {
       enable = true;
       isLighthouse = true;
+      nodeIP = "192.168.100.1";
     };
     user = "as";
     interfaces.enp1s0 = {

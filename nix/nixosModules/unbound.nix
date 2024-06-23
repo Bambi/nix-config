@@ -13,7 +13,7 @@ in
     resolveLocalQueries = true;
     settings = {
       server = {
-        interface = networkAccessInterfacesList ++ [ "lo" "nebula.mesh" ];
+        interface = networkAccessInterfacesList ++ [ "lo" ];
         access-control = [
           "192.168.0.0/24 allow"
           "2a01:e0a:34f:f6c0::/64 allow"
