@@ -1,14 +1,16 @@
-# Terminal user configuration
+# More terminal user configuration
 { config, pkgs, lib, inputs, ... }: {
   imports = [
-    ./common/fish.nix
-    ./common/fzf.nix
+    inputs.nixvim.homeManagerModules.nixvim
+    ./common/bash.nix
+    ./common/kakoune.nix
+    ./common/tmux
+    ./common/dev.nix
+    ./common/nixvim.nix
+    ./common/bottom.nix
     ./common/git
-    ./common/lf
     ./common/nnn.nix
-    ./common/helix.nix
     ./common/starship
-    ./common/yazi
     ./common/taskwarrior.nix
   ]; # ++ pkgs.lib.optionals config.home.guiApps [ ./gui ];
 
@@ -17,24 +19,36 @@
 
   home = {
     packages = with pkgs; [
-      pv
-      duf
-      fd
-      btop
-      mosh
-      ncdu
-      ripgrep
       tig
-      tree
-      lnav
-      curl
-      procs
+      pv
       just
       age
       ssh-to-age
       sops
+      assh
+      glow
+      jq
+      keychain
+      lazygit
+      tree
+      diffsitter
+      # joshuto
+      kmon
+      trippy
+      moar
+      solo2-cli
+      libfido2
+      clipboard-jh
+      # podman
+      distrobox
+      fira-code-nerdfont
+      nushell
+      bitwarden-cli
       neofetch
-      tcpdump
+      onefetch
+      cpufetch
+      # docs
+      zk
       # archives
       unzip
       zip
@@ -47,52 +61,50 @@
       lz4
     ];
 
-    # add support for ~/.local/bin
-    sessionPath = [
-      "$HOME/.local/bin"
-    ];
-
-    language = {
-      base = "fr_FR.utf8";
-      ctype = "fr_FR.utf8";
-      numeric = "fr_FR.utf8";
-      time = "fr_FR.utf8";
-      collate = "fr_FR.utf8";
-      monetary = "fr_FR.utf8";
-      messages = "fr_FR.utf8";
-      paper = "fr_FR.utf8";
-      name = "fr_FR.utf8";
-      address = "fr_FR.utf8";
-      telephone = "fr_FR.utf8";
-      measurement = "fr_FR.utf8";
-    };
-
-    sessionVariables = {
-      PAGER = "bat -p --wrap=never";
-    };
+    file.".config/zk/config.toml".text = ''
+      [notebook]
+      dir = "~/.technotes/notes"
+    '';
   };
 
   programs = {
-    bat = {
+    direnv = {
       enable = true;
       config = {
-        theme = "gruvbox-dark";
+        # whitelist.prefix = [ "${config.homeDirectory}/dev" ];
+        whitelist.prefix = [ "/home/as/dev" ];
       };
+      nix-direnv.enable = true;
     };
-    eza = {
-      enable = true;
-      icons = true;
-      extraOptions = [ "--group-directories-first" ];
-    };
-    home-manager.enable = true;
   };
 
-  targets.genericLinux.enable = true;
+  fonts.fontconfig.enable = true;
+  xdg.configFile."glow/glow.yml".text =
+    ''
+      # show local files only; no network (TUI-mode only)
+      local: true
+      # mouse support (TUI-mode only)
+      mouse: true
+      # use pager to display markdown
+      pager: true
+      # word-wrap at width
+      # width: 80
+    '';
 
-  # Workaround home-manager bug with flakes
-  # - https://github.com/nix-community/home-manager/issues/2033
-  news.display = "silent";
-
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = lib.mkIf pkgs.stdenv.isLinux "sd-switch";
+  editorconfig = {
+    enable = true;
+    settings = {
+      "*" = {
+        charset = "utf-8";
+        end_of_line = "lf";
+        trim_trailing_whitespace = true;
+        insert_final_newline = true;
+        indent_style = "space";
+        indent_size = 4;
+      };
+      "Makefile,configure" = {
+        ident_style = "tab";
+      };
+    };
+  };
 }

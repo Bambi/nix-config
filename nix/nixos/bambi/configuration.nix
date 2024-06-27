@@ -15,7 +15,6 @@
       inputs.self.nixosModules.virtualization
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.syncthing
-      inputs.self.nixosModules.hm-user
     ];
 
   my = {

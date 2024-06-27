@@ -23,7 +23,6 @@ in
       inputs.self.nixosModules.laptop
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.syncthing
-      inputs.self.nixosModules.hm-user
     ];
 
   my = {
