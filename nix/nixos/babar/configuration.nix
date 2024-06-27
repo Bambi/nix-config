@@ -22,7 +22,6 @@ in
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.laptop
       inputs.self.nixosModules.nebula
-      inputs.self.nixosModules.zerotier
       inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.hm-user
     ];

@@ -14,7 +14,6 @@
       inputs.self.nixosModules.tpm2
       inputs.self.nixosModules.virtualization
       inputs.self.nixosModules.desktop
-      inputs.self.nixosModules.zerotier
       inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.hm-user
     ];
