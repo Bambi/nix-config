@@ -60,3 +60,8 @@ enable flakes:
 ```
 export NIX_CONFIG = "extra-experimental-features = nix-command flakes"
 ```
+
+# Flatpack
+Setup the flathub repo: `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
+Add a package: `flatpak install flathub com.google.Chrome`
+Run Chrome under Wayland: `flatpak run com.google.Chrome --enable-features=UseOzonePlatform --ozone-platform=wayland`

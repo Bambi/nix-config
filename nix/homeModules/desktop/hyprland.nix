@@ -105,14 +105,10 @@ with lib; {
       bind = [
         "$modifier,Return,exec,footclient"
         "$modifier SHIFT,Return,exec,rofi -show drun -show-icons"
-        "$modifier SHIFT,W,exec,web-search"
-        "$modifier,W,exec,firefox"
-        "$modifier,E,exec,emopicker9000"
-        "$modifier,S,exec,screenshootin"
-        "$modifier,G,exec,gimp"
-        "$modifier,T,exec,thunar"
-        "$modifier,Q,killactive,"
-        "$modifier,P,pseudo,"
+        "$modifier SHIFT,E,exec,web-search"
+        "$modifier SHIFT,W,exec,firefox"
+        "$modifier SHIFT,T,exec,thunar"
+        "$modifier SHIFT,Q,killactive,"
         "$modifier SHIFT,I,togglesplit,"
         "$modifier,F,fullscreen,"
         "$modifier SHIFT,F,togglefloating,"
@@ -134,28 +130,28 @@ with lib; {
         "$modifier,l,movefocus,r"
         "$modifier,k,movefocus,u"
         "$modifier,j,movefocus,d"
-        "$modifier,1,workspace,1"
-        "$modifier,2,workspace,2"
-        "$modifier,3,workspace,3"
-        "$modifier,4,workspace,4"
-        "$modifier,5,workspace,5"
-        "$modifier,6,workspace,6"
-        "$modifier,7,workspace,7"
-        "$modifier,8,workspace,8"
-        "$modifier,9,workspace,9"
-        "$modifier,0,workspace,10"
+        "$modifier,Q,workspace,1"
+        "$modifier,W,workspace,2"
+        "$modifier,E,workspace,3"
+        "$modifier,R,workspace,4"
+        "$modifier,T,workspace,5"
+        "$modifier,Y,workspace,6"
+        "$modifier,U,workspace,7"
+        "$modifier,I,workspace,8"
+        "$modifier,O,workspace,9"
+        "$modifier,P,workspace,10"
         "$modifier SHIFT,SPACE,movetoworkspace,special"
         "$modifier,SPACE,togglespecialworkspace"
-        "$modifier SHIFT,1,movetoworkspace,1"
-        "$modifier SHIFT,2,movetoworkspace,2"
-        "$modifier SHIFT,3,movetoworkspace,3"
-        "$modifier SHIFT,4,movetoworkspace,4"
-        "$modifier SHIFT,5,movetoworkspace,5"
-        "$modifier SHIFT,6,movetoworkspace,6"
-        "$modifier SHIFT,7,movetoworkspace,7"
-        "$modifier SHIFT,8,movetoworkspace,8"
-        "$modifier SHIFT,9,movetoworkspace,9"
-        "$modifier SHIFT,0,movetoworkspace,10"
+        "$modifier CONTROL,Q,movetoworkspace,1"
+        "$modifier CONTROL,W,movetoworkspace,2"
+        "$modifier CONTROL,E,movetoworkspace,3"
+        "$modifier CONTROL,R,movetoworkspace,4"
+        "$modifier CONTROL,T,movetoworkspace,5"
+        "$modifier CONTROL,Y,movetoworkspace,6"
+        "$modifier CONTROL,U,movetoworkspace,7"
+        "$modifier CONTROL,I,movetoworkspace,8"
+        "$modifier CONTROL,O,movetoworkspace,9"
+        "$modifier CONTROL,P,movetoworkspace,10"
         "$modifier CONTROL,right,workspace,e+1"
         "$modifier CONTROL,left,workspace,e-1"
         "$modifier,mouse_down,workspace, e+1"
@@ -183,7 +179,7 @@ with lib; {
       concatStrings [
         ''
           exec-once = $POLKIT_BIN
-          #exec-once = dbus-update-activation-environment --systemd --all
+          exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = waybar
           exec-once = ${pkgs.dunst}/bin/dunst
@@ -193,6 +189,8 @@ with lib; {
         ''
       ];
   };
+  # temporary HM bug fix
+  home.packages = [ pkgs.xwayland ];
   programs.hyprlock = {
     enable = true;
     settings = {

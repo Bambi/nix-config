@@ -54,6 +54,9 @@
       };
     };
   };
-  home.file.".ssh/allowed_signers".text =
-    "* ${builtins.readFile ../../../../identities/id_ed25519_as.pub}";
+  home = {
+    file.".ssh/allowed_signers".text =
+      "* ${builtins.readFile ../../../../identities/id_ed25519_as.pub}";
+    packages = [ pkgs.tig ];
+  };
 }

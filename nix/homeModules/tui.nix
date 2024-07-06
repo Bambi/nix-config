@@ -19,7 +19,6 @@
 
   home = {
     packages = with pkgs; [
-      tig
       pv
       just
       age
