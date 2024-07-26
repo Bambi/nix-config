@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, inputs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 let
   disk-config = import ./disk-config.nix;
 in
@@ -20,8 +20,25 @@ in
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.unbound
       inputs.self.nixosModules.syncthing
+      inputs.self.nixosModules.freeaccess
       ./git-user.nix
+      {
+        _module.args = {
+          lanItf = "enp1s0";
+          wanItf = "enp2s0";
+          # hiding my freebox MAC address
+          fbMacAddr = builtins.readFile
+            (builtins.fetchGit
+              {
+                url = "ssh://git@github.com/Bambi/nix-data.git";
+                ref = "main";
+                rev = "961605ab3d395657588c996bef67fbede1566aa4";
+              } + "/freeboxMacAddr");
+        };
+      }
     ];
+
+  environment.systemPackages = with pkgs; [ tshark ];
 
   my = {
     nebula = {
@@ -30,7 +47,7 @@ in
       nodeIP = "192.168.100.1";
     };
     user = "as";
-    interfaces.enp1s0 = {
+    interfaces.enp4s0 = {
       networkAccess = true;
       trusted = true;
     };

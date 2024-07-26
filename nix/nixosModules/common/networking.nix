@@ -19,7 +19,7 @@ in
       networks = lib.mapAttrs'
         (
           itf: val: lib.nameValuePair "10-${itf}"
-            (if builtins.hasAttr "address" val then {
+            (if val.address != null then {
               # static configuration
               matchConfig.Name = itf;
               networkConfig = {
