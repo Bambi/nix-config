@@ -32,7 +32,19 @@ in
             };
           }
         )
-        config.my.interfaces;
+        config.my.interfaces //
+        {
+          # USB tethering
+          usb = {
+            matchConfig.Name = "enp0s*u*";
+            networkConfig = {
+              DHCP = "yes";
+              DNSOverTLS = false;
+              LLMNR = false;
+              Domains = "~.";
+            };
+          };
+        };
       # config.networking.interfaces;
       wait-online.anyInterface = true;
     };

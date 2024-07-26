@@ -25,6 +25,8 @@ in
           bitwarden
           tabliss
           darkreader
+          vimium
+          french-dictionary
         ];
         isDefault = true;
         search = {
