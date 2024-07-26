@@ -7,23 +7,32 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.disko.nixosModules.disko
-      ./disk-config.nix
+      inputs.nixos-hardware.nixosModules.common-cpu-intel
+      inputs.nixos-hardware.nixosModules.common-pc-ssd
       inputs.self.nixosModules.common
+      inputs.self.nixosModules.nebula
+      inputs.self.nixosModules.tpm2
+      inputs.self.nixosModules.virtualization
+      inputs.self.nixosModules.desktop
+      inputs.self.nixosModules.syncthing
+      inputs.self.nixosModules.qmk
     ];
-
-  # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   my = {
     user = "as";
-    grub = inputs.self.lib.enabled;
-    interfaces.enp0s25.networkAccess = true;
+    nebula.enable = true;
+    grub.enable = true;
+    interfaces.eno1 = {
+      networkAccess = true;
+    };
+    syncthing.id = "LUAVW4J-L3ZAIHO-IWH34V3-DRPJUCC-6RESAJH-NDZJ5M5-R2XRKPO-7X7OSAC";
   };
   networking = {
     hostName = "musclor";
     networkmanager.enable = false;
   };
   time.timeZone = "Europe/Paris";
+  boot.kernelParams = [ "fbcon=nodefer" "vt.global_cursor_default=0" "video4linux" ];
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -41,4 +50,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
 }
-

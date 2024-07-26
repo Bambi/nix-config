@@ -3,56 +3,57 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-              priority = 1; # Needs to be first partition
-            };
-            swap = {
-              size = "1G";
+            ESP = {
+              priority = 1;
+              name = "ESP";
+              start = "1M";
+              end = "500M";
+              type = "EF00";
               content = {
-                type = "swap";
-                randomEncryption = true;
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
               };
             };
             root = {
-              size = "100%";
+              size = "500G";
               content = {
-                type = "luks";
-                name = "crypted";
-                askPassword = true;
-                settings.allowDiscards = true;
-                content = {
-                  type = "btrfs";
-                  extraArgs = [ "-f" ]; # Override existing partition
-                  # Subvolumes must set a mountpoint in order to be mounted,
-                  # unless their parent is mounted
-                  subvolumes = {
-                    # Subvolume name is different from mountpoint
-                    "/rootfs" = {
-                      mountOptions = [ "noatime" "discard=async" ];
-                      mountpoint = "/";
-                    };
-                    # Subvolume name is the same as the mountpoint
-                    "/home" = {
-                      mountOptions = [ "noatime" "compress=zstd" ];
-                      mountpoint = "/home";
-                    };
-                    # Parent is not mounted so the mountpoint must be set
-                    "/nix" = {
-                      mountOptions = [ "compress=zstd" "noatime" "discard=async" ];
-                      mountpoint = "/nix";
-                    };
-                    "/var" = {
-                      mountOptions = [ "compress=zstd" "noatime" "discard=async" ];
-                      mountpoint = "/var";
-                    };
+                type = "btrfs";
+                extraArgs = [ "-f" ]; # Override existing partition
+                # Subvolumes must set a mountpoint in order to be mounted,
+                # unless their parent is mounted
+                subvolumes = {
+                  # Subvolume name is different from mountpoint
+                  "/rootfs" = {
+                    mountOptions = [ "noatime" "discard=async" ];
+                    mountpoint = "/";
+                  };
+                  # Subvolume name is the same as the mountpoint
+                  "/home" = {
+                    mountOptions = [ "noatime" "compress=zstd" ];
+                    mountpoint = "/home";
+                  };
+                  # Parent is not mounted so the mountpoint must be set
+                  "/nix" = {
+                    mountOptions = [ "compress=zstd" "noatime" "discard=async" ];
+                    mountpoint = "/nix";
+                  };
+                  "/var" = {
+                    mountOptions = [ "compress=zstd" "noatime" "discard=async" ];
+                    mountpoint = "/var";
                   };
                 };
+              };
+            };
+            swap = {
+              size = "2G";
+              content = {
+                type = "swap";
+                discardPolicy = "both";
               };
             };
           };
