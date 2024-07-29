@@ -3,20 +3,38 @@ Theses are configuration files I use for some of my machines.
 They are very a much a WIP / may be broken.
 
 # Install a New Machine
+Required using an already setup nix machine:
 - build iso installer: `just clochette`
 - flash installer: `just flash`
 - boot installer on target machine and get hardware-configuration.nix with `nixos-generate-config --show-hardware-config --ni-filesystems`
 - generate new host keys in a tmp dir: `ROOTDIR=keys ./scripts/casign -h <host name>`
 - update configuration for the new machine (configuration.nix, hardware-configuration.nix, disk-config.nix, secrets, nebula keys and cartifiactes, ...)
+- commit the configuration
 - install the new host: `just r-install <host name> <keys dir>`
 
-# Install (obsolete)
+# Install a New Machine From Scratch
+All operations are made on the target machine and does not require an already setup Nixos machine.
+First install a simple intermediate Nixos configuration:
+- boot the official Nixos iso installer
+- get the disk configuration for the nachine: `curl -LO https://github.com/Bambi/nix-config/raw/master/nix/nixos/<machine>/disk-config.nix`
+- run disko: `sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disk-config.nix`
+- install a first Nixos configuration:
+  - `sudo nixos-generate-config --no-filesystems --root /mnt`
+  - `sudo cp disk-config.nix /mnt/etc/nixos`
+  - adjust `configuration.nix` to add disko (see disko quickstart doc)
+    you can also adjust the configuration to:
+    - enable ssh (this will generate ssh host keys)
+    - add vi
+  - `sudo nixos-install`
+  - reboot
 
-Maybe needed on a fresh installed machine:
-nix --extra-experimental-features nix-command --extra-experimental-features flakes develop
-
-Install home configuration:
-home-manager switch --flake .#as@home
+Then install the final configuration:
+- clone the nix-config repo
+- add to the host configuration the host public key (`/etc/ssh/ssh_host_ed25519.pub`) 
+- update host age key in `.sops.yaml`
+- edit or update the host `secrets.yaml` file (`sops updatekeys secrets.yaml`)
+- install the host final configuration: `just o-install <hostname>`
+- commit changes in the git repo
 
 ## babar installation
 
@@ -58,10 +76,15 @@ GIT_SSH_COMMAND="ssh -i id_ed25519" git clone ...
 
 enable flakes:
 ```
-export NIX_CONFIG = "extra-experimental-features = nix-command flakes"
+export NIX_CONFIG="extra-experimental-features = nix-command flakes"
 ```
 
-# Flatpack
+# Post-install
+Steps that require user actions after a fresh install.
+
+## Flatpack
 Setup the flathub repo: `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
+
 Add a package: `flatpak install flathub com.google.Chrome`
+
 Run Chrome under Wayland: `flatpak run com.google.Chrome --enable-features=UseOzonePlatform --ozone-platform=wayland`

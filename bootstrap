@@ -62,7 +62,7 @@ get_creds() {
 }
 
 install() {
-    [ -d ./hosts/$MNAME ] || (echo machine $MNAME not found! >&2; exit 1)
+    [ -d "./hosts/$MNAME" ] || (echo machine "$MNAME" not found! >&2; exit 1)
     # sudo nix --experimental-features "nix-command flakes"\
     #     run 'github:nix-community/disko#disko-install' --\
     #     --write-efi-boot-entries --flake ".#$MNAME" --disk main /dev/sda
