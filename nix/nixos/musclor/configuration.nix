@@ -2,11 +2,17 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }: {
+{ config, lib, pkgs, inputs, ... }:
+let
+  disk-config = import ./disk-config.nix;
+in
+{
   imports =
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.disko.nixosModules.disko
+      disk-config
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-ssd
       inputs.self.nixosModules.common
@@ -21,7 +27,7 @@
   my = {
     user = "as";
     nebula.enable = true;
-    grub.enable = true;
+    grub.enable = false;
     interfaces.eno1 = {
       networkAccess = true;
     };

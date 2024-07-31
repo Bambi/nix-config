@@ -53,7 +53,6 @@
               size = "2G";
               content = {
                 type = "swap";
-                discardPolicy = "both";
               };
             };
           };

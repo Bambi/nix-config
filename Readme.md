@@ -35,6 +35,7 @@ Then install the final configuration:
 - edit or update the host `secrets.yaml` file (`sops updatekeys secrets.yaml`)
 - install the host final configuration: `just o-install <hostname>`
 - commit changes in the git repo
+- reboot, login as `as` then install user home-manager configuration
 
 ## babar installation
 

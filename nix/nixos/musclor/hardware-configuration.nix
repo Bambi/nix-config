@@ -9,32 +9,9 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelParams = [ "i915.enable_guc=2" "i915.fastboot=1" ];
+  boot.kernelParams = [ "i915.enable_guc=2" "i915.fastboot=1" "acpi=force" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
-  fileSystems."/" =
-    {
-      device = "/dev/mapper/vg0-nixos";
-      fsType = "btrfs";
-      options = [ "noatime" "discard=async" ];
-    };
-
-  fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-uuid/6538015a-7eae-4076-b7a8-87aff536249b";
-      fsType = "btrfs";
-      options = [ "noatime" "discard=async" "compress-force=zstd:2" ];
-    };
-
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/DCE9-D759";
-      fsType = "vfat";
-    };
-
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/84d48902-bc65-4be9-b80c-ec9d1009e851"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
