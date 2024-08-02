@@ -2,6 +2,7 @@
 let
   interfaceOpts = {
     options = {
+      address = inputs.self.lib.mkOpt (lib.types.nullOr lib.types.str) null "Set interface IP address (DHCP otherwise)";
       networkAccess = inputs.self.lib.mkBoolOpt false "Is this interface used for Internet access?";
       trusted = inputs.self.lib.mkBoolOpt false "Untrusted interfaces will be firewalled.";
     };
@@ -17,20 +18,36 @@ in
       enable = true;
       networks = lib.mapAttrs'
         (
-          itf: val: lib.nameValuePair "10-${itf}" {
-            matchConfig.Name = itf;
-            networkConfig = {
-              DHCP = "ipv4";
-              DNSSEC = true;
-              DNSOverTLS = false;
-              MulticastDNS = true;
-              LLMNR = false;
-              Domains = "~.";
-            };
-            linkConfig = {
-              Multicast = true;
-            };
-          }
+          itf: val: lib.nameValuePair "10-${itf}"
+            (if builtins.hasAttr "address" val then {
+              # static configuration
+              matchConfig.Name = itf;
+              networkConfig = {
+                Address = val.address;
+                DNSSEC = true;
+                DNSOverTLS = false;
+                MulticastDNS = true;
+                LLMNR = false;
+                Domains = "~.";
+              };
+              linkConfig = {
+                Multicast = true;
+              };
+            } else {
+              # DHCP configuration
+              matchConfig.Name = itf;
+              networkConfig = {
+                DHCP = "ipv4";
+                DNSSEC = true;
+                DNSOverTLS = false;
+                MulticastDNS = true;
+                LLMNR = false;
+                Domains = "~.";
+              };
+              linkConfig = {
+                Multicast = true;
+              };
+            })
         )
         config.my.interfaces //
       {
