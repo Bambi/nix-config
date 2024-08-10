@@ -38,6 +38,10 @@
       url = "github:hagezi/dns-blocklists";
       flake = false;
     };
+    nixos-wsl = {
+      url ="github:nix-community/nixos-wsl";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { flakelight, ... }@inputs:
@@ -49,10 +53,9 @@
         devShell = pkgs: {
           env.NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
           packages = with pkgs; [
-            nix
+            helix
             pkgs.home-manager
             nixos-rebuild
-            git
             bat
             just
             bitwarden-cli

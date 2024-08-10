@@ -16,6 +16,8 @@ in
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-ssd
       inputs.self.nixosModules.common
+      inputs.self.nixosModules.bootloader
+      inputs.self.nixosModules.networking
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.tpm2
       inputs.self.nixosModules.virtualization

@@ -1,6 +1,6 @@
 # Personal NixOS Configuration files
 Theses are configuration files I use for some of my machines.
-They are very a much a WIP / may be broken.
+They are very much a WIP / may be broken.
 
 # Install a New Machine
 Required using an already setup nix machine:
@@ -8,7 +8,7 @@ Required using an already setup nix machine:
 - flash installer: `just flash`
 - boot installer on target machine and get hardware-configuration.nix with `nixos-generate-config --show-hardware-config --ni-filesystems`
 - generate new host keys in a tmp dir: `ROOTDIR=keys ./scripts/casign -h <host name>`
-- update configuration for the new machine (configuration.nix, hardware-configuration.nix, disk-config.nix, secrets, nebula keys and cartifiactes, ...)
+- update configuration for the new machine (configuration.nix, hardware-configuration.nix, disk-config.nix, secrets, nebula keys and certificates, ...)
 - commit the configuration
 - install the new host: `just r-install <host name> <keys dir>`
 
@@ -36,6 +36,12 @@ Then install the final configuration:
 - install the host final configuration: `just o-install <hostname>`
 - commit changes in the git repo
 - reboot, login as `as` then install user home-manager configuration
+
+## WSL Install
+Follow instructions on [NIXOS-WSL](https://github.com/nix-community/nixos-wsl).
+
+See instruction [here](https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/8)
+to rename the default user.
 
 ## babar installation
 

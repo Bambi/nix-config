@@ -30,6 +30,9 @@ in
     # users with additional rights for the Nix daemon
     nix.settings.trusted-users = [ "root" "${config.my.user}" ];
 
+    # Useful to have git globally available
+    environment.systemPackages = with pkgs; [ git ];
+
     # Change runtime directory size
     # services.logind.extraConfig = "RuntimeDirectorySize=8G";
   };
