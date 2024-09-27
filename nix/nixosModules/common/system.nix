@@ -32,7 +32,7 @@
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
+    dates = "monthly";
+    options = "--delete-older-than 60d";
   };
 }
