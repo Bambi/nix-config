@@ -25,8 +25,7 @@ with lib; {
         resize_on_border = true;
       };
       input = {
-        kb_layout = "us";
-        kb_variant = "intl";
+        kb_layout = "custom";
         kb_options = [ "grp:alt_shift_toggle" "caps:super" ];
         follow_mouse = true;
         touchpad = {
@@ -265,4 +264,5 @@ with lib; {
       ];
     };
   };
+  xdg.configFile."xkb/symbols/custom".source = ./us_qwerty-fr;
 }
