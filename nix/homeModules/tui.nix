@@ -32,6 +32,7 @@
       lazygit
       tree
       diffsitter
+      superfile
       # joshuto
       kmon
       trippy

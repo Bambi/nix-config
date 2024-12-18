@@ -3,6 +3,6 @@
   modules = [
     ../as-minimal/home.nix
     inputs.self.homeModules.tui
-    { home.stateVersion = "23.11"; }
+    { home.stateVersion = "24.11"; }
   ];
 }
