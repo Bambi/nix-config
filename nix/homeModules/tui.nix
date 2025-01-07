@@ -1,12 +1,12 @@
 # More terminal user configuration
 { config, pkgs, lib, inputs, ... }: {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nvf.homeManagerModules.default
     ./common/bash.nix
     ./common/kakoune.nix
     ./common/tmux
     ./common/dev.nix
-    ./common/nixvim.nix
+    ./common/nvim.nix
     ./common/bottom.nix
     ./common/git
     ./common/nnn.nix

@@ -1,6 +1,7 @@
 # Enable Services & utilities
 { pkgs, lib, config, ... }: {
   programs.dconf.enable = true;
+  programs.nix-ld.enable = true;
   services.dbus.enable = true;
   services.fwupd.enable = true;
   environment.systemPackages = with pkgs; [
