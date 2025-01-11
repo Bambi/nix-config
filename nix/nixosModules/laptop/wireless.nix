@@ -14,22 +14,22 @@
       enable = true;
       fallbackToWPA2 = true;
       # Declarative
-      environmentFile = config.sops.secrets.wireless.path;
+      secretsFile = config.sops.secrets.wireless.path;
       networks = {
         "Fripouille_ap" = {
-          psk = "@FRIPOUILLE@";
+          pskRaw = "ext:FRIPOUILLE";
         };
         bambi = {
-          psk = "@BAMBI@";
+          pskRaw = "ext:BAMBI";
         };
         singoalla = {
-          psk = "@SINGOALLA@";
+          pskRaw = "ext:SINGOALLA";
         };
         vagabonde = {
-          psk = "@VAGABONDE@";
+          pskRaw = "ext:VAGABONDE";
         };
         vagabonde_EXT = {
-          psk = "@VAGABONDE@";
+          pskRaw = "ext:VAGABONDE";
         };
       };
 
