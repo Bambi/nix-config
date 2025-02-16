@@ -38,6 +38,7 @@ in
       magic-wormhole
       # docs
       zettlr
+      calibre
     ];
     pointerCursor = {
       gtk.enable = true;

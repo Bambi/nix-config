@@ -31,6 +31,7 @@
       neofetch
       tcpdump
       comma
+      restic
     ];
 
     # add support for ~/.local/bin

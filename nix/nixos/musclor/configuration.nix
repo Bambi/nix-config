@@ -24,6 +24,7 @@ in
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.qmk
+      inputs.self.nixosModules.printing
     ];
 
   my = {
