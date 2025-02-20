@@ -5,7 +5,7 @@
     ./common/fzf.nix
     ./common/lf
     ./common/helix.nix
-    ./common/yazi
+    ./common/yazi.nix
   ];
   services.ssh-agent.enable = true;
   nix = {
