@@ -28,14 +28,15 @@ in
         _module.args = {
           lanItf = "enp1s0";
           wanItf = "enp2s0";
-          # hiding my freebox MAC address
-          fbMacAddr = builtins.readFile
-            (builtins.fetchGit
-              {
-                url = "ssh://git@github.com/Bambi/nix-data.git";
-                ref = "main";
-                rev = "961605ab3d395657588c996bef67fbede1566aa4";
-              } + "/freeboxMacAddr");
+          fbMacAddr = "9C:24:72:AB:D1:90";
+          # # hiding my freebox MAC address
+          # fbMacAddr = builtins.readFile
+          #   (builtins.fetchGit
+          #     {
+          #       url = "ssh://git@github.com/Bambi/nix-data.git";
+          #       ref = "main";
+          #       rev = "961605ab3d395657588c996bef67fbede1566aa4";
+          #     } + "/freeboxMacAddr");
         };
       }
     ];

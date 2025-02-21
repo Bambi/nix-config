@@ -63,7 +63,7 @@
         cpu = {
           format = "&#8239; {usage}%";
           tooltip = false;
-          on-click = "${pkgs.foot}/bin/foot -e '${pkgs.htop}/bin/htop'";
+          on-click = "${pkgs.ghostty}/bin/ghostty -e '${pkgs.htop}/bin/htop'";
         };
         memory = {
           interval = 30;
@@ -131,7 +131,7 @@
         font = "FiraCodeNerdFont:weight=bold:size=16";
         line-height = 24;
         fields = "name,generic,comment,categories,filename,keywords";
-        terminal = "${pkgs.foot}/bin/foot -e";
+        terminal = "${pkgs.ghostty}/bin/ghostty -e";
         prompt = "❯   ";
         layer = "overlay";
         lines = 15;

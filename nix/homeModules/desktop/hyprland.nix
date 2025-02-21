@@ -6,7 +6,7 @@ in
 with lib; {
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    xwayland.enable = false;
     systemd.enable = true;
     plugins = [
       # hyprplugins.hyprtrails
@@ -101,7 +101,7 @@ with lib; {
       ];
       "$modifier" = "SUPER";
       bind = [
-        "$modifier,Return,exec,footclient"
+        "$modifier,Return,exec,${pkgs.ghostty}/bin/ghostty"
         "$modifier SHIFT,Return,exec,rofi -show drun -show-icons"
         "$modifier SHIFT,E,exec,web-search"
         "$modifier SHIFT,W,exec,firefox"
@@ -202,13 +202,10 @@ with lib; {
           exec-once = waybar
           exec-once = ${pkgs.dunst}/bin/dunst
           exec-once = hyprctl setcursor Bibata-Modern-Amber 20
-          exec-once = foot --server
           #exec-once = nm-applet --indicator
         ''
       ];
   };
-  # temporary HM bug fix
-  home.packages = [ pkgs.xwayland ];
   programs.hyprlock = {
     enable = true;
     settings = {

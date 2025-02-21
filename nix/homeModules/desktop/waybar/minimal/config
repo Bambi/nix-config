@@ -59,7 +59,7 @@
 "cpu": {
     "format": "&#8239; {usage}%",
     "tooltip": false,
-    "on-click": "foot -e 'htop'"
+    "on-click": "ghostty -e 'htop'"
 },
 "memory": {
     "interval": 30,
