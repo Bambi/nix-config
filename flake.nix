@@ -27,7 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
-      url = "github:notashelf/nvf";
+      url = "github:notashelf/nvf/v0.7";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs = {
@@ -41,6 +41,14 @@
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    yazi-plugins = {
+      url = "github:yazi-rs/plugins?rev=02d18be03812415097e83c6a912924560e4cec6d";
+      flake = false;
+    };
+    yazi-starship = {
+      url = "github:Rolv-Apneseth/starship.yazi?rev=f6939fbdbc3fdfcdc2a80251841e429e0cd5cf3c";
+      flake = false;
     };
   };
 

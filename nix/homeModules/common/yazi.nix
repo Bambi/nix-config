@@ -1,12 +1,4 @@
-{ pkgs, ... }:
-let
-  yazi-plugins = pkgs.fetchFromGitHub {
-    owner = "yazi-rs";
-    repo = "plugins";
-    rev = "02d18be";
-    hash = "sha256-1FZ8wcf2VVp6ZWY27vm1dUU1KAL32WwoYbNA/8RUAog=";
-  };
-in {
+{ pkgs, inputs, ... }: {
   programs.yazi = {
     enable = true;
     enableBashIntegration = true;
@@ -19,16 +11,11 @@ in {
     };
 
     plugins = {
-      chmod = "${yazi-plugins}/chmod.yazi";
-      full-border = "${yazi-plugins}/full-border.yazi";
-      max-preview = "${yazi-plugins}/max-preview.yazi";
-      smart-enter = "${yazi-plugins}/smart-enter.yazi";
-      starship = pkgs.fetchFromGitHub {
-        owner = "Rolv-Apneseth";
-        repo = "starship.yazi";
-        rev = "f6939fb";
-        sha256 = "sha256-5QQsFozbulgLY/Gl6QuKSOTtygULveoRD49V00e0WOw=";
-      };
+      chmod = "${inputs.yazi-plugins}/chmod.yazi";
+      full-border = "${inputs.yazi-plugins}/full-border.yazi";
+      max-preview = "${inputs.yazi-plugins}/max-preview.yazi";
+      smart-enter = "${inputs.yazi-plugins}/smart-enter.yazi";
+      starship = "${inputs.yazi-starship}";
     };
 
     initLua = ''
@@ -46,7 +33,7 @@ in {
           desc = "Maximize or restore the preview pane";
         }
         {
-          on = ["c" "m"];
+          on = [ "c" "m" ];
           run = "plugin chmod";
           desc = "Chmod on selected files";
         }
