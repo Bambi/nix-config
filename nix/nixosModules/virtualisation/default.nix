@@ -24,6 +24,7 @@
       };
     };
     # spiceUSBRedirection.enable = true;
+    waydroid.enable = true;
   };
 
   programs.virt-manager.enable = true;

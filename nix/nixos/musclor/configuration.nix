@@ -20,7 +20,7 @@ in
       inputs.self.nixosModules.networking
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.tpm2
-      inputs.self.nixosModules.virtualization
+      inputs.self.nixosModules.virtualisation
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.qmk
