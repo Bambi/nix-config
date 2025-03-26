@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, lanItf, wanItf, boxMacAddr, ... }: {
+{ pkgs, lib, config, inputs, lanItf, wanItf, boxMacAddr, hostList, ... }: {
   systemd.network = {
     # bbox data is accessible on vlan 100 / IPv6 only
     netdevs.bytel = {
@@ -82,12 +82,9 @@
         EmitDNS = true;
         DNS = "192.168.0.254";
       };
-      dhcpServerStaticLeases = [
-        {
-          Address = "192.168.0.50";
-          MACAddress = "84:7b:eb:1e:eb:d8";
-        }
-      ];
+      dhcpServerStaticLeases =
+        map (host: { inherit (host) Address; inherit (host) MACAddress; })
+          hostList.hosts;
     };
     # Forwarding
     config.networkConfig = {

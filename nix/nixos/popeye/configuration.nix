@@ -29,6 +29,7 @@ in
           lanItf = "lan";
           wanItf = "wan1";
           boxMacAddr = "9C:24:72:AB:D1:90";
+          hostList = import ./network.nix "192.168.0";
           # # hiding my freebox MAC address
           # fbMacAddr = builtins.readFile
           #   (builtins.fetchGit
