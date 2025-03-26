@@ -19,18 +19,16 @@ in
       inputs.self.nixosModules.common
       inputs.self.nixosModules.bootloader
       inputs.self.nixosModules.networking
-      inputs.self.nixosModules.nebula
-      inputs.self.nixosModules.unbound
-      inputs.self.nixosModules.syncthing
-      inputs.self.nixosModules.freeaccess
+      # inputs.self.nixosModules.nebula
+      # inputs.self.nixosModules.unbound
+      # inputs.self.nixosModules.syncthing
+      inputs.self.nixosModules.wanaccess
       ./git-user.nix
       {
         _module.args = {
-          lanItf = "enp1s0";
-          wanItf = "enp2s0";
-          fbMacAddr = "9C:24:72:AB:D1:90";
           lanItf = "lan";
           wanItf = "wan1";
+          boxMacAddr = "9C:24:72:AB:D1:90";
           # # hiding my freebox MAC address
           # fbMacAddr = builtins.readFile
           #   (builtins.fetchGit
@@ -46,24 +44,37 @@ in
   environment.systemPackages = with pkgs; [ tshark ];
 
   my = {
-    nebula = {
-      enable = true;
-      isLighthouse = true;
-      nodeIP = "192.168.100.1";
-    };
+    # nebula = {
+    #   enable = true;
+    #   isLighthouse = true;
+    #   nodeIP = "192.168.100.1";
+    # };
     user = "as";
-    interfaces.enp4s0 = {
     interfaces.lan2 = {
       networkAccess = true;
       trusted = true;
     };
-    syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
-    syncthing.backup = true;
+    # syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
+    # syncthing.backup = true;
   };
   networking = {
     hostName = "popeye";
     networkmanager.enable = false;
+    # interfaces.enp1s0.ipv4.addresses = [{
+    #   address = "192.168.1.1";
+    #   prefixLength = 24;
+    # }];
   };
+  # systemd.network.networks."lan2" = {
+  #   matchConfig.Name = "lan2";
+  #   networkConfig.DHCP = "ipv4";
+  #   # address = [
+  #   #   "192.168.1.1/24"
+  #   # ];
+  #   # routes = [
+  #   #   { Gateway = "192.168.1.254"; }
+  #   # ];
+  # };
   time.timeZone = "Europe/Paris";
 
   # Enable Flakes and the new command-line tool
