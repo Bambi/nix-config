@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, inputs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 let
   disk-config = import ./disk-config.nix;
 in
@@ -26,6 +26,8 @@ in
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.syncthing
     ];
+
+  environment.systemPackages = with pkgs; [ deploy-rs putty tio ];
 
   my = {
     user = "as";
