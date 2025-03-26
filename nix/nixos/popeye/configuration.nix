@@ -29,6 +29,8 @@ in
           lanItf = "enp1s0";
           wanItf = "enp2s0";
           fbMacAddr = "9C:24:72:AB:D1:90";
+          lanItf = "lan";
+          wanItf = "wan1";
           # # hiding my freebox MAC address
           # fbMacAddr = builtins.readFile
           #   (builtins.fetchGit
@@ -51,6 +53,7 @@ in
     };
     user = "as";
     interfaces.enp4s0 = {
+    interfaces.lan2 = {
       networkAccess = true;
       trusted = true;
     };

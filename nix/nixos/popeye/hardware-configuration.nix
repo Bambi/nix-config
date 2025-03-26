@@ -29,10 +29,24 @@
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
   networking.interfaces = {
-    enp1s0 = { };
-    enp2s0 = { };
+    lan = { };
+    wan1 = { };
     enp3s0 = { };
-    enp4s0 = { };
+    lan2 = { };
+  };
+  systemd.network.links = {
+    "05-lan" = {
+      matchConfig.PermanentMACAddress = "00:07:32:57:92:6c";
+      linkConfig.Name = "lan";
+    };
+    "05-wan1" = {
+      matchConfig.PermanentMACAddress = "00:07:32:57:92:6d";
+      linkConfig.Name = "wan1";
+    };
+    "05-lan2" = {
+      matchConfig.PermanentMACAddress = "00:07:32:57:92:6f";
+      linkConfig.Name = "lan2";
+    };
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
