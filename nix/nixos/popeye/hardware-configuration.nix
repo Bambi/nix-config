@@ -47,6 +47,10 @@
       matchConfig.PermanentMACAddress = "00:07:32:57:92:6f";
       linkConfig.Name = "lan2";
     };
+    "05-wlan" = {
+      matchConfig.PermanentMACAddress = "00:c0:ca:b5:61:65";
+      linkConfig.Name = "wlan";
+    };
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

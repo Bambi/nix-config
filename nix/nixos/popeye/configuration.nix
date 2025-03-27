@@ -23,6 +23,7 @@ in
       inputs.self.nixosModules.unbound
       # inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.wanaccess
+      inputs.self.nixosModules.wifiaccess
       ./git-user.nix
       {
         _module.args = {
