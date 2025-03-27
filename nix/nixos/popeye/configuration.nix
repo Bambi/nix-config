@@ -20,7 +20,7 @@ in
       inputs.self.nixosModules.bootloader
       inputs.self.nixosModules.networking
       # inputs.self.nixosModules.nebula
-      # inputs.self.nixosModules.unbound
+      inputs.self.nixosModules.unbound
       # inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.wanaccess
       ./git-user.nix
@@ -51,9 +51,11 @@ in
     #   nodeIP = "192.168.100.1";
     # };
     user = "as";
-    interfaces.lan2 = {
-      networkAccess = true;
-      trusted = true;
+    interfaces = {
+      lan2 = {
+        networkAccess = true;
+        trusted = true;
+      };
     };
     # syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
     # syncthing.backup = true;
@@ -61,21 +63,7 @@ in
   networking = {
     hostName = "popeye";
     networkmanager.enable = false;
-    # interfaces.enp1s0.ipv4.addresses = [{
-    #   address = "192.168.1.1";
-    #   prefixLength = 24;
-    # }];
   };
-  # systemd.network.networks."lan2" = {
-  #   matchConfig.Name = "lan2";
-  #   networkConfig.DHCP = "ipv4";
-  #   # address = [
-  #   #   "192.168.1.1/24"
-  #   # ];
-  #   # routes = [
-  #   #   { Gateway = "192.168.1.254"; }
-  #   # ];
-  # };
   time.timeZone = "Europe/Paris";
 
   # Enable Flakes and the new command-line tool

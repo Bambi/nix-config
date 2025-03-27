@@ -1,7 +1,5 @@
-{ pkgs, inputs, lib, config, ... }:
+{ pkgs, inputs, lib, lanItf, wanItf, ... }:
 let
-  networkAccessInterfaces = (lib.attrsets.filterAttrs (n: v: v.networkAccess) config.my.interfaces);
-  networkAccessInterfacesList = lib.attrsets.mapAttrsToList (n: v: "${n}") networkAccessInterfaces;
   firewallRules = {
     allowedUDPPorts = [ 53 ];
     allowedTCPPorts = [ 53 ];
@@ -13,11 +11,15 @@ in
     resolveLocalQueries = true;
     settings = {
       server = {
-        interface = networkAccessInterfacesList ++ [ "lo" ];
+        # listening interfaces
+        interface = [ lanItf "lo" ];
         access-control = [
+          "0.0.0.0/0 refuse"
           "192.168.0.0/24 allow"
           "2a01:e0a:34f:f6c0::/64 allow"
           "fe80::/10 allow"
+          "fd00::/8 allow"
+          "::0/0 refuse"
           "::1 allow"
           "127.0.0.0/8 allow"
         ];
@@ -87,5 +89,5 @@ in
     etc."unbound/blocklist".source = "${inputs.unbound-block-list}/unbound/pro.blacklist.conf";
     systemPackages = [ pkgs.cacert ];
   };
-  networking.firewall.interfaces = builtins.mapAttrs (n: v: firewallRules) networkAccessInterfaces;
+  networking.firewall.interfaces."${wanItf}" = firewallRules;
 }

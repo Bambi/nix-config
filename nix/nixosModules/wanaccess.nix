@@ -39,9 +39,7 @@
         IPv6AcceptRA = true;
         IPv4Forwarding = true;
         IPv6Forwarding = true;
-        # LinkLocalAddressing = "ipv6";
-        # Address = "82.64.181.55/24"; # bambi.hd.free.fr
-        # Gateway = "";
+        LinkLocalAddressing = "ipv6";
       };
       dhcpV4Config = {
         VendorClassIdentifier = "BYGTELIAD";
@@ -75,6 +73,7 @@
         IPv6SendRA = true;
         LLDP = false;
         EmitLLDP = false;
+        DHCPPrefixDelegation = true;
       };
       dhcpServerConfig = {
         PoolOffset = 10;
@@ -85,6 +84,11 @@
       dhcpServerStaticLeases =
         map (host: { inherit (host) Address; inherit (host) MACAddress; })
           hostList.hosts;
+      dhcpPrefixDelegationConfig = {
+        UplinkInterface = "${wanItf}";
+        Token = "::ffff";
+        SubnetId = "0xf";
+      };
     };
     # Forwarding
     config.networkConfig = {
@@ -98,6 +102,7 @@
     firewall = {
       filterForward = true;
       trustedInterfaces = [ "${lanItf}" ];
+      extraForwardRules = "iifname ${lanItf} accept";
     };
   };
 }
