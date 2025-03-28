@@ -19,7 +19,7 @@ in
       inputs.self.nixosModules.common
       inputs.self.nixosModules.bootloader
       inputs.self.nixosModules.networking
-      # inputs.self.nixosModules.nebula
+      inputs.self.nixosModules.nebula
       inputs.self.nixosModules.unbound
       # inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.wanaccess
@@ -31,14 +31,6 @@ in
           wanItf = "wan1";
           boxMacAddr = "9C:24:72:AB:D1:90";
           hostList = import ./network.nix "192.168.0";
-          # # hiding my freebox MAC address
-          # fbMacAddr = builtins.readFile
-          #   (builtins.fetchGit
-          #     {
-          #       url = "ssh://git@github.com/Bambi/nix-data.git";
-          #       ref = "main";
-          #       rev = "961605ab3d395657588c996bef67fbede1566aa4";
-          #     } + "/freeboxMacAddr");
         };
       }
     ];
@@ -46,11 +38,12 @@ in
   environment.systemPackages = with pkgs; [ tshark ];
 
   my = {
-    # nebula = {
-    #   enable = true;
-    #   isLighthouse = true;
-    #   nodeIP = "192.168.100.1";
-    # };
+    nebula = {
+      enable = true;
+      isLighthouse = true;
+      nodeIP = "192.168.100.1";
+      publicIp = "176.177.24.32";
+    };
     user = "as";
     interfaces = {
       lan2 = {

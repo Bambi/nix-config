@@ -3,6 +3,7 @@
     enable = mkBoolOpt false "Enable Nebula Overlay.";
     isLighthouse = mkBoolOpt false "Is the node a lighthouse.";
     nodeIP = mkOpt lib.types.str "" "Node Nebula IP. Only for the lighthouse. Must match the certificate IP.";
+    publicIp = mkOpt lib.types.str "" "Public IP address of the lighthouse node.";
   };
 
   config =
@@ -33,8 +34,9 @@
         ca = ./ca.crt;
         lighthouses = lib.mkIf (!config.my.nebula.isLighthouse) lighthouseIPs;
         staticHostMap = lib.mkIf (!config.my.nebula.isLighthouse)
-          (builtins.listToAttrs (lib.lists.forEach lighthouseIPs (v: { name = "${v}"; value = [ "82.64.181.55:4242" ]; })));
-        # "192.168.100.1" = [ "82.64.181.55:4242" ];
+          (builtins.listToAttrs (lib.lists.forEach lighthouseIPs (v: { name = "${v}"; value = [ "${config.my.nebula.publicIp}:4242" ]; })));
+        # "192.168.100.1" = [ "176.177.24.32:4242" ];
+        listen.host = lib.mkIf (config.my.nebula.isLighthouse) config.my.nebula.publicIp;
         firewall = {
           inbound = [{
             host = "any";
