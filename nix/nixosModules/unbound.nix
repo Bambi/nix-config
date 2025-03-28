@@ -12,10 +12,11 @@ in
     settings = {
       server = {
         # listening interfaces
-        interface = [ lanItf "lo" ];
+        interface = [ lanItf "lo" "wlan" ];
         access-control = [
           "0.0.0.0/0 refuse"
           "192.168.0.0/24 allow"
+          "192.168.1.0/24 allow"
           "2a01:e0a:34f:f6c0::/64 allow"
           "fe80::/10 allow"
           "fd00::/8 allow"
