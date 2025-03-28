@@ -27,7 +27,7 @@ in
       inputs.self.nixosModules.syncthing
     ];
 
-  environment.systemPackages = with pkgs; [ deploy-rs putty tio ];
+  environment.systemPackages = with pkgs; [ putty tio ];
 
   my = {
     user = "as";

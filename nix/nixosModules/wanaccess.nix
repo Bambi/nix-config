@@ -1,15 +1,9 @@
-{ pkgs, lib, config, inputs, lanItf, wanItf, boxMacAddr, hostList, ... }: {
+{ pkgs, lib, config, inputs, lanItf, wanItf, boxMacAddr, hostList, ... }:
+let
+  faiItf = "byteldata"; # FAI interface name
+in
+{
   systemd.network = {
-    # bbox data is accessible on vlan 100 / IPv6 only
-    netdevs.bytel = {
-      netdevConfig = {
-        Description = "Btel Data VLAN";
-        Name = "byteldata";
-        Kind = "vlan";
-        MACAddress = boxMacAddr;
-      };
-      vlanConfig.Id = 100;
-    };
     # wan physical interface
     networks.bytel = {
       matchConfig = {
@@ -18,7 +12,7 @@
       };
       networkConfig = {
         Description = "Bytel Data Network";
-        VLAN = "byteldata";
+        VLAN = faiItf;
         # No autoconf of the physical ethernet interface (trunk)
         LinkLocalAddressing = false;
         LLDP = false;
@@ -27,10 +21,20 @@
         IPv6SendRA = false;
       };
     };
+    # bbox data is accessible on vlan 100 / IPv6 only
+    netdevs.bytel = {
+      netdevConfig = {
+        Description = "Btel Data VLAN";
+        Name = faiItf;
+        Kind = "vlan";
+        MACAddress = boxMacAddr;
+      };
+      vlanConfig.Id = 100;
+    };
     # internet pseudo interface based on bytel vlan
     networks.internet = {
       matchConfig = {
-        Name = "byteldata";
+        Name = faiItf;
         Type = "vlan";
       };
       networkConfig = {
@@ -40,6 +44,7 @@
         IPv4Forwarding = true;
         IPv6Forwarding = true;
         LinkLocalAddressing = "ipv6";
+        DHCPPrefixDelegation = true;
       };
       dhcpV4Config = {
         VendorClassIdentifier = "BYGTELIAD";
@@ -47,14 +52,19 @@
         # SendHostName = false;
       };
       dhcpV6Config = {
+        UseDelegatedPrefix = true;
         UseAddress = false;
         WithoutRA = "solicit";
         DUIDType = "link-layer";
-        PrefixDelegationHint = "::/64";
+        PrefixDelegationHint = "::/60";
         IAID = 1;
-        # SendHostname = false;
         UseHostname = false;
         UseDNS = false;
+        # UseMTU = true;
+      };
+      dhcpPrefixDelegationConfig = {
+        UplinkInterface = ":self";
+        SubnetId = 1;
       };
     };
     # LAN Interface
@@ -73,6 +83,7 @@
         IPv6SendRA = true;
         LLDP = false;
         EmitLLDP = false;
+        MulticastDNS = true;
         DHCPPrefixDelegation = true;
       };
       dhcpServerConfig = {
@@ -85,8 +96,7 @@
         map (host: { inherit (host) Address; inherit (host) MACAddress; })
           hostList.hosts;
       dhcpPrefixDelegationConfig = {
-        UplinkInterface = "${wanItf}";
-        Token = "::ffff";
+        UplinkInterface = faiItf;
         SubnetId = "0xf";
       };
     };

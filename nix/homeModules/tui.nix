@@ -60,6 +60,7 @@
       bzip2
       xz
       lz4
+      deploy-rs
     ];
 
     file.".config/zk/config.toml".text = ''
