@@ -1,8 +1,9 @@
-{ pkgs, lib, config, inputs, lanItf, wanItf, boxMacAddr, hostList, ... }:
+{ lanItf, wanItf, boxMacAddr, hostList, ... }:
 let
   faiItf = "byteldata"; # FAI interface name
 in
 {
+  imports = [ ./fail2ban.nix ];
   systemd.network = {
     # wan physical interface
     networks.bytel = {
