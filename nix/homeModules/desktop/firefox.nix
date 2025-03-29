@@ -13,7 +13,7 @@ in
 {
   programs.firefox = {
     enable = true;
-    # languagePacks = [ "fr" "fr-FR" ];
+    languagePacks = [ "fr" "en-US" ];
 
     profiles = {
       as = {
@@ -138,6 +138,8 @@ in
         "browser.newtabpage.activity-stream.showSponsored" = lock-false;
         "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
+        "intl.locale.requested" = "fr,en-US";
+        "intl.accept_languages" = "fr-fr,en-us,en";
       };
     };
   };

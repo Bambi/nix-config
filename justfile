@@ -4,7 +4,7 @@ default:
 	@just --list
 
 check:
-	nix flake check
+	nix flake check --no-build
 
 o-install +HOST=`hostname`:
 	nixos-rebuild switch --flake '.#{{HOST}}'

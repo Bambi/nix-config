@@ -12,6 +12,7 @@ in
     ./gammastep.nix
     ./theme.nix
     ./ghostty.nix
+    ./zathura.nix
   ];
   colorScheme = lib.mkDefault colorSchemes.catppuccin-macchiato;
   home = {
@@ -29,7 +30,6 @@ in
       ffmpeg_6-full
       cliphist
       imagemagick
-      zathura
       mpv
       imv
       zeal
