@@ -56,7 +56,7 @@
     flakelight ./.
       {
         inherit inputs;
-        lib.network = import ./network.nix;
+        lib.network = import ./network.nix inputs.nixpkgs.lib;
         systems = [ "x86_64-linux" ];
         # withOverlays = [ inputs.self.overlays.nebula ];
         devShell = pkgs: {

@@ -97,7 +97,7 @@ in
         let
           localHosts = lib.attrsets.mapAttrs
             (n: v: { name=n;
-                     itf=lib.lists.findFirst (x: inputs.self.lib.isAddrFromSubnet x.addr "192.168.0.0/24") {mac=null; addr=null;} v.interfaces;
+                     itf=lib.lists.findFirst (x: inputs.self.lib.isAddrFromSubnet x.addr "192.168.0.0/24") {mac=null;} (inputs.self.lib.network.hostItfList n);
                    }
             ) inputs.self.lib.network.hosts;
           localHostsOnly = lib.attrsets.filterAttrs (n: v: v.itf.mac != null) localHosts;

@@ -1,37 +1,42 @@
+lib:
 let
   lanNetwork = "192.168.0";
 in
-{
+rec {
   hosts = {
     popeye = {
-      interfaces = [
-        {
+      interfaces = {
+        "${lanNetwork}.1" = {
           mac = "84:7b:eb:1e:eb:d8";
-          addr = "${lanNetwork}.1";
-        }
-        {
+        };
+        "176.177.24.32" = {
           mac = "9c:24:72:ab:d1:90";
-          addr = "176.177.24.32";
-        }
-      ];
+        };
+        "192.168.100.1" = {
+          isLighthouse = true;
+        };
+      };
     };
     babar = {
-      interfaces = [
-        {
+      interfaces = {
+        "${lanNetwork}.2" = {
           mac = "00:4e:01:9f:2d:74";
-          addr = "${lanNetwork}.2";
-        }
-      ];
+        };
+      };
     };
     pCP = {
-      interfaces = [
-        {
+      interfaces = {
+        "${lanNetwork}.3" = {
           mac = "b8:27:eb:6c:7b:54";
-          addr = "${lanNetwork}.3";
-        }
-      ];
+        };
+      };
     };
   };
+  hostItfList = hostName:
+  let
+    namedItfs = lib.attrsets.mapAttrs (n: v: v // {addr=n;}) hosts.${hostName}.interfaces;
+  in
+    lib.attrsets.mapAttrsToList (n: v: v) namedItfs;
   publicIp = "176.177.24.32";
-  wanMacAddr = "9c:24:72:ab:d1:90";
+  wanMacAddr = hosts.popeye.interfaces."${publicIp}".mac;
 }
