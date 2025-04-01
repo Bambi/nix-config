@@ -29,7 +29,6 @@ in
         _module.args = {
           lanItf = "lan";
           wanItf = "wan1";
-          boxMacAddr = "9C:24:72:AB:D1:90";
         };
       }
     ];

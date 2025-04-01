@@ -33,5 +33,5 @@ in
     };
   };
   publicIp = "176.177.24.32";
-  # wanMacAddr = 
+  wanMacAddr = "9c:24:72:ab:d1:90";
 }

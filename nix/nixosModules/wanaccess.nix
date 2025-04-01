@@ -1,4 +1,4 @@
-{ lib, inputs, lanItf, wanItf, boxMacAddr, ... }:
+{ lib, inputs, lanItf, wanItf, ... }:
 let
   faiItf = "byteldata"; # FAI interface name
 in
@@ -28,7 +28,7 @@ in
         Description = "Btel Data VLAN";
         Name = faiItf;
         Kind = "vlan";
-        MACAddress = boxMacAddr;
+        MACAddress = inputs.self.lib.network.wanMacAddr;
       };
       vlanConfig.Id = 100;
     };
