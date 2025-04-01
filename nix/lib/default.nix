@@ -77,5 +77,5 @@ with lib; rec {
     #@ false
     enable = false;
   };
-}
+} // import ./ip.nix lib
 

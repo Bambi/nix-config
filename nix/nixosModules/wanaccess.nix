@@ -1,4 +1,4 @@
-{ lanItf, wanItf, boxMacAddr, hostList, ... }:
+{ lib, inputs, lanItf, wanItf, boxMacAddr, ... }:
 let
   faiItf = "byteldata"; # FAI interface name
 in
@@ -94,8 +94,15 @@ in
         DNS = "192.168.0.254";
       };
       dhcpServerStaticLeases =
-        map (host: { inherit (host) Address; inherit (host) MACAddress; })
-          hostList.hosts;
+        let
+          localHosts = lib.attrsets.mapAttrs
+            (n: v: { name=n;
+                     itf=lib.lists.findFirst (x: inputs.self.lib.isAddrFromSubnet x.addr "192.168.0.0/24") {mac=null; addr=null;} v.interfaces;
+                   }
+            ) inputs.self.lib.network.hosts;
+          localHostsOnly = lib.attrsets.filterAttrs (n: v: v.itf.mac != null) localHosts;
+        in
+        lib.attrsets.mapAttrsToList (n: v: { Address=v.itf.addr; MACAddress=v.itf.mac;}) localHostsOnly;
       dhcpPrefixDelegationConfig = {
         UplinkInterface = faiItf;
         SubnetId = "0xf";
