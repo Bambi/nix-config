@@ -26,12 +26,17 @@ in
       inputs.self.nixosModules.wifiaccess
       ./git-user.nix
       {
-        _module.args = {
+        _module.args = rec {
+          # wanaccess
           lanItf = "lan";
           wanItf = "wan1";
+          # nebula
           LHPubIP = inputs.self.lib.network.publicIp;
           LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
           isLH = true;
+          # unbound
+          bindItfs = [ lanItf "wlan" ];
+          allowedIps = [ inputs.self.lib.network.lan.cidrv4 "192.168.1.0/24" ];
         };
       }
     ];

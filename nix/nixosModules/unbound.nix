@@ -1,22 +1,14 @@
-{ pkgs, inputs, lib, lanItf, wanItf, ... }:
-let
-  firewallRules = {
-    allowedUDPPorts = [ 53 ];
-    allowedTCPPorts = [ 53 ];
-  };
-in
-{
+{ pkgs, inputs, lib, wanItf, bindItfs, allowedIps, ... }: {
   services.unbound = {
     enable = true;
     resolveLocalQueries = true;
     settings = {
       server = {
         # listening interfaces
-        interface = [ lanItf "lo" "wlan" ];
-        access-control = [
+        interface = [ "lo" ] ++ bindItfs;
+        access-control = (map (x: x+" allow") allowedIps)
+        ++ [
           "0.0.0.0/0 refuse"
-          "192.168.0.0/24 allow"
-          "192.168.1.0/24 allow"
           "2a01:e0a:34f:f6c0::/64 allow"
           "fe80::/10 allow"
           "fd00::/8 allow"
@@ -90,5 +82,9 @@ in
     etc."unbound/blocklist".source = "${inputs.unbound-block-list}/unbound/pro.blacklist.conf";
     systemPackages = [ pkgs.cacert ];
   };
-  networking.firewall.interfaces."${wanItf}" = firewallRules;
+  # allow bind data on public interface
+  networking.firewall.interfaces."${wanItf}" = {
+    allowedUDPPorts = [ 53 ];
+    allowedTCPPorts = [ 53 ];
+  };
 }

@@ -32,12 +32,17 @@ rec {
       };
     };
   };
+  lan = {
+    cidrv4 = "${lanNetwork}.0/24";
+    gw = "${lanNetwork}.254";
+    mask = 24;
+  };
+  publicIp = "176.177.24.32";
   hostItfList = hostName:
     let
       namedItfs = lib.attrsets.mapAttrs (n: v: v // { addr = n; }) hosts.${hostName}.interfaces;
     in
     lib.attrsets.mapAttrsToList (n: v: v) namedItfs;
   lighthouseItf = host: lib.lists.findFirst (x: builtins.hasAttr "isLighthouse" x) { addr = null; } (hostItfList host);
-  publicIp = "176.177.24.32";
   wanMacAddr = hosts.popeye.interfaces."${publicIp}".mac;
 }
