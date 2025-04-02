@@ -96,13 +96,15 @@ in
       dhcpServerStaticLeases =
         let
           localHosts = lib.attrsets.mapAttrs
-            (n: v: { name=n;
-                     itf=lib.lists.findFirst (x: inputs.self.lib.isAddrFromSubnet x.addr "192.168.0.0/24") {mac=null;} (inputs.self.lib.network.hostItfList n);
-                   }
-            ) inputs.self.lib.network.hosts;
+            (n: v: {
+              name = n;
+              itf = lib.lists.findFirst (x: inputs.self.lib.isAddrFromSubnet x.addr "192.168.0.0/24") { mac = null; } (inputs.self.lib.network.hostItfList n);
+            }
+            )
+            inputs.self.lib.network.hosts;
           localHostsOnly = lib.attrsets.filterAttrs (n: v: v.itf.mac != null) localHosts;
         in
-        lib.attrsets.mapAttrsToList (n: v: { Address=v.itf.addr; MACAddress=v.itf.mac;}) localHostsOnly;
+        lib.attrsets.mapAttrsToList (n: v: { Address = v.itf.addr; MACAddress = v.itf.mac; }) localHostsOnly;
       dhcpPrefixDelegationConfig = {
         UplinkInterface = faiItf;
         SubnetId = "0xf";

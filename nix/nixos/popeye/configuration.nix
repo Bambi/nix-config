@@ -29,6 +29,9 @@ in
         _module.args = {
           lanItf = "lan";
           wanItf = "wan1";
+          LHPubIP = inputs.self.lib.network.publicIp;
+          LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
+          isLH = true;
         };
       }
     ];
@@ -36,12 +39,6 @@ in
   environment.systemPackages = with pkgs; [ tshark ];
 
   my = {
-    nebula = {
-      enable = true;
-      isLighthouse = true;
-      nodeIP = "192.168.100.1";
-      publicIp = "176.177.24.32";
-    };
     user = "as";
     interfaces = {
       lan2 = {

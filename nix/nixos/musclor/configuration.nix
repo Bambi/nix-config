@@ -25,11 +25,17 @@ in
       inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.qmk
       inputs.self.nixosModules.printing
+      {
+        _module.args = {
+          LHPubIP = inputs.self.lib.network.publicIp;
+          LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
+          isLH = false;
+        };
+      }
     ];
 
   my = {
     user = "as";
-    nebula.enable = true;
     grub.enable = false;
     interfaces.eno1 = {
       networkAccess = true;

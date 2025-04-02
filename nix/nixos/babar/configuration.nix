@@ -25,13 +25,19 @@ in
       inputs.self.nixosModules.laptop
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.syncthing
+      {
+        _module.args = {
+          LHPubIP = inputs.self.lib.network.publicIp;
+          LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
+          isLH = false;
+        };
+      }
     ];
 
   environment.systemPackages = with pkgs; [ putty tio ];
 
   my = {
     user = "as";
-    nebula.enable = true;
     wireless.enable = true;
     interfaces = {
       eno1.networkAccess = true;
