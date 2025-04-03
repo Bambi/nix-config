@@ -6,8 +6,8 @@
       server = {
         # listening interfaces
         interface = [ "lo" ] ++ bindItfs;
-        access-control = (map (x: x+" allow") allowedIps)
-        ++ [
+        access-control = (map (x: x + " allow") allowedIps)
+          ++ [
           "0.0.0.0/0 refuse"
           "2a01:e0a:34f:f6c0::/64 allow"
           "fe80::/10 allow"

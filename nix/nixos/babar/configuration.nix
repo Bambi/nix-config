@@ -27,7 +27,7 @@ in
       inputs.self.nixosModules.syncthing
       {
         _module.args = {
-          LHPubIP = inputs.self.lib.network.publicIp;
+          publicIP = inputs.self.lib.network.publicIP;
           LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
           isLH = false;
         };

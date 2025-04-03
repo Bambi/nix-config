@@ -72,6 +72,11 @@ in
       fallbackDns = [ "8.8.8.8" "2001:4860:4860::8844" ]; # fbx: fd0f:ee:b0::1
       dnsovertls = "opportunistic";
     };
-    networking.firewall.allowedUDPPorts = [ 5353 ]; # mDNS
+    networking = {
+      firewall.allowedUDPPorts = [ 5353 ]; # mDNS
+      hosts = {
+        "${inputs.self.lib.network.publicIP}" = [ "popeye" ];
+      };
+    };
   };
 }

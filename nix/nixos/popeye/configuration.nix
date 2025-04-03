@@ -21,9 +21,10 @@ in
       inputs.self.nixosModules.networking
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.unbound
-      # inputs.self.nixosModules.syncthing
+      inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.wanaccess
       inputs.self.nixosModules.wifiaccess
+      inputs.self.nixosModules.calibre-web
       ./git-user.nix
       {
         _module.args = rec {
@@ -31,7 +32,7 @@ in
           lanItf = "lan";
           wanItf = "wan1";
           # nebula
-          LHPubIP = inputs.self.lib.network.publicIp;
+          publicIP = inputs.self.lib.network.publicIP;
           LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
           isLH = true;
           # unbound
@@ -51,8 +52,8 @@ in
         trusted = true;
       };
     };
-    # syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
-    # syncthing.backup = true;
+    syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
+    syncthing.backup = true;
   };
   networking = {
     hostName = "popeye";
