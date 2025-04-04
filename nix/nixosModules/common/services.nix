@@ -17,5 +17,7 @@
     htop
     kmon
     tcpdump
+    trim-generations
+    nix-tree
   ];
 }
