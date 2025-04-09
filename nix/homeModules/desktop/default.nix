@@ -13,6 +13,7 @@ in
     ./theme.nix
     ./ghostty.nix
     ./zathura.nix
+    ./flameshot.nix
   ];
   colorScheme = lib.mkDefault colorSchemes.catppuccin-macchiato;
   home = {

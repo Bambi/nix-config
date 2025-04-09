@@ -25,6 +25,7 @@ in
       inputs.self.nixosModules.wanaccess
       inputs.self.nixosModules.wifiaccess
       inputs.self.nixosModules.calibre-web
+      # inputs.self.nixosModules.paperless
       ./git-user.nix
       {
         _module.args = rec {
@@ -42,7 +43,7 @@ in
       }
     ];
 
-  environment.systemPackages = with pkgs; [ tshark ];
+  environment.systemPackages = with pkgs; [ tshark ghostty.terminfo ];
 
   my = {
     user = "as";

@@ -73,7 +73,12 @@ in
       dnsovertls = "opportunistic";
     };
     networking = {
-      firewall.allowedUDPPorts = [ 5353 ]; # mDNS
+      firewall = {
+        enable = true;
+        allowPing = true;
+        pingLimit = "1/minute burst 5 packets";
+        allowedUDPPorts = [ 5353 ]; # mDNS
+      };
       hosts = {
         "${inputs.self.lib.network.publicIP}" = [ "popeye" ];
       };
