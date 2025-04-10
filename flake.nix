@@ -59,24 +59,6 @@
         lib.network = import ./network.nix inputs.nixpkgs.lib;
         systems = [ "x86_64-linux" ];
         # withOverlays = [ inputs.self.overlays.nebula ];
-        devShell = pkgs: {
-          env.NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
-          packages = with pkgs; [
-            helix
-            pkgs.home-manager
-            nixos-rebuild
-            bat
-            just
-            bitwarden-cli
-            jq
-            sops
-            ssh-to-age
-            pv
-            deploy-rs
-            nebula
-            nh
-          ];
-        };
         formatter = pkgs: pkgs.nixpkgs-fmt;
       } // {
       deploy = import ./deploy.nix { inherit inputs; };
