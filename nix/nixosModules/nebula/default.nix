@@ -49,6 +49,7 @@
         } else {
           interval = 60;
         };
+    } // lib.optionalAttrs (config.sops.secrets ? nebula_ssh_host_key) {
       sshd = {
         enabled = true;
         listen = "127.0.0.1:2222";

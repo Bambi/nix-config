@@ -7,6 +7,14 @@
     [
       inputs.nixos-wsl.nixosModules.wsl
       inputs.self.nixosModules.common
+      inputs.self.nixosModules.nebula
+      {
+        _module.args = {
+          publicIP = inputs.self.lib.network.publicIP;
+          LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
+          isLH = false;
+        };
+      }
     ];
 
   my = {

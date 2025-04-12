@@ -3,5 +3,6 @@
 Network: 192.168.100.0/24
 
 lighthouse: 1
-bambi: 3
+musclor: 3
 babar: 5
+becassine: 6
