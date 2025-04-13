@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 let
-  palette = config.colorScheme.palette;
+  inherit (config.colorScheme) palette;
 in
 {
   home.packages = [

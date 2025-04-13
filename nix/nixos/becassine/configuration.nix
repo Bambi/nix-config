@@ -10,7 +10,7 @@
       inputs.self.nixosModules.nebula
       {
         _module.args = {
-          publicIP = inputs.self.lib.network.publicIP;
+          inherit (inputs.self.lib.network) publicIP;
           LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
           isLH = false;
         };

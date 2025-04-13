@@ -7,21 +7,23 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelParams = [ "i915.enable_guc=2" "i915.fastboot=1" "acpi=force" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+    initrd.kernelModules = [ "dm-snapshot" ];
+    kernelParams = [ "i915.enable_guc=2" "i915.fastboot=1" "acpi=force" ];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault false;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.virbr0.useDHCP = lib.mkDefault true;
-  # just declare main interfaces. They are configured in networking.nix
-  networking.interfaces.eno1 = { };
+  networking = {
+    useDHCP = lib.mkDefault false;
+    # just declare main interfaces. They are configured in networking.nix
+    interfaces.eno1 = { };
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

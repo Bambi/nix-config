@@ -22,7 +22,7 @@
     staticHostMap = lib.mkIf (!isLH) { "${LHMeshIP}" = [ "${publicIP}:4242" ]; };
     # (builtins.listToAttrs (lib.lists.forEach lighthouseIPs (v: { name = "${v}"; value = [ "${config.my.nebula.publicIp}:4242" ]; })));
     # "192.168.100.1" = [ "176.177.24.32:4242" ];
-    listen.host = lib.mkIf (isLH) publicIP;
+    listen.host = lib.mkIf isLH publicIP;
     firewall = {
       inbound = [{
         host = "any";

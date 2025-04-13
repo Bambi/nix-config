@@ -33,7 +33,7 @@ in
           lanItf = "lan";
           wanItf = "wan1";
           # nebula
-          publicIP = inputs.self.lib.network.publicIP;
+          inherit (inputs.self.lib.network) publicIP;
           LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
           isLH = true;
           # unbound

@@ -95,7 +95,7 @@ in
     networking.nat = {
       enable = true;
       internalInterfaces = [ cfg.bridgeName ];
-      externalInterface = cfg.externalInterface;
+      inherit (cfg) externalInterface;
 
     } // optionalAttrs v6Enabled {
       extraCommands = (flip concatMapStrings cfg.ipv6.forwardPorts (f: ''

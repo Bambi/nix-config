@@ -39,7 +39,7 @@ in
       (name: _: {
         publicKeyFile = pubKey name;
         extraHostNames =
-          (lib.optional (name == hostName) "localhost"); # Alias for localhost if it's the same host
+          lib.optional (name == hostName) "localhost"; # Alias for localhost if it's the same host
       })
       inputs.self.nixosConfigurations // {
       "*" = {

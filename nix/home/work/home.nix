@@ -6,9 +6,11 @@
       passh
       pet
     ];
-    file.".ssh/id_rsa_ipanema.pub".source = ../../../identities/id_rsa_ipanema.pub;
-    file.".ssh/id_ed25519_as.pub".source = ../../../identities/id_ed25519_as.pub;
-    file.".ssh/id_rsa_as.pub".source = ../../../identities/id_rsa_as.pub;
+    file = {
+      ".ssh/id_rsa_ipanema.pub".source = ../../../identities/id_rsa_ipanema.pub;
+      ".ssh/id_ed25519_as.pub".source = ../../../identities/id_ed25519_as.pub;
+      ".ssh/id_rsa_as.pub".source = ../../../identities/id_rsa_as.pub;
+    };
     activation.setupEtc = config.lib.dag.entryAfter [ "writeBoundary" ] ''
       /usr/bin/systemctl start --user sops-nix
     '';

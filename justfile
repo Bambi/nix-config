@@ -4,6 +4,7 @@ default:
 	@just --list
 
 check:
+	statix check nix
 	nix flake check --no-build
 
 o-install +HOST=`hostname`:

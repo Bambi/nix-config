@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   # use doas instead-of sudo
   # security.sudo.enable = false;
 

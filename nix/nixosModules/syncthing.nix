@@ -1,6 +1,8 @@
 { pkgs, config, lib, inputs, ... }: {
-  options.my.syncthing.id = inputs.self.lib.mkOpt lib.types.str null "Syncthing device id.";
-  options.my.syncthing.backup = inputs.self.lib.mkBoolOpt false "Is the device used as a backup server.";
+  options.my.syncthing = {
+    id = inputs.self.lib.mkOpt lib.types.str null "Syncthing device id.";
+    backup = inputs.self.lib.mkBoolOpt false "Is the device used as a backup server.";
+  };
 
   config = {
     sops.secrets.syncthing_key = {
@@ -19,7 +21,7 @@
         folder = name: devices: {
           path = "~/Sync/${name}";
           id = "${name}";
-          devices = devices;
+          inherit devices;
           ignorePerms = true;
         };
         # folders configured on the backup server
@@ -42,7 +44,7 @@
         overrideFolders = true;
         overrideDevices = true;
         settings = {
-          devices = lib.mapAttrs (n: v: { id = v.config.my.syncthing.id; }) syncHosts;
+          devices = lib.mapAttrs (n: v: { inherit (v.config.my.syncthing) id; }) syncHosts;
           folders = lib.mkMerge
             [
               # common folder shared by all devices
