@@ -1,5 +1,5 @@
 # Enable Services & utilities
-{ pkgs, lib, config, ... }: {
+{ pkgs, ... }: {
   programs.dconf.enable = true;
   programs.nix-ld.enable = true;
   services.dbus.enable = true;

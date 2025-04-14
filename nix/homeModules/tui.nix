@@ -1,5 +1,5 @@
 # More terminal user configuration
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, inputs, ... }: {
   imports = [
     inputs.nvf.homeManagerModules.default
     ./common/bash.nix

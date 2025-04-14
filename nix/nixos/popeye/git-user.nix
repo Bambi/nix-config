@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
   # git user to host local depots (git ssh access only)
   users.users.git = {
     isSystemUser = true;

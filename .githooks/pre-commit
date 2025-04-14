@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+echo Running dead code detection hook
+
+for i in $(git status --porcelain | sed s/^...//); do
+  case "$i" in
+    *.nix) deadnix -f "$i";;
+  esac
+done

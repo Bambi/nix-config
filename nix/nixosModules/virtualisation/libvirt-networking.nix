@@ -1,13 +1,12 @@
 # Module for configuring libvirt with static NixOS networking
 # instead of using libvirt managed bridge.
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 with lib;
 
 let
   cfg = config.virtualisation.libvirtd.networking;
   v6Enabled = cfg.ipv6.network != null;
-  v6PLen = toInt (elemAt (splitString "/" cfg.ipv6.network) 1);
 in
 {
   options = {

@@ -1,4 +1,4 @@
-{ config, lib, inputs, publicIP, LHMeshIP, isLH, ... }: {
+{ config, lib, publicIP, LHMeshIP, isLH, ... }: {
   # node key stored through sops
   sops.secrets =
     let

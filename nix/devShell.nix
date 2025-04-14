@@ -3,5 +3,6 @@ pkgs: with pkgs; {
     deploy-rs
     nh
     statix
+    deadnix
   ];
 }

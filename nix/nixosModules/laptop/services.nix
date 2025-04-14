@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   services.upower.enable = true;
   services.auto-cpufreq.enable = true;
 }

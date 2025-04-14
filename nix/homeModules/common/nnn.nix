@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   home = {
     sessionVariables = {
       NNN_OPENER = "~/.config/nnn/plugins/nuke";

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   emanote = import (builtins.fetchTarball {
     url = "https://github.com/srid/emanote/archive/refs/tags/1.2.0.tar.gz";

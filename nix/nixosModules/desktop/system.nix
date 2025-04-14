@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   console = {
     earlySetup = false;
     # console fonts in /etc/kbd/consolefonts

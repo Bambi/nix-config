@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   environment.variables = {
     EDITOR = "hx"; # helix
   };

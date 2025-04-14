@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   services.geoclue2.appConfig = {
     "gammastep" = {
       isAllowed = true;

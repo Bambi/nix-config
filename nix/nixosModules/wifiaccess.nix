@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ config, ... }: {
   sops.secrets.bambi_psk = {
     sopsFile = ../nixos/${config.networking.hostName}/secrets.yaml;
     owner = "root";

@@ -1,5 +1,5 @@
 # Minimal HM configuration for terminal.
-{ inputs, pkgs, lib, ... }: {
+{ pkgs, lib, ... }: {
   imports = [
     ./common/fish.nix
     ./common/fzf.nix

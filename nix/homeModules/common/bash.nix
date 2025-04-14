@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+_: {
   programs.bash = {
     enable = true;
     historyControl = [ "ignoredups" ];

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   imports = [
     ./libvirt-networking.nix
   ];

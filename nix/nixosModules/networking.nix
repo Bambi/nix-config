@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, ... }:
+{ lib, config, inputs, ... }:
 let
   interfaceOpts = {
     options = {

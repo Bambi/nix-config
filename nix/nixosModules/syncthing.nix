@@ -1,4 +1,4 @@
-{ pkgs, config, lib, inputs, ... }: {
+{ config, lib, inputs, ... }: {
   options.my.syncthing = {
     id = inputs.self.lib.mkOpt lib.types.str null "Syncthing device id.";
     backup = inputs.self.lib.mkBoolOpt false "Is the device used as a backup server.";
@@ -13,11 +13,11 @@
     services.syncthing =
       let
         # all devices with a syncthingId
-        syncHosts = lib.filterAttrs (n: v: (builtins.hasAttr "syncthing" v.config.my)) inputs.self.nixosConfigurations;
-        backupHosts = lib.filterAttrs (n: v: v.config.my.syncthing.backup) syncHosts;
+        syncHosts = lib.filterAttrs (_: v: (builtins.hasAttr "syncthing" v.config.my)) inputs.self.nixosConfigurations;
+        backupHosts = lib.filterAttrs (_: v: v.config.my.syncthing.backup) syncHosts;
         # non backup syncthing servers
-        userHosts = lib.filterAttrs (n: v: !v.config.my.syncthing.backup) syncHosts;
-        backupHostsList = lib.mapAttrsToList (n: v: "${n}") backupHosts;
+        userHosts = lib.filterAttrs (_: v: !v.config.my.syncthing.backup) syncHosts;
+        backupHostsList = lib.mapAttrsToList (n: _: "${n}") backupHosts;
         folder = name: devices: {
           path = "~/Sync/${name}";
           id = "${name}";
@@ -25,9 +25,9 @@
           ignorePerms = true;
         };
         # folders configured on the backup server
-        backupConf = lib.mapAttrs (n: v: folder n [ "${n}" ]) userHosts;
+        backupConf = lib.mapAttrs (n: _: folder n [ "${n}" ]) userHosts;
         # folder configured on each non backup servers
-        localConf = lib.mapAttrs (n: v: folder config.networking.hostName backupHostsList) backupHosts;
+        localConf = lib.mapAttrs (_: _: folder config.networking.hostName backupHostsList) backupHosts;
       in
       {
         enable = true;
@@ -44,11 +44,11 @@
         overrideFolders = true;
         overrideDevices = true;
         settings = {
-          devices = lib.mapAttrs (n: v: { inherit (v.config.my.syncthing) id; }) syncHosts;
+          devices = lib.mapAttrs (_: v: { inherit (v.config.my.syncthing) id; }) syncHosts;
           folders = lib.mkMerge
             [
               # common folder shared by all devices
-              { common = folder "common" (lib.mapAttrsToList (n: v: "${n}") syncHosts); }
+              { common = folder "common" (lib.mapAttrsToList (n: _: "${n}") syncHosts); }
               (if config.my.syncthing.backup then backupConf else localConf)
             ];
         };

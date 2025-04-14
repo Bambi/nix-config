@@ -42,7 +42,7 @@ rec {
     let
       namedItfs = lib.attrsets.mapAttrs (n: v: v // { addr = n; }) hosts.${hostName}.interfaces;
     in
-    lib.attrsets.mapAttrsToList (n: v: v) namedItfs;
+    lib.attrsets.mapAttrsToList (_: v: v) namedItfs;
   lighthouseItf = host: lib.lists.findFirst (x: builtins.hasAttr "isLighthouse" x) { addr = null; } (hostItfList host);
   wanMacAddr = hosts.popeye.interfaces."${publicIP}".mac;
 }

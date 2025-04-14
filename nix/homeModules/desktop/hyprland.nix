@@ -1,7 +1,7 @@
-{ pkgs, config, lib, inputs, ... }:
+{ pkgs, config, lib, ... }:
 let
   theme = config.colorScheme.palette;
-  hyprplugins = inputs.hyprland-plugins.packages.${pkgs.system};
+  # hyprplugins = inputs.hyprland-plugins.packages.${pkgs.system};
 in
 with lib; {
   wayland.windowManager.hyprland = {

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   services.gammastep = {
     enable = true;
     temperature.day = 6500;

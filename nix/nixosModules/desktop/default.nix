@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./display-manager.nix
     ./screen-brightness.nix

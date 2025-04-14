@@ -1,4 +1,4 @@
-{ inputs, config, lib, userConf ? "minimal", ... }:
+{ inputs, ... }:
 let
   hostnames = builtins.attrNames inputs.self.nixosConfigurations;
   localHostnames = builtins.map (x: x + ".local") hostnames;

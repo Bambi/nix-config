@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ inputs, ... }: {
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./ssh.nix

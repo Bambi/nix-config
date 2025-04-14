@@ -3,6 +3,9 @@
 default:
 	@just --list
 
+init:
+	git config core.hooksPath .githooks
+
 check:
 	statix check nix
 	nix flake check --no-build

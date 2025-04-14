@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, wanItf, bindItfs, allowedIps, ... }: {
+{ pkgs, inputs, wanItf, bindItfs, allowedIps, ... }: {
   services.unbound = {
     enable = true;
     resolveLocalQueries = true;
