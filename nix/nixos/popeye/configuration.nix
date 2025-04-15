@@ -47,12 +47,6 @@ in
 
   my = {
     user = "as";
-    interfaces = {
-      lan2 = {
-        networkAccess = true;
-        trusted = true;
-      };
-    };
     syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
     syncthing.backup = true;
   };

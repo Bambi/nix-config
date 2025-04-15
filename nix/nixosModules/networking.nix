@@ -3,8 +3,6 @@ let
   interfaceOpts = {
     options = {
       address = inputs.self.lib.mkOpt (lib.types.nullOr lib.types.str) null "Set interface IP address (DHCP otherwise)";
-      networkAccess = inputs.self.lib.mkBoolOpt false "Is this interface used for Internet access?";
-      trusted = inputs.self.lib.mkBoolOpt false "Untrusted interfaces will be firewalled.";
     };
   };
 in
@@ -18,7 +16,7 @@ in
       enable = true;
       networks = lib.mapAttrs'
         (
-          itf: val: lib.nameValuePair "10-${itf}"
+          itf: val: lib.nameValuePair "40-${itf}"
             (if val.address != null then {
               # static configuration
               matchConfig.Name = itf;
@@ -37,12 +35,13 @@ in
               # DHCP configuration
               matchConfig.Name = itf;
               networkConfig = {
-                DHCP = "ipv4";
+                DHCP = lib.mkForce "ipv4";
                 DNSSEC = true;
                 DNSOverTLS = false;
                 MulticastDNS = true;
                 LLMNR = false;
                 Domains = "~.";
+                LLDP = false;
               };
               linkConfig = {
                 Multicast = true;

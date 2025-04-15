@@ -39,10 +39,6 @@ in
   my = {
     user = "as";
     wireless.enable = true;
-    interfaces = {
-      eno1.networkAccess = true;
-      wlp2s0.networkAccess = true;
-    };
     syncthing.id = "KVX5R5E-VSRCLFM-SDFGUJY-QBWEOHD-6PPHNWA-RZFGIFM-OHE4ZBV-TMQFWAR";
   };
   networking = {
