@@ -11,10 +11,10 @@ check:
 	nix flake check --no-build
 
 o-install +HOST=`hostname`:
-	nixos-rebuild switch --flake '.#{{HOST}}'
+	$(which nh) os switch --hostname {{HOST}} .
 
 h-install CONF:
-	home-manager switch --flake '.#{{CONF}}'
+	nh home switch --configuration {{CONF}} .
 
 clochette:
 	nix build ./installers#nixosConfigurations.clochette.config.system.build.isoImage -o iso-installer
