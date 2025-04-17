@@ -11,7 +11,7 @@ check:
 	nix flake check --no-build
 
 o-install +HOST=`hostname`:
-	$(which nh) os switch --hostname {{HOST}} .
+	nh os switch --hostname {{HOST}} .
 
 h-install CONF:
 	nh home switch --configuration {{CONF}} .

@@ -78,7 +78,7 @@
         DNSSEC = false;
         DNSOverTLS = false;
         Domains = "~mesh";
-        DNS = publicIP + ":5354";
+        DNS = "192.168.100.1:5354";
         DNSDefaultRoute = false;
       };
     };

@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, inputs, ... }: {
+{ pkgs, config, lib, inputs, ... }: {
   imports =
     [
       inputs.nixos-wsl.nixosModules.wsl
@@ -23,6 +23,7 @@
   networking = {
     hostName = "becassine";
     networkmanager.enable = false;
+    useNetworkd = true;
   };
   time.timeZone = "Europe/Paris";
   wsl = {
@@ -30,9 +31,32 @@
     defaultUser = "as";
     startMenuLaunchers = true;
     wslConf.automount.root = "/mnt";
-    wslConf.network.generateResolvConf = true;
+    wslConf.network.generateResolvConf = false;
     nativeSystemd = true;
     interop.includePath = false;
+  };
+  systemd = {
+    network.networks."10-eth0" = {
+      matchConfig.Name = "eth0";
+      linkConfig.Unmanaged = true;
+    };
+    # wsl main interface is not managed by networkd
+    # but I need to set DNS on this interface...
+    services.setup-dns = {
+      description = "setup DNS for main WSL interface";
+      serviceConfig = {
+        ExecStart = "${pkgs.systemd}/bin/resolvectl dns eth0 1.1.1.1";
+        Type = "oneshot";
+      };
+      wantedBy = [ "multi-user.target" ];
+    };
+  };
+  services.resolved = {
+    enable = true;
+    llmnr = "false";
+    dnssec = "true";
+    fallbackDns = [ "8.8.8.8" ];
+    dnsovertls = "opportunistic";
   };
 
   # Enable Flakes and the new command-line tool
