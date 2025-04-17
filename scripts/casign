@@ -6,11 +6,11 @@
 #   casign -u
 set -Eeuo pipefail
 
-CAKEY=~/.ssh/id_ed25519_ca_sk
-ROOTDIR=${ROOTDIR:-/etc/ssh}
+[ -f ~/.ssh/id_ed25519_ca_sk ] && CAKEY=~/.ssh/id_ed25519_ca_sk || CAKEY=./identities/id_ed25519_ca_sk
+# ROOTDIR=${ROOTDIR:-/etc/ssh}
 
 [ -f "$CAKEY" ] || (echo No CA key >&2; exit 1)
-[ -d $ROOTDIR ] || (echo $ROOTDIR directory does not exist >&2; exit 1)
+[ -d $ROOTDIR ] || mkdir "$ROOTDIR"
 
 # host keys
 [ $1 = -h ] && (

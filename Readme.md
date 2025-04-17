@@ -6,9 +6,10 @@ They are very much a WIP / may be broken.
 Required using an already setup nix machine:
 - build iso installer: `just clochette`
 - flash installer: `just flash`
-- boot installer on target machine and get hardware-configuration.nix with `nixos-generate-config --show-hardware-config --ni-filesystems`
+- boot installer on target machine and get hardware-configuration.nix with `nixos-generate-config --show-hardware-config --no-filesystems`
 - generate new host keys in a tmp dir: `ROOTDIR=keys ./scripts/casign -h <host name>`
 - update configuration for the new machine (configuration.nix, hardware-configuration.nix, disk-config.nix, secrets, nebula keys and certificates, ...)
+  update .sops.yaml with a new host entry with the age key generated with ssh-to-age -i ./keys/ssh_host_ed25519.pub
 - commit the configuration
 - install the new host: `just r-install <host name> <keys dir>`
 

@@ -32,5 +32,5 @@ chmod 600 "$temp/etc/ssh/ssh_host_ed25519"
   ssh-keygen -y -f "$temp"/etc/ssh/ssh_host_ed25519 > "$temp"/etc/ssh/ssh_host_ed25519.pub
 
 # Install NixOS to the host system with our secrets
-nix run github:nix-community/nixos-anywhere -- -i ~/.ssh/id_ed25519_as \
+nix run github:nix-community/nixos-anywhere/1.2.0 -- -i ~/.ssh/id_ed25519_as \
   --extra-files "$temp" --flake ".#$MACH" "$HOST"
