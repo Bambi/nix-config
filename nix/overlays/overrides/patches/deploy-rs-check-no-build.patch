@@ -1,0 +1,13 @@
+diff --git a/src/cli.rs b/src/cli.rs
+index f3bce4d..6cc8a8c 100644
+--- a/src/cli.rs
++++ b/src/cli.rs
+@@ -145,7 +145,7 @@ async fn check_deployment(
+     };
+ 
+     if supports_flakes {
+-        check_command.arg("flake").arg("check").arg(repo);
++        check_command.arg("flake").arg("check").arg("--no-build").arg(repo);
+     } else {
+         check_command.arg("-E")
+                 .arg("--no-out-link")

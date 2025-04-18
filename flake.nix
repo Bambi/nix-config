@@ -58,7 +58,7 @@
         inherit inputs;
         lib.network = import ./network.nix inputs.nixpkgs.lib;
         systems = [ "x86_64-linux" ];
-        # withOverlays = [ inputs.self.overlays.nebula ];
+        withOverlays = [ inputs.self.overlays.overrides ];
         formatter = pkgs: pkgs.nixpkgs-fmt;
       } // {
       deploy = import ./deploy.nix { inherit inputs; };

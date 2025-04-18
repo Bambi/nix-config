@@ -1,14 +1,14 @@
 { inputs, ... }:
 let
-  mkDeploy = host: userConf: {
-    hostname = host + ".local";
+  mkDeploy = hostname: confname: userConf: {
+    inherit hostname;
     sshUser = "as";
     profilesOrder = [ "system" ];
     profiles.system = {
       user = "root";
-      autoRollback = false;
-      magicRollback = false;
-      path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.${host};
+      autoRollback = true;
+      magicRollback = true;
+      path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.${confname};
     };
     profiles.as = {
       path = inputs.deploy-rs.lib.x86_64-linux.activate.home-manager inputs.self.homeConfigurations.${userConf};
@@ -17,7 +17,7 @@ let
 in
 {
   nodes = {
-    popeye = mkDeploy "popeye" "as-minimal";
-    babar = mkDeploy "babar" "as-gui";
+    popeye = mkDeploy "paea.duckdns.org" "popeye" "as-minimal";
+    babar = mkDeploy "babar.local" "babar" "as-gui";
   };
 }
