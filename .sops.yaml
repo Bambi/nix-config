@@ -11,6 +11,10 @@ creation_rules:
     key_groups:
       - age:
           - *as
+  - path_regex: nix/home/as-tui/secrets.yaml
+    key_groups:
+      - age:
+          - *as
   - path_regex: nix/nixos/babar/secrets.yaml
     key_groups:
       - age:

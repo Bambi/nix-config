@@ -25,6 +25,7 @@ in
       inputs.self.nixosModules.wanaccess
       inputs.self.nixosModules.wifiaccess
       inputs.self.nixosModules.calibre-web
+      inputs.self.nixosModules.task-champion
       # inputs.self.nixosModules.paperless
       ./git-user.nix
       {

@@ -62,7 +62,10 @@
       };
     };
   };
-  networking.firewall.allowedUDPPorts = [ 5354 ];
+  networking.firewall = {
+    allowedUDPPorts = [ 5354 ];
+    trustedInterfaces = [ "nebula.mesh" ];
+  };
   # systemd.services."systemd-networkd".environment.SYSTEMD_LOG_LEVEL = "debug";
   systemd.network = {
     networks."60-nebula" = {
