@@ -22,6 +22,7 @@ in
       inputs.self.nixosModules.tpm2
       inputs.self.nixosModules.virtualisation
       inputs.self.nixosModules.desktop
+      inputs.self.nixosModules.dispm-greetd
       inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.qmk
       inputs.self.nixosModules.printing

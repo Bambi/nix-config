@@ -36,12 +36,6 @@
             enable = false;
           };
       };
-      plymouth = {
-        enable = false;
-        font = "${pkgs.dejavu_fonts.minimal}/share/fonts/truetype/DejaVuSans.ttf";
-        themePackages = [ pkgs.catppuccin-plymouth ];
-        theme = "catppuccin-macchiato";
-      };
       tmp = {
         useTmpfs = true;
         tmpfsSize = "20%";

@@ -56,6 +56,10 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    glf-os = {
+      url = "github:Gaming-Linux-FR/GLF-OS";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, flakelight, ... }@inputs:

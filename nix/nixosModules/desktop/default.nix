@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   imports = [
-    ./display-manager.nix
     ./screen-brightness.nix
     ./services.nix
     ./opengl.nix
