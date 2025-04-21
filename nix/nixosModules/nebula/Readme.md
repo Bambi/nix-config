@@ -6,3 +6,4 @@ lighthouse: 1
 musclor: 3
 babar: 5
 becassine: 6
+bianca: 7

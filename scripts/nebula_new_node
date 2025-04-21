@@ -5,6 +5,11 @@
 set -Eeuo pipefail
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
+# check dependencies
+for i in bw nebula-cert; do
+  command -v $i 2>&1 >/dev/null || (echo $i not installed >&2; exit 1)
+done
+
 get_doc() {
   # $1: name of folder which contains the wanted document
   # $2: name of the document

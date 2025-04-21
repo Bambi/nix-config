@@ -36,7 +36,7 @@ creation_rules:
       - age:
           - *as
           - *becassine
-  - path_regex: nix/nixos/becassine/secrets.yaml
+  - path_regex: nix/nixos/bianca/secrets.yaml
     key_groups:
       - age:
           - *as

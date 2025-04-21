@@ -19,5 +19,6 @@ in
   nodes = {
     popeye = mkDeploy "paea.duckdns.org" "popeye" "as-minimal";
     babar = mkDeploy "babar.local" "babar" "as-gui";
+    bianca = mkDeploy "bianca.local" "bianca" "as-gui";
   };
 }
