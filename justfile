@@ -30,8 +30,8 @@ flash:
 	# Format
 	pv -tpreb "./iso-installer/iso/$iso" | sudo dd bs=4M of="$dev" iflag=fullblock conv=notrunc,noerror oflag=sync
 
-deploy HOST:
-	deploy .#{{HOST}}
+deploy HOST *ARGS:
+	deploy {{ARGS}} .#{{HOST}}
 
 gc:
 	nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 14d

@@ -72,6 +72,7 @@ in
       dnsovertls = "opportunistic";
     };
     networking = {
+      nftables.enable = true;
       firewall = {
         enable = true;
         allowPing = true;

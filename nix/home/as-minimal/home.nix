@@ -11,7 +11,7 @@ in
     enable = true;
     matchBlocks = {
       myhosts = {
-        host = (builtins.concatStringsSep " " localHostnames) + " paea.duckdns.org";
+        host = (builtins.concatStringsSep " " localHostnames) + " paea.duckdns.org *.mesh";
         identityFile = "~/.ssh/id_ed25519_as";
         forwardAgent = true;
         extraOptions = {
