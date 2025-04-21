@@ -50,9 +50,15 @@
       url = "github:Rolv-Apneseth/starship.yazi?rev=f6939fbdbc3fdfcdc2a80251841e429e0cd5cf3c";
       flake = false;
     };
+    namaka = {
+      url = "github:nix-community/namaka/v0.2.1";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
-  outputs = { flakelight, ... }@inputs:
+  outputs = { self, flakelight, ... }@inputs:
     flakelight ./.
       {
         inherit inputs;
@@ -62,5 +68,6 @@
         formatter = pkgs: pkgs.nixpkgs-fmt;
       } // {
       deploy = import ./deploy.nix { inherit inputs; };
+      checks = import ./tests.nix { inherit self; inherit inputs; };
     };
 }

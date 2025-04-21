@@ -1,0 +1,2 @@
+#json
+[{"Description":"Bytel Data Network","EmitLLDP":false,"IPv6AcceptRA":false,"IPv6SendRA":false,"LLDP":false,"LinkLocalAddressing":false,"VLAN":"byteldata"},{"Address":"192.168.0.254/24","DHCPPrefixDelegation":true,"DHCPServer":true,"Description":"LAN interface","EmitLLDP":false,"IPMasquerade":"ipv4","IPv6AcceptRA":false,"IPv6Forwarding":true,"IPv6SendRA":true,"LLDP":false,"MulticastDNS":true}]

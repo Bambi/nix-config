@@ -3,5 +3,6 @@ pkgs: with pkgs; {
     nh
     statix
     deadnix
+    namaka
   ];
 }
