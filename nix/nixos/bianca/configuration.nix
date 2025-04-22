@@ -22,6 +22,7 @@ in
       inputs.self.nixosModules.tpm2
       inputs.self.nixosModules.virtualisation
       inputs.self.nixosModules.desktop
+      inputs.self.nixosModules.gnome
       inputs.self.nixosModules.dispm-gdm
       inputs.self.nixosModules.printing
       ./dm-user.nix
