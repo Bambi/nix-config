@@ -7,6 +7,5 @@
     ./usb.nix
     ./system.nix
     ./services.nix
-    ./plymouth.nix
   ];
 }

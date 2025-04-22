@@ -7,6 +7,7 @@
     ./python.nix
     ./sound.nix
     ./system.nix
+    ./plymouth.nix
   ];
 
   environment.systemPackages = with pkgs; [
