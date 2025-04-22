@@ -39,4 +39,10 @@ _: {
       options = "--delete-older-than 90d";
     };
   };
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 40;
+  };
 }
