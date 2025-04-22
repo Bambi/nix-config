@@ -49,6 +49,13 @@
         A-k = "move_line_up";
       };
     };
+    languages = {
+      language = [{
+        name = "nix";
+        language-servers = [ "nixd" "nil" ];
+      }];
+      language-server.nixd.command = "nixd";
+    };
   };
   home.packages = with pkgs; [
     (writeShellScriptBin "hxs" ''

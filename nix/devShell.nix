@@ -4,5 +4,6 @@ pkgs: with pkgs; {
     statix
     deadnix
     namaka
+    nixd
   ];
 }
