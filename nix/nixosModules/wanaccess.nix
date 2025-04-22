@@ -125,6 +125,8 @@ in
       filterForward = true;
       trustedInterfaces = [ "${lanItf}" ];
       extraForwardRules = "iifname ${lanItf} accept";
+      # mosh ports
+      interfaces.${faiItf}.allowedUDPPortRanges = [ { from = 60000; to = 60010; } ];
     };
   };
 }
