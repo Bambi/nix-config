@@ -5,7 +5,6 @@ in
 {
   imports = [
     inputs.nix-colors.homeManagerModules.default
-    ./firefox.nix
     ./hyprland.nix
     ./waybar
     ./rofi.nix

@@ -12,9 +12,28 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = false;
-    users.dm = _: {
+    users.dm = { pkgs, ... }: {
+      imports = [
+        ../../homeModules/firefox.nix
+        {
+          _module.args = {
+            FFextensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+              ublock-origin
+              bitwarden
+              french-dictionary
+            ];
+          };
+        }
+      ];
       programs.bash.enable = true;
-      home.stateVersion = "24.11";
+      home = {
+        username = "dm";
+        homeDirectory = "/home/dm";
+        stateVersion = "24.11";
+      };
+    };
+    extraSpecialArgs = {
+      inherit inputs;
     };
   };
 }

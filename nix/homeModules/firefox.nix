@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, FFextensions, ... }:
 
 let
   lock-false = {
@@ -16,18 +16,9 @@ in
     languagePacks = [ "fr" "en-US" ];
 
     profiles = {
-      as = {
+      principal = {
         bookmarks = { };
-        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-          ublock-origin
-          privacy-badger
-          clearurls
-          bitwarden
-          tabliss
-          darkreader
-          vimium
-          french-dictionary
-        ];
+        extensions = FFextensions;
         isDefault = true;
         search = {
           force = true;
