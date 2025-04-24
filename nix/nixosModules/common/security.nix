@@ -1,8 +1,9 @@
 _: {
-  # use doas instead-of sudo
-  # security.sudo.enable = false;
-
   security = {
+    sudo = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
     doas = {
       enable = true;
       # extraRules = [{
