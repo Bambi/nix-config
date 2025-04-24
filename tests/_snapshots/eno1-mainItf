@@ -1,0 +1,2 @@
+#json
+[{"bianca":{"DHCP":"ipv4","DNSOverTLS":false,"DNSSEC":true,"Domains":"~.","LLDP":false,"LLMNR":false,"MulticastDNS":true}},{"babar":{"DHCP":"ipv4","DNSOverTLS":false,"DNSSEC":true,"Domains":"~.","LLDP":false,"LLMNR":false,"MulticastDNS":true}},{"musclor":{"DHCP":"ipv4","DNSOverTLS":false,"DNSSEC":true,"Domains":"~.","LLDP":false,"LLMNR":false,"MulticastDNS":true}}]

@@ -1,2 +1,0 @@
-#json
-{"DHCP":"ipv4","DNSOverTLS":false,"DNSSEC":true,"Domains":"~.","LLDP":false,"LLMNR":false,"MulticastDNS":true}

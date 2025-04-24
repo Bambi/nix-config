@@ -39,6 +39,7 @@ in
 
   my = {
     user = "as";
+    interfaces.eno1 = { };
     wireless.enable = true;
     syncthing.id = "KVX5R5E-VSRCLFM-SDFGUJY-QBWEOHD-6PPHNWA-RZFGIFM-OHE4ZBV-TMQFWAR";
   };
