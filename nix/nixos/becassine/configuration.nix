@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, config, lib, inputs, ... }: {
+{ pkgs, inputs, ... }: {
   imports =
     [
       inputs.nixos-wsl.nixosModules.wsl
@@ -32,7 +32,6 @@
     startMenuLaunchers = true;
     wslConf.automount.root = "/mnt";
     wslConf.network.generateResolvConf = false;
-    nativeSystemd = true;
     interop.includePath = false;
   };
   systemd = {

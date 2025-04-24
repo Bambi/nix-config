@@ -39,7 +39,7 @@
       flake = false;
     };
     nixos-wsl = {
-      url = "github:nix-community/nixos-wsl";
+      url = "github:nix-community/nixos-wsl/2411.6.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     yazi-plugins = {
