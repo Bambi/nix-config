@@ -37,7 +37,6 @@ in
 
   my = {
     user = "as";
-    grub.enable = false;
     interfaces.eno1 = { };
   };
   networking = {

@@ -32,7 +32,10 @@
     startMenuLaunchers = true;
     wslConf.automount.root = "/mnt";
     wslConf.network.generateResolvConf = false;
-    interop.includePath = false;
+    interop = {
+      includePath = false;
+      register = true;
+    };
   };
   systemd = {
     network.networks."10-eth0" = {

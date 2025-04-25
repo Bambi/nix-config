@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, inputs, ... }:
+{ inputs, ... }:
 let
   disk-config = import ./disk-config.nix;
 in
@@ -38,7 +38,6 @@ in
   my = {
     user = "as";
     interfaces.eno1 = { };
-    grub.enable = false;
     syncthing.id = "LUAVW4J-L3ZAIHO-IWH34V3-DRPJUCC-6RESAJH-NDZJ5M5-R2XRKPO-7X7OSAC";
   };
   networking = {

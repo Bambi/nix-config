@@ -1,4 +1,4 @@
-_: {
+{ pkgs, ... }: {
   environment.variables = {
     EDITOR = "hx"; # helix
   };
@@ -44,5 +44,21 @@ _: {
     enable = true;
     algorithm = "zstd";
     memoryPercent = 40;
+  };
+
+  boot = {
+    tmp = {
+      useTmpfs = true;
+      tmpfsSize = "20%";
+      cleanOnBoot = true;
+    };
+    binfmt.registrations.appimage = {
+      wrapInterpreterInShell = false;
+      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+      recognitionType = "magic";
+      offset = 0;
+      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+      magicOrExtension = ''\x7fELF....AI\x02'';
+    };
   };
 }
