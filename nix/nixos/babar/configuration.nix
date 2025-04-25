@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, inputs, pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   disk-config = import ./disk-config.nix;
 in
@@ -38,7 +38,6 @@ in
   environment.systemPackages = with pkgs; [ putty tio ];
 
   my = {
-    user = "as";
     interfaces.eno1 = { };
     wireless.enable = true;
     syncthing.id = "KVX5R5E-VSRCLFM-SDFGUJY-QBWEOHD-6PPHNWA-RZFGIFM-OHE4ZBV-TMQFWAR";

@@ -17,9 +17,6 @@
       }
     ];
 
-  my = {
-    user = "as";
-  };
   networking = {
     hostName = "becassine";
     networkmanager.enable = false;

@@ -47,7 +47,6 @@ in
   environment.systemPackages = with pkgs; [ tshark ghostty.terminfo ];
 
   my = {
-    user = "as";
     syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
     syncthing.backup = true;
   };

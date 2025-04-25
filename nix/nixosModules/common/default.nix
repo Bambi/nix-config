@@ -3,7 +3,7 @@
     inputs.sops-nix.nixosModules.sops
     ./lix.nix
     ./ssh.nix
-    ./users.nix
+    ./as-user.nix
     ./security.nix
     ./usb.nix
     ./system.nix

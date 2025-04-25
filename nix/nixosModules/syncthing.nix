@@ -7,13 +7,13 @@
   config = {
     sops.secrets.syncthing_key = {
       sopsFile = ../nixos/${config.networking.hostName}/secrets.yaml;
-      owner = "${config.my.user}";
+      owner = "as";
       mode = "0440";
     };
     services.syncthing =
       let
         # all devices with a syncthingId
-        syncHosts = lib.filterAttrs (_: v: (builtins.hasAttr "syncthing" v.config.my)) inputs.self.nixosConfigurations;
+        syncHosts = lib.filterAttrs (_: v: (lib.attrsets.hasAttrByPath [ "my" "syncthing" ] v.config)) inputs.self.nixosConfigurations;
         backupHosts = lib.filterAttrs (_: v: v.config.my.syncthing.backup) syncHosts;
         # non backup syncthing servers
         userHosts = lib.filterAttrs (_: v: !v.config.my.syncthing.backup) syncHosts;
@@ -35,8 +35,8 @@
         # do not put configDir in ~/.config: as this is a NixOS service
         # ~/.config will be created as root and home-manager will fail
         # to start because of wrong permissions on ~/.config.
-        configDir = "/home/${config.my.user}/.syncthing";
-        user = "${config.my.user}";
+        configDir = "/home/as/.syncthing";
+        user = "as";
         group = "users";
         key = "${config.sops.secrets.syncthing_key.path}";
         cert = "/etc/syncthing/cert.pem";

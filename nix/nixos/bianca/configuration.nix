@@ -36,7 +36,6 @@ in
     ];
 
   my = {
-    user = "as";
     interfaces.eno1 = { };
   };
   networking = {
