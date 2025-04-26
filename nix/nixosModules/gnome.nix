@@ -16,10 +16,12 @@
     };
   };
 
-  # documentation.nixos.enable = false;
+  documentation.nixos.enable = false;
 
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+  systemd.services = {
+    "getty@tty1".enable = false;
+    "autovt@tty1".enable = false;
+  };
 
   programs.kdeconnect = {
     enable = true;
@@ -28,7 +30,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-
       # theme
       adw-gtk3
       graphite-gtk-theme
@@ -36,6 +37,7 @@
 
       # gnome
       gnome-tweaks
+      celluloid
 
       # Extension
       gnomeExtensions.caffeine
@@ -44,7 +46,6 @@
       gnomeExtensions.dash-to-dock
       gnomeExtensions.bing-wallpaper-changer
       gnomeExtensions.quick-settings-audio-panel
-
     ];
 
     gnome.excludePackages = with pkgs; [
@@ -78,9 +79,6 @@
           "org/gnome/desktop/peripherals/keyboard" = {
             numlock-state = true;
           };
-          # "org/gnome/login-screen" = {
-          #     logo = ''${glfos-branding}/share/icons/hicolor/48x48/emblems/glfos-logo-light.png'';
-          # };
         };
       }
     ];
@@ -126,7 +124,7 @@
               "dash-to-dock@micxgx.gmail.com"
             ];
             favorite-apps = [
-              "vivaldi-stable.desktop"
+              "firefox.desktop"
               "org.gnome.Nautilus.desktop"
               "org.dupot.easyflatpak.desktop"
               "org.gnome.Calendar.desktop"
@@ -149,6 +147,13 @@
             # check-alive-timeout = lib.gvariant.mkUint32 30000;
             dynamic-workspaces = true;
             edge-tiling = true;
+          };
+
+          "org/gnome/settings-daemon/plugins/power" = {
+            sleep-inactive-ac-timeout = lib.gvariant.mkUint32 1800;
+            sleep-inactive-ac-type = "nothing";
+            sleep-inactive-battery-timeout = lib.gvariant.mkUint32 1800;
+            sleep-inactive-battery-type = "suspend";
           };
         };
       }

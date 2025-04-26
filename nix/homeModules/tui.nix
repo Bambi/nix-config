@@ -45,7 +45,6 @@
       fira-code-nerdfont
       nushell
       bitwarden-cli
-      neofetch
       onefetch
       cpufetch
       # docs

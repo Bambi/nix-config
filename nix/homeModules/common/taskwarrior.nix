@@ -4,9 +4,10 @@
     package = pkgs.taskwarrior3;
     config = {
       weekstart = "Monday";
+      dateformat = "D/M/Y";
       sync = {
         server = {
-          url = "http://192.168.100.1:10222";
+          url = "http://192.168.100.1:10222/";
         };
       };
       uda.priority.values = "H,M,,L,h";

@@ -28,7 +28,7 @@
       lnav
       curl
       procs
-      neofetch
+      fastfetch
       tcpdump
       comma
       restic
