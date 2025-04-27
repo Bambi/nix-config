@@ -2,7 +2,7 @@
   sops = {
     secrets.taskwarrior_sync = { };
     age = {
-      keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+      sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519_as" ];
       generateKey = false;
     };
     defaultSopsFile = ./secrets.yaml;
