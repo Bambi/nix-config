@@ -14,8 +14,9 @@ in
       enable = true;
       drivers = [
         (pkgs.writeTextDir "share/cups/model/dcp-7010.ppd" dcp-7010-ppd)
-        # pkgs.canon-cups-ufr2
+        pkgs.canon-cups-ufr2
         pkgs.cnijfilter2
+        pkgs.gutenprint
       ];
     };
     udev.packages = [ pkgs.sane-airscan ];

@@ -115,6 +115,10 @@
             numlock-state = true;
           };
 
+          "org/gnome/desktop/interface" = {
+            font-name = "Cantarell 13";
+          };
+
           "org/gnome/shell" = {
             disable-user-extensions = false;
             enabled-extensions = [

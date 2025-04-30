@@ -80,7 +80,7 @@ in
         allowedUDPPorts = [ 5353 ]; # mDNS
       };
       hosts = {
-        "${inputs.self.lib.network.publicIP}" = [ "popeye" ];
+        "${inputs.self.lib.network.publicIP}" = [ "bambi" ];
       };
     };
   };

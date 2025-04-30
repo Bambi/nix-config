@@ -23,13 +23,13 @@ in
       inputs.self.nixosModules.virtualisation
       inputs.self.nixosModules.desktop
       inputs.self.nixosModules.dispm-greetd
-      inputs.self.nixosModules.syncthing
+      # inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.qmk
       inputs.self.nixosModules.printing
       {
         _module.args = {
           inherit (inputs.self.lib.network) publicIP;
-          LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
+          LHMeshIP = (inputs.self.lib.network.lighthouseItf "bambi").addr;
           isLH = false;
         };
       }
@@ -37,7 +37,7 @@ in
 
   my = {
     interfaces.eno1 = { };
-    syncthing.id = "LUAVW4J-L3ZAIHO-IWH34V3-DRPJUCC-6RESAJH-NDZJ5M5-R2XRKPO-7X7OSAC";
+    # syncthing.id = "LUAVW4J-L3ZAIHO-IWH34V3-DRPJUCC-6RESAJH-NDZJ5M5-R2XRKPO-7X7OSAC";
   };
   networking = {
     hostName = "musclor";

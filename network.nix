@@ -4,7 +4,7 @@ let
 in
 rec {
   hosts = {
-    popeye = {
+    bambi = {
       interfaces = {
         "${lanNetwork}.1" = {
           mac = "84:7b:eb:1e:eb:d8";
@@ -44,5 +44,5 @@ rec {
     in
     lib.attrsets.mapAttrsToList (_: v: v) namedItfs;
   lighthouseItf = host: lib.lists.findFirst (x: builtins.hasAttr "isLighthouse" x) { addr = null; } (hostItfList host);
-  wanMacAddr = hosts.popeye.interfaces."${publicIP}".mac;
+  wanMacAddr = hosts.bambi.interfaces."${publicIP}".mac;
 }

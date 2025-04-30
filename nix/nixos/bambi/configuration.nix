@@ -21,7 +21,7 @@ in
       inputs.self.nixosModules.networking
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.unbound
-      inputs.self.nixosModules.syncthing
+      # inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.wanaccess
       inputs.self.nixosModules.wifiaccess
       inputs.self.nixosModules.calibre-web
@@ -35,7 +35,7 @@ in
           wanItf = "wan1";
           # nebula
           inherit (inputs.self.lib.network) publicIP;
-          LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
+          LHMeshIP = (inputs.self.lib.network.lighthouseItf "bambi").addr;
           isLH = true;
           # unbound
           bindItfs = [ lanItf "wlan" ];
@@ -46,12 +46,13 @@ in
 
   environment.systemPackages = with pkgs; [ tshark ghostty.terminfo ];
 
-  my = {
-    syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
-    syncthing.backup = true;
-  };
+  # my = {
+  #   syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";
+  #   syncthing.backup = true;
+  # };
   networking = {
-    hostName = "popeye";
+    hostName = "bambi";
+    domain = "nex.sh";
     networkmanager.enable = false;
   };
   time.timeZone = "Europe/Paris";

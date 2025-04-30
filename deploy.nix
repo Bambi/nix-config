@@ -17,7 +17,7 @@ let
 in
 {
   nodes = {
-    popeye = mkDeploy "paea.duckdns.org" "popeye" "as-minimal";
+    bambi = mkDeploy "bambi.nex.sh" "bambi" "as-minimal";
     babar = mkDeploy "babar.local" "babar" "as-gui";
     bianca = mkDeploy "bianca.mesh" "bianca" "as-gui";
   };

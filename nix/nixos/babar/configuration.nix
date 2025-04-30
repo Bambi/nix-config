@@ -25,11 +25,11 @@ in
       inputs.self.nixosModules.dispm-greetd
       inputs.self.nixosModules.laptop
       inputs.self.nixosModules.nebula
-      inputs.self.nixosModules.syncthing
+      # inputs.self.nixosModules.syncthing
       {
         _module.args = {
           inherit (inputs.self.lib.network) publicIP;
-          LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
+          LHMeshIP = (inputs.self.lib.network.lighthouseItf "bambi").addr;
           isLH = false;
         };
       }
@@ -40,7 +40,7 @@ in
   my = {
     interfaces.eno1 = { };
     wireless.enable = true;
-    syncthing.id = "KVX5R5E-VSRCLFM-SDFGUJY-QBWEOHD-6PPHNWA-RZFGIFM-OHE4ZBV-TMQFWAR";
+    # syncthing.id = "KVX5R5E-VSRCLFM-SDFGUJY-QBWEOHD-6PPHNWA-RZFGIFM-OHE4ZBV-TMQFWAR";
   };
   networking = {
     hostName = "babar";

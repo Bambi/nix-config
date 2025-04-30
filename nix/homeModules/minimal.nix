@@ -32,6 +32,8 @@
       tcpdump
       comma
       restic
+      miniserve
+      qrencode
     ];
 
     # add support for ~/.local/bin

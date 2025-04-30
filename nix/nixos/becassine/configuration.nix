@@ -11,7 +11,7 @@
       {
         _module.args = {
           inherit (inputs.self.lib.network) publicIP;
-          LHMeshIP = (inputs.self.lib.network.lighthouseItf "popeye").addr;
+          LHMeshIP = (inputs.self.lib.network.lighthouseItf "bambi").addr;
           isLH = false;
         };
       }
