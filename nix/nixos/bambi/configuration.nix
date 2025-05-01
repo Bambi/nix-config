@@ -24,6 +24,7 @@ in
       # inputs.self.nixosModules.syncthing
       inputs.self.nixosModules.wanaccess
       inputs.self.nixosModules.wifiaccess
+      inputs.self.nixosModules.nginx
       inputs.self.nixosModules.calibre-web
       inputs.self.nixosModules.task-champion
       # inputs.self.nixosModules.paperless
