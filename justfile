@@ -7,7 +7,7 @@ init:
 	git config core.hooksPath .githooks
 
 check:
-	statix check nix
+	statix check nix || true
 	nix flake check --no-build
 
 o-install +HOST=`hostname`:

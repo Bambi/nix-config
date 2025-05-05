@@ -44,6 +44,10 @@ in
   };
   time.timeZone = "Europe/Paris";
   boot.kernelParams = [ "fbcon=nodefer" "vt.global_cursor_default=0" "video4linux" ];
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "dm";
+  };
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

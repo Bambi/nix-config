@@ -11,7 +11,6 @@ in
         enableBookUploading = true;
         # enableBookConversion = true;
       };
-      # openFirewall = true;
     };
     nginx.virtualHosts = {
       "${config.networking.fqdn}" = {
