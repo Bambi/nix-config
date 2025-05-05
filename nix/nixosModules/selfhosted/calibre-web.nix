@@ -14,15 +14,15 @@ in
     };
     nginx.virtualHosts = {
       "${config.networking.fqdn}" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/calibre" = {
-          proxyPass = "http://[::1]:8083";
-          extraConfig = ''
-            proxy_bind           $server_addr;
-            proxy_set_header     X-Scheme        $scheme;
-            proxy_set_header     X-Script-Name   /calibre;  # IMPORTANT: path has NO trailing slash
-          '';
+        locations = {
+          "/calibre/" = {
+            proxyPass = "http://[::1]:8083";
+            extraConfig = ''
+              proxy_set_header     X-Scheme        $scheme;
+              proxy_set_header     X-Script-Name   /calibre;  # IMPORTANT: path has NO trailing slash
+            '';
+          };
+          "/calibre".return = "301 $scheme://$host/calibre/";
         };
       };
     };

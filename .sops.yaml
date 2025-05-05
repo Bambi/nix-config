@@ -4,7 +4,7 @@ keys:
   - &hosts:
     - &babar age1yzukf92xvxq9exl692wtuxpfc6hjgzytvpc2qfj6r4y7dmvrmd2suxsyfz
     - &musclor age1n76tzqpghjc8m54x9v66qpat3zwm64sw9xa8adq39fcumy4r6ynqw9zdhr
-    - &popeye age122drj0k8kyelzx54ekwqjudzx5qumc53pw9lpnyvv6h44wxhs3wq5ptw05
+    - &bambi age122drj0k8kyelzx54ekwqjudzx5qumc53pw9lpnyvv6h44wxhs3wq5ptw05
     - &becassine age1rpddtqhpr25p2uvwca2uf7v8xnfyyc57vdfystt6tepaxfmc5uzs8l3drx
     - &bianca age1egsqdctajcxcdp4za3ykkqdkfy5xypzjc57uphl72dd3334p09ms0vt06d
 creation_rules:
@@ -26,11 +26,11 @@ creation_rules:
       - age:
           - *as
           - *musclor
-  - path_regex: nix/nixos/popeye/secrets.yaml
+  - path_regex: nix/nixos/bambi/secrets.yaml
     key_groups:
       - age:
           - *as
-          - *popeye
+          - *bambi
   - path_regex: nix/nixos/becassine/secrets.yaml
     key_groups:
       - age:
