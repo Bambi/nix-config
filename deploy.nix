@@ -19,6 +19,6 @@ in
   nodes = {
     bambi = mkDeploy "bambi.nex.sh" "bambi" "as-minimal";
     babar = mkDeploy "babar.local" "babar" "as-gui";
-    bianca = mkDeploy "bianca.mesh" "bianca" "as-gui";
+    bianca = mkDeploy "bianca.nex.sh" "bianca" "as-gui";
   };
 }

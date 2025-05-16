@@ -22,7 +22,8 @@
     staticHostMap = lib.mkIf (!isLH) { "${LHMeshIP}" = [ "${publicIP}:4242" ]; };
     # (builtins.listToAttrs (lib.lists.forEach lighthouseIPs (v: { name = "${v}"; value = [ "${config.my.nebula.publicIp}:4242" ]; })));
     # "192.168.100.1" = [ "176.177.24.32:4242" ];
-    listen.host = lib.mkIf isLH publicIP;
+    # TODO: fix this for WSL
+    listen.host = if isLH then publicIP else "[::]";
     firewall = {
       inbound = [{
         host = "any";
@@ -35,22 +36,9 @@
         port = "any";
       }];
     };
-    settings = {
-      lighthouse =
-        if isLH then {
-          serve_dns = true;
-          dns = {
-            # take only one lighthouse !?
-            host = LHMeshIP;
-            # using 53 for the DNS would require to set the net capability for the
-            # nebula executable as it runs with a normal user (nebula-mesh)
-            port = 5354;
-          };
-        } else {
-          interval = 60;
-        };
-    } // lib.optionalAttrs (config.sops.secrets ? nebula_ssh_host_key) {
-      sshd = {
+    settings =
+    let
+      sshd = lib.optionalAttrs (config.sops.secrets ? nebula_ssh_host_key) {
         enabled = true;
         listen = "127.0.0.1:2222";
         host_key = config.sops.secrets.nebula_ssh_host_key.path;
@@ -60,6 +48,28 @@
           keys = [ "${builtins.readFile ../../../identities/id_ed25519_as.pub}" ];
         }];
       };
+    in
+    if isLH then {
+      lighthouse = {
+        serve_dns = true;
+        dns = {
+          # take only one lighthouse !?
+          host = LHMeshIP;
+          # using 53 for the DNS would require to set the net capability for the
+          # nebula executable as it runs with a normal user (nebula-mesh)
+          port = 5354;
+        };
+      };
+      inherit sshd;
+    } else {
+      lighthouse = {
+        interval = 55;
+      };
+      punchy = {
+        punch = true;
+        respond = true;
+      };
+      inherit sshd;
     };
   };
   networking.firewall = {

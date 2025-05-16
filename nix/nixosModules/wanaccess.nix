@@ -108,7 +108,7 @@ in
           lib.attrsets.mapAttrsToList (_: v: { Address = v.itf.addr; MACAddress = v.itf.mac; }) localHostsOnly;
         dhcpPrefixDelegationConfig = {
           UplinkInterface = faiItf;
-          SubnetId = "0xf";
+          SubnetId = "0xd";
         };
       };
     };

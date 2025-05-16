@@ -13,6 +13,7 @@
   environment = {
     systemPackages = with pkgs; [
       libva-utils
+      waypipe
     ];
     etc = {
       "wallpapers/glf/white.jpg".source = ../../../assets/wallpaper/white.jpg;
