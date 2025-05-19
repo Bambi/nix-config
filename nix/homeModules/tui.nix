@@ -5,7 +5,7 @@
     ./common/bash.nix
     ./common/kakoune.nix
     ./common/tmux
-    ./common/dev.nix
+    # ./common/dev.nix
     ./common/nvim.nix
     ./common/bottom.nix
     ./common/git

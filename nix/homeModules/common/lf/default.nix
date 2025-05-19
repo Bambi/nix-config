@@ -9,6 +9,7 @@
       icons = true;
       preview = true;
       scrolloff = 5;
+      ratios = "2:3:7";
     };
     previewer.source = "${pkgs.pistol}/bin/pistol";
     commands = {
