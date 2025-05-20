@@ -1,4 +1,4 @@
-{ config, lib, publicIP, LHMeshIP, isLH, ... }: {
+{ config, lib, bindIps, LHMeshIP, isLH, ... }: {
   # node key stored through sops
   sops.secrets =
     let
@@ -19,11 +19,12 @@
     key = config.sops.secrets.nebula_key.path;
     ca = ./ca.crt;
     lighthouses = lib.mkIf (!isLH) [ LHMeshIP ];
-    staticHostMap = lib.mkIf (!isLH) { "${LHMeshIP}" = [ "${publicIP}:4242" ]; };
+    staticHostMap = lib.mkIf (!isLH) {
+      "${LHMeshIP}" = bindIps;
+    };
     # (builtins.listToAttrs (lib.lists.forEach lighthouseIPs (v: { name = "${v}"; value = [ "${config.my.nebula.publicIp}:4242" ]; })));
     # "192.168.100.1" = [ "176.177.24.32:4242" ];
-    # TODO: fix this for WSL
-    listen.host = if isLH then publicIP else "[::]";
+    listen.host = "[::]";
     firewall = {
       inbound = [{
         host = "any";

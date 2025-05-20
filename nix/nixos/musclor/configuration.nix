@@ -28,8 +28,8 @@ in
       inputs.self.nixosModules.printing
       {
         _module.args = {
-          inherit (inputs.self.lib.network) publicIP;
-          LHMeshIP = (inputs.self.lib.network.lighthouseItf "bambi").addr;
+          LHMeshIP = inputs.self.lib.network.lighthouseItf.addr;
+          bindIps = inputs.self.lib.network.nebulaBindIps;
           isLH = false;
         };
       }

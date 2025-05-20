@@ -6,14 +6,20 @@ rec {
   hosts = {
     bambi = {
       interfaces = {
-        "${lanNetwork}.1" = {
+        "${lanNetwork}.254" = {
           mac = "84:7b:eb:1e:eb:d8";
+          usage = "lan";
+          ip6 = "2001:861:5e61:5d9d:207:32ff:fe57:926c";
         };
         "176.177.24.32" = {
           mac = "9c:24:72:ab:d1:90";
+          usage = "wan";
+          ip6 = "2001:861:5e61:5d9f:9e24:72ff:feab:d190";
         };
-        "192.168.100.1" = {
-          isLighthouse = true;
+        "192.168.1.254" = {
+          mac = "00:c0:ca:b5:61:65";
+          usage = "wlan";
+          ip6 = "2001:861:5e61:5d9e:2c0:caff:feb5:6165";
         };
       };
     };
@@ -43,6 +49,8 @@ rec {
       namedItfs = lib.attrsets.mapAttrs (n: v: v // { addr = n; }) hosts.${hostName}.interfaces;
     in
     lib.attrsets.mapAttrsToList (_: v: v) namedItfs;
-  lighthouseItf = host: lib.lists.findFirst (x: builtins.hasAttr "isLighthouse" x) { addr = null; } (hostItfList host);
+  lighthouseItf = { addr = "192.168.100.1"; };
   wanMacAddr = hosts.bambi.interfaces."${publicIP}".mac;
+  nebulaBindIps = lib.attrsets.mapAttrsToList (n: _: "${n}:4242") hosts.bambi.interfaces
+    ++ lib.attrsets.mapAttrsToList (_: v: "[${v.ip6}]:4242") hosts.bambi.interfaces;
 }

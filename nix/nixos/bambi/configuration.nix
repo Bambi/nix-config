@@ -33,8 +33,8 @@ in
           lanItf = "lan";
           wanItf = "wan1";
           # nebula
-          inherit (inputs.self.lib.network) publicIP;
-          LHMeshIP = (inputs.self.lib.network.lighthouseItf "bambi").addr;
+          LHMeshIP = inputs.self.lib.network.lighthouseItf.addr;
+          bindIps = [ ];
           isLH = true;
           # unbound
           bindItfs = [ lanItf "wlan" ];
@@ -43,7 +43,7 @@ in
       }
     ];
 
-  environment.systemPackages = with pkgs; [ tshark ghostty.terminfo ];
+  environment.systemPackages = with pkgs; [ tshark termshark ghostty.terminfo ];
 
   # my = {
   #   syncthing.id = "L4ZJKOD-FZQWQDK-PHEFKVT-5ZJ4HUJ-THDMOJ4-A7LVI6Q-432XAZQ-5PRLYQI";

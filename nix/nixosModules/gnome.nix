@@ -14,6 +14,10 @@
         '';
       };
     };
+    xrdp = {
+      enable = true;
+      defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+    };
   };
 
   documentation.nixos.enable = false;

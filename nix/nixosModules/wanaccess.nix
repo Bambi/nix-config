@@ -66,7 +66,7 @@ in
         };
         dhcpPrefixDelegationConfig = {
           UplinkInterface = ":self";
-          SubnetId = 1;
+          SubnetId = "0xf";
         };
       };
       # LAN Interface
