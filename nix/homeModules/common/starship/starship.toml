@@ -26,6 +26,8 @@ format = '[$user ]($style)'
 
 [hostname]
 style = "bg:#9A348E"
+format = '[$ssh_symbol$hostname]($style)'
+ssh_symbol = '🌐'
 
 [directory]
 style = "bg:#DA627D"
