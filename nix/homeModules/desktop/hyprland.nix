@@ -13,7 +13,7 @@ with lib; {
     ];
     settings = {
       monitor = ",preferred,auto,1";
-      windowrule = [ "fullscreen, ^(wlogout)$" "animation fade,^(wlogout)$" ];
+      windowrule = [ "fullscreen,class:^(wlogout)$" "animation fade,class:^(wlogout)$" ];
       workspace = "s[true],gapsout:150";
       general = {
         gaps_in = 6;

@@ -40,7 +40,7 @@
       };
     };
     jujutsu = {
-      enable = false;
+      enable = true;
       settings = {
         user = {
           name = "Antoine Sgambato";

@@ -1,5 +1,5 @@
 # More terminal user configuration
-{ config, pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [
     inputs.nvf.homeManagerModules.default
     ./common/bash.nix
@@ -42,7 +42,7 @@
       clipboard-jh
       # podman
       distrobox
-      fira-code-nerdfont
+      nerd-fonts.fira-code
       nushell
       bitwarden-cli
       onefetch

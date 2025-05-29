@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   # Enable Theme
   home.sessionVariables = {
     GTK_THEME = "Catppuccin-Macchiato-Standard-Teal-Dark";
@@ -24,12 +22,8 @@
     catppuccin-gtk
     catppuccin-kvantum
     catppuccin-cursors.macchiatoTeal
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; })
-
-    # gnome.gnome-tweaks
-    # gnome.gnome-shell
-    # xsettingsd
-    # gnome.gnome-shell-extensions
-    # themechanger
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.jetbrains-mono
   ];
 }

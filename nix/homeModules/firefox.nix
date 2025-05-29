@@ -1,5 +1,4 @@
 { pkgs, inputs, FFextensions, ... }:
-
 let
   lock-false = {
     Value = false;
@@ -18,14 +17,15 @@ in
     profiles = {
       principal = {
         bookmarks = { };
-        extensions = FFextensions;
+        extensions.packages = FFextensions;
         isDefault = true;
         search = {
           force = true;
-          default = "Searx";
-          order = [ "Searx" "Google" ];
+          default = "duckduckgo";
+          order = [ "duckduckgo" "searx" "google" ];
           engines = {
-            "Nix Packages" = {
+            nix-packages = {
+              name = "Nix Packages";
               urls = [{
                 template = "https://search.nixos.org/packages";
                 params = [
@@ -36,25 +36,28 @@ in
               icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@np" ];
             };
-            "NixOS Wiki" = {
+            nixos-wiki = {
+              name = "NixOS Wiki";
               urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
-              iconUpdateURL = "https://nixos.wiki/favicon.png";
+              icon = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = [ "@nw" ];
             };
-            "Searx" = {
+            searx = {
+              name = "Searx";
               urls = [{ template = "https://searx.aicampground.com/?q={searchTerms}"; }];
-              iconUpdateURL = "https://nixos.wiki/favicon.png";
+              icon = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = [ "@searx" ];
             };
-            "Bing".metaData.hidden = true;
-            "Google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
+            bing.metaData.hidden = true;
+            ebay.metaData.hidden = true;
+            google.metaData.alias = "@g"; # builtin engines only support specifying one additional alias
           };
         };
       };
       autre = {
-        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
           ublock-origin
           tabliss
         ];

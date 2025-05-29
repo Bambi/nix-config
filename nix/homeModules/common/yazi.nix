@@ -19,7 +19,7 @@
 
     plugins = {
       chmod = "${inputs.yazi-plugins}/chmod.yazi";
-      max-preview = "${inputs.yazi-plugins}/max-preview.yazi";
+      toggle-pane = "${inputs.yazi-plugins}/toggle-pane.yazi";
       smart-enter = "${inputs.yazi-plugins}/smart-enter.yazi";
       starship = "${inputs.yazi-starship}";
     };
@@ -32,7 +32,7 @@
       manager.prepend_keymap = [
         {
           on = "T";
-          run = "plugin max-preview";
+          run = "plugin toggle-pane max-preview";
           desc = "Maximize or restore the preview pane";
         }
         {

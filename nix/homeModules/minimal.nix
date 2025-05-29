@@ -57,7 +57,7 @@
     };
 
     sessionVariables = {
-      PAGER = "bat -p --wrap=never";
+      PAGER = "${pkgs.bat}/bin/bat -p --wrap=never";
     };
   };
 

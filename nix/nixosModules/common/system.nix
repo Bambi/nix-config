@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   environment.variables = {
     EDITOR = "hx"; # helix
+    LESSUTFCHARDEF = "E000-F8FF:p,F0000-FFFFD:p,100000-10FFFD:p"; # fix bat unicode display
   };
 
   # fr_FR locales by default

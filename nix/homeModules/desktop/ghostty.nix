@@ -4,7 +4,7 @@ _: {
     enableFishIntegration = true;
     enableBashIntegration = true;
     settings = {
-      font-family = "JetBrainsMono NF";
+      font-family = "JetBrainsMono";
       font-size = 12;
       theme = "GruvboxDark";
       background-opacity = 0.8;

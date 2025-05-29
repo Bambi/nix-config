@@ -2,13 +2,13 @@
   description = "NixOS/home-manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     flakelight = {
       url = "github:nix-community/flakelight";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
@@ -17,7 +17,7 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     disko = {
-      url = "github:nix-community/disko/v1.6.1";
+      url = "github:nix-community/disko/v1.11.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
@@ -43,11 +43,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     yazi-plugins = {
-      url = "github:yazi-rs/plugins?rev=02d18be03812415097e83c6a912924560e4cec6d";
+      url = "github:yazi-rs/plugins?rev=9a095057d698aaaedc4dd23d638285bd3fd647e9";
       flake = false;
     };
     yazi-starship = {
-      url = "github:Rolv-Apneseth/starship.yazi?rev=f6939fbdbc3fdfcdc2a80251841e429e0cd5cf3c";
+      url = "github:Rolv-Apneseth/starship.yazi?rev=6fde3b2d9dc9a12c14588eb85cf4964e619842e6";
       flake = false;
     };
     namaka = {
