@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   boot.loader = {
     efi.canTouchEfiVariables = true;
-    timeout = 6;
+    timeout = 3;
     grub.enable = false;
     systemd-boot = {
       enable = true;
