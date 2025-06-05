@@ -29,10 +29,10 @@
   programs.regreet = {
     enable = true;
     settings = {
-      backgroung = {
+      background = {
         path = "${../../assets/wallpaper/canyon.jpg}";
       };
-      appearance.welcome_msg = "Bienvenue";
+      appearance.greeting_msg = "Bienvenue";
       widget.clock.format = "%A %d %B %Y - %H:%M";
     };
   };

@@ -196,12 +196,10 @@ with lib; {
     extraConfig =
       concatStrings [
         ''
-          exec-once = $POLKIT_BIN
-          exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          exec-once = waybar
           exec-once = ${pkgs.dunst}/bin/dunst
           exec-once = hyprctl setcursor Bibata-Modern-Amber 20
+          exec-once = ${pkgs.setwp}/bin/setwp
           #exec-once = nm-applet --indicator
         ''
       ];
