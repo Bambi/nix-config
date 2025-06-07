@@ -18,7 +18,7 @@ with lib; {
       general = {
         gaps_in = 6;
         gaps_out = 10;
-        border_size = 2;
+        border_size = 3;
         "col.active_border" = "rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg";
         "col.inactive_border" = "rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg";
         layout = "dwindle";
@@ -199,7 +199,6 @@ with lib; {
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = ${pkgs.dunst}/bin/dunst
           exec-once = hyprctl setcursor Bibata-Modern-Amber 20
-          exec-once = ${pkgs.setwp}/bin/setwp
           #exec-once = nm-applet --indicator
         ''
       ];
@@ -259,4 +258,24 @@ with lib; {
     };
   };
   xdg.configFile."xkb/symbols/custom".source = ./us_qwerty-fr;
+  systemd.user.services.wallpaper = {
+    Unit = {
+      Description = "Wayland daily wallpaper setting from Bing";
+      After = [ "graphical-session.target" "network-online.target" ];
+      PartOf = [ "graphical-session.target" ];
+      ConditionEnvironment = "WAYLAND_DISPLAY";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.writeShellScript "setwp" ''
+        set -Eeuo pipefail
+        TMPFIC=/tmp/.wp.jpg
+        ${pkgs.curl}/bin/curl --no-progress-meter -o $TMPFIC $(${pkgs.curl}/bin/curl --no-progress-meter https://peapix.com/bing/feed?country=fr | ${pkgs.jq}/bin/jq -r '.[0].imageUrl')
+        exec ${pkgs.wbg}/bin/wbg $TMPFIC
+      ''}";
+      Restart = "on-failure";
+    };
+  };
 }
