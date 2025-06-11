@@ -17,8 +17,8 @@ let
 in
 {
   nodes = {
-    bambi = mkDeploy "bambi.nex.sh" "bambi" "as-minimal";
+    bambi = mkDeploy "bambi.mooo.info" "bambi" "as-minimal";
     babar = mkDeploy "babar.local" "babar" "as-gui";
-    bianca = mkDeploy "bianca.nex.sh" "bianca" "as-gui";
+    bianca = mkDeploy "bianca.mooo.info" "bianca" "as-gui";
   };
 }

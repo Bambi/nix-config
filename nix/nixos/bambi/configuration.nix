@@ -51,7 +51,7 @@ in
   # };
   networking = {
     hostName = "bambi";
-    domain = "nex.sh";
+    domain = "mooo.info";
     networkmanager.enable = false;
   };
   time.timeZone = "Europe/Paris";

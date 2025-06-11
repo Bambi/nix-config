@@ -9,16 +9,16 @@
           port = 30746;
           document_root = "/auth";
 
-          domains = [ "bambi.nex.sh" "gmail.com" ];
+          domains = [ "bambi.mooo.info" "gmail.com" ];
           allowAllUsers = false;
           cookie = {
-            domain = "bambi.nex.sh";
+            domain = "bambi.mooo.info";
           };
         };
         oauth = {
           provider = "google";
           callback_urls = [
-            "https://bambi.nex.sh/auth/auth"
+            "https://bambi.mooo.info/auth/auth"
           ];
         };
       };
@@ -70,7 +70,7 @@
           # add_header Access-Control-Allow-Origin https://auth.erictapen.name;
         '';
       };
-      "@error401".return = "302 https://bambi.nex.sh/auth/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err";
+      "@error401".return = "302 https://bambi.mooo.info/auth/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err";
     };
     extraConfig = ''
       # if /auth/validate returns `401 not authorized` then forward the request to the error401block
