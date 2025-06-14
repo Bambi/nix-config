@@ -276,6 +276,8 @@ with lib; {
         exec ${pkgs.wbg}/bin/wbg $TMPFIC
       ''}";
       Restart = "on-failure";
+      RestartSec = 5;
+      NRestarts = 10;
     };
   };
 }
