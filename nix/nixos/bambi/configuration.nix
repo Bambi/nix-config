@@ -11,6 +11,7 @@ in
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./docker.nix
       inputs.disko.nixosModules.disko
       disk-config
       inputs.nixos-hardware.nixosModules.common-cpu-intel
