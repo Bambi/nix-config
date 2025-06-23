@@ -9,16 +9,16 @@
           port = 30746;
           document_root = "/auth";
 
-          domains = [ "bambi.mooo.info" "gmail.com" ];
+          domains = [ "${config.networking.fqdn}" "gmail.com" ];
           allowAllUsers = false;
           cookie = {
-            domain = "bambi.mooo.info";
+            domain = "${config.networking.fqdn}";
           };
         };
         oauth = {
           provider = "google";
           callback_urls = [
-            "https://bambi.mooo.info/auth/auth"
+            "https://${config.networking.fqdn}/auth/auth"
           ];
         };
       };
@@ -70,7 +70,7 @@
           # add_header Access-Control-Allow-Origin https://auth.erictapen.name;
         '';
       };
-      "@error401".return = "302 https://bambi.mooo.info/auth/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err";
+      "@error401".return = "302 https://${config.networking.fqdn}/auth/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err";
     };
     extraConfig = ''
       # if /auth/validate returns `401 not authorized` then forward the request to the error401block

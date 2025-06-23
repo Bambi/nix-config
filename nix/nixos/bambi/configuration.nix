@@ -52,7 +52,7 @@ in
   # };
   networking = {
     hostName = "bambi";
-    domain = "mooo.info";
+    domain = "ftp.sh";
     networkmanager.enable = false;
   };
   time.timeZone = "Europe/Paris";

@@ -11,7 +11,7 @@ in
     enable = true;
     matchBlocks = {
       myhosts = {
-        host = (builtins.concatStringsSep " " localHostnames) + " bambi.mooo.info *.mesh";
+        host = (builtins.concatStringsSep " " localHostnames) + " bambi.ftp.sh *.mesh";
         identityFile = "~/.ssh/id_ed25519_as";
         forwardAgent = true;
         extraOptions = {

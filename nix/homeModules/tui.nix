@@ -29,7 +29,6 @@
       glow
       jq
       keychain
-      lazygit
       tree
       diffsitter
       superfile
@@ -40,12 +39,10 @@
       solo2-cli
       libfido2
       clipboard-jh
-      # podman
       distrobox
       nerd-fonts.fira-code
       nushell
       bitwarden-cli
-      onefetch
       cpufetch
       # docs
       zk
@@ -59,7 +56,6 @@
       bzip2
       xz
       lz4
-      deploy-rs
     ];
 
     file.".config/zk/config.toml".text = ''
