@@ -3,7 +3,6 @@ let
   faiItf = "byteldata"; # FAI interface name
 in
 {
-  imports = [ ./fail2ban.nix ];
   systemd.network = {
     # bbox data is accessible on vlan 100 / IPv6 only
     netdevs.bytel = {

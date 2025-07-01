@@ -26,22 +26,8 @@ in
         };
       };
     };
-    fail2ban.jails = {
-      calibre-web.settings = {
-        enabled = true;
-        filter = "calibre-web";
-        port = "http,https";
-      };
-    };
   };
   systemd.tmpfiles.rules = [
     "d ${mediaPath} 0770 calibre-web calibre-web -"
   ];
-  environment.etc = {
-    "fail2ban/filter.d/calibre-web.conf".text = ''
-      [Definition]
-      failregex = ^.*Login failed for user ".*" IP-address: <HOST>$
-      journalmatch = _SYSTEMD_UNIT=calibre-web.service
-    '';
-  };
 }

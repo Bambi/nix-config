@@ -60,6 +60,10 @@
       url = "github:Gaming-Linux-FR/GLF-OS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    crowdsec = {
+      url = "git+https://codeberg.org/kampka/nix-flake-crowdsec.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, flakelight, ... }@inputs:
@@ -68,7 +72,10 @@
         inherit inputs;
         lib.network = import ./network.nix inputs.nixpkgs.lib;
         systems = [ "x86_64-linux" ];
-        withOverlays = [ inputs.self.overlays.overrides ];
+        withOverlays = [
+          inputs.self.overlays.overrides
+          inputs.crowdsec.overlays.default
+        ];
         formatter = pkgs: pkgs.nixpkgs-fmt;
       } // {
       deploy = import ./deploy.nix { inherit inputs; };

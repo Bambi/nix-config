@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, ... }: {
   services.caddy = {
     enable = true;
     package = pkgs.caddy.withPlugins {
@@ -42,4 +42,24 @@
     "d /data/webdav 0770 caddy caddy -"
   ];
   networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+  systemd.services.crowdsec.serviceConfig = {
+    ExecStartPre = let
+      script = pkgs.writeScriptBin "register-caddy" ''
+        #!${pkgs.runtimeShell}
+        set -eu
+        set -o pipefail
+
+        if ! cscli collections list | grep -q "caddy"; then
+          cscli collections install "crowdsecurity/caddy"
+        fi
+      '';
+    in ["${script}/bin/register-caddy"];
+  };
+  services.crowdsec.acquisitions = [
+    {
+      filenames = ["/var/log/caddy/*.log"];
+      labels.type = "caddy";
+    }
+  ];
 }
