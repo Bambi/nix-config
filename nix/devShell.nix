@@ -5,5 +5,6 @@ pkgs: with pkgs; {
     deadnix
     namaka
     nixd
+    deploy-rs
   ];
 }

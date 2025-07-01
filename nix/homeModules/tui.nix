@@ -32,6 +32,7 @@
       tree
       diffsitter
       superfile
+      editorconfig-core-c
       # joshuto
       kmon
       trippy
