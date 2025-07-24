@@ -1,6 +1,7 @@
 lib:
 let
   lanNetwork = "192.168.0";
+  ip6DP = "2001:861:57c6:4d0"; # 2001:861:57c6:4d00::/60
 in
 rec {
   hosts = {
@@ -9,17 +10,17 @@ rec {
         "${lanNetwork}.254" = {
           mac = "84:7b:eb:1e:eb:d8";
           usage = "lan";
-          ip6 = "2001:861:5e61:5d9d:207:32ff:fe57:926c";
+          ip6 = "${ip6DP}d:207:32ff:fe57:926c";
         };
-        "176.177.24.32" = {
+        "31.32.174.211" = {
           mac = "9c:24:72:ab:d1:90";
           usage = "wan";
-          ip6 = "2001:861:5e61:5d9f:9e24:72ff:feab:d190";
+          ip6 = "${ip6DP}f:9e24:72ff:feab:d190";
         };
         "192.168.1.254" = {
           mac = "00:c0:ca:b5:61:65";
           usage = "wlan";
-          ip6 = "2001:861:5e61:5d9e:2c0:caff:feb5:6165";
+          ip6 = "${ip6DP}e:2c0:caff:feb5:6165";
         };
       };
     };
@@ -43,7 +44,7 @@ rec {
     gw = "${lanNetwork}.254";
     mask = 24;
   };
-  publicIP = "176.177.24.32";
+  publicIP = "31.32.174.211";
   hostItfList = hostName:
     let
       namedItfs = lib.attrsets.mapAttrs (n: v: v // { addr = n; }) hosts.${hostName}.interfaces;
