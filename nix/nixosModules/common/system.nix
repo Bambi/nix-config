@@ -62,4 +62,6 @@
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
   };
+
+  services.journald.extraConfig = "SystemMaxUse=2G";
 }

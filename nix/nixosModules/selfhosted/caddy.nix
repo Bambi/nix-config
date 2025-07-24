@@ -11,28 +11,32 @@
     '';
     globalConfig = ''
       debug
+      order webdav after basic_auth
     '';
     virtualHosts."${config.networking.fqdn}" = {
       extraConfig = ''
-        route {
-          rewrite /calibre /calibre/
-          reverse_proxy /calibre/* [::1]:8083 {
+        rewrite /calibre /calibre/
+        handle /calibre/* {
+          reverse_proxy [::1]:8083 {
             header_up +X-Scheme        {http.request.scheme}
             header_up +X-Script-Name   /calibre
           }
-          rewrite /dav /dav/
-          basicauth /dav/* {
+        }
+        rewrite /dav /dav/
+        handle /dav/* {
+          basic_auth {
             gribouille $2a$10$OZ1dEJL4dJzTfB1mf9QrpenUa87UwxnbDcgu5bNTasVqYWvqCAFhG
           }
-          webdav /dav/* {
+          webdav {
             root /data/webdav
             prefix /dav
           }
-          reverse_proxy /dav/* 127.0.0.1:6065 {
-            header_up +X-Real-IP       {http.request.remote}
-            header_up +REMOTE-HOST     {http.request.remote}
-            header_up Host             {upstream_hostport}
-          }
+        }
+        rewrite /kor /kor/
+        handle_path /kor/* {
+          reverse_proxy 127.0.0.1:8082
+        }
+        handle {
           respond "OK"
         }
       '';
