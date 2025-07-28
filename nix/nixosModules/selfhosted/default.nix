@@ -4,5 +4,6 @@ _: {
     # ./vouch-proxy.nix
     ./calibre-web.nix
     ./crowdsec.nix
+    ./filebrowser.nix
   ];
 }
