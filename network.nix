@@ -45,6 +45,7 @@ rec {
     mask = 24;
   };
   publicIP = "31.32.174.211";
+  publicIP6 = hosts.bambi.interfaces."${publicIP}".ip6;
   hostItfList = hostName:
     let
       namedItfs = lib.attrsets.mapAttrs (n: v: v // { addr = n; }) hosts.${hostName}.interfaces;
