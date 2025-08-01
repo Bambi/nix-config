@@ -52,7 +52,7 @@ in
   # };
   networking = {
     hostName = "bambi";
-    domain = "ftp.sh";
+    domain = "as.dedyn.io";
     networkmanager.enable = false;
   };
   time.timeZone = "Europe/Paris";
