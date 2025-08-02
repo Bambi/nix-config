@@ -41,7 +41,7 @@ _: {
           weather = {
             unit = "metric";
             location = "Paris";
-            key = "/home/as/.config/sops-nix/weather_key";
+            key = "/home/as/.config/sops-nix/secrets/weather_key";
           };
         };
 
