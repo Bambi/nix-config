@@ -21,6 +21,7 @@ in
       }
     '';
     extraConfig = ''
+      crowdsec
       handle * {
         reverse_proxy localhost:${toString port}
       }

@@ -6,7 +6,7 @@ let
     profilesOrder = [ "system" ];
     profiles.system = {
       user = "root";
-      autoRollback = true;
+      autoRollback = false;
       magicRollback = true;
       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.${confname};
     };

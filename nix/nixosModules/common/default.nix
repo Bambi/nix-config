@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, config, ... }: {
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./lix.nix
@@ -9,4 +9,5 @@
     ./system.nix
     ./services.nix
   ];
+  sops.defaultSopsFile = ../../nixos/${config.networking.hostName}/secrets.yaml;
 }

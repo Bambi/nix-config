@@ -1,6 +1,5 @@
 { inputs, config, pkgs, ... }:
-let
-  api_uri = "[::]:8081";
+let api_uri = "[::]:8081";
 in
 {
   imports = [
@@ -11,7 +10,8 @@ in
   services = {
     crowdsec = {
       enable = true;
-      enrollKeyFile = "${config.sops.secrets.crowdsec_apik.path}";
+      enrollKeyFile = "${config.sops.secrets.crowdsec_key.path}";
+      allowLocalJournalAccess = true;
       settings = {
         common.log_level = "error";
         api.server = {
@@ -36,8 +36,7 @@ in
     };
   };
 
-  sops.secrets.crowdsec_apik = {
-    sopsFile = ../../nixos/${config.networking.hostName}/secrets.yaml;
+  sops.secrets.crowdsec_key = {
     owner = "crowdsec";
     mode = "0400";
   };
@@ -49,6 +48,9 @@ in
         set -eu
         set -o pipefail
 
+        if ! cscli bouncers list | grep -q "caddy"; then
+          cscli bouncers add caddy --key "$(cat ${config.sops.secrets.crowdsec_apik.path}| cut -d' ' -f 2)"
+        fi
         if ! cscli collections list | grep -q "linux"; then
           cscli collections install "crowdsecurity/linux"
         fi
