@@ -17,7 +17,7 @@ with lib; {
       workspace = "s[true],gapsout:150";
       general = {
         gaps_in = 6;
-        gaps_out = 10;
+        gaps_out = "5,10,10,10";
         border_size = 3;
         "col.active_border" = "rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg";
         "col.inactive_border" = "rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg";
@@ -197,9 +197,7 @@ with lib; {
       concatStrings [
         ''
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          exec-once = ${pkgs.dunst}/bin/dunst
           exec-once = hyprctl setcursor Bibata-Modern-Amber 20
-          #exec-once = nm-applet --indicator
         ''
       ];
   };
@@ -280,4 +278,6 @@ with lib; {
       NRestarts = 10;
     };
   };
+
+  imports = [ ./hyprpanel.nix ];
 }

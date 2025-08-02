@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   programs.waybar = {
-    enable = true;
+    enable = false;
     systemd.enable = true;
     settings = {
       mainBar = {

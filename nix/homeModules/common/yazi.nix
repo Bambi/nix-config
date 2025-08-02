@@ -5,14 +5,14 @@
     enableFishIntegration = true;
 
     settings = {
-      manager = {
+      mgr = {
         show_hidden = false;
         ratio = [ 2 3 7 ];
       };
     };
 
     theme = {
-      manager = {
+      mgr = {
         border_symbol = " ";
       };
     };
@@ -29,7 +29,7 @@
     '';
 
     keymap = {
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           on = "T";
           run = "plugin toggle-pane max-preview";
