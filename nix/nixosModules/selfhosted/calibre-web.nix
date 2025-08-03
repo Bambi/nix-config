@@ -12,19 +12,19 @@ in
         # enableBookConversion = true;
       };
     };
-    nginx.virtualHosts = {
-      "${config.networking.fqdn}" = {
-        locations = {
-          "/calibre/" = {
-            proxyPass = "http://[::1]:8083";
-            extraConfig = ''
-              proxy_set_header     X-Scheme        $scheme;
-              proxy_set_header     X-Script-Name   /calibre;  # IMPORTANT: path has NO trailing slash
-            '';
-          };
-          "/calibre".return = "301 $scheme://$host/calibre/";
-        };
-      };
+    caddy.virtualHosts."calibre.${config.networking.domain}" = {
+      logFormat = ''
+        output file ${config.services.caddy.logDir}/access-calibre.${config.networking.domain}.log {
+          mode 0644
+        }
+      '';
+      extraConfig = ''
+        handle * {
+          reverse_proxy [::1]:8083 {
+            header_up +X-Scheme        {http.request.scheme}
+          }
+        }
+      '';
     };
   };
   systemd.tmpfiles.rules = [

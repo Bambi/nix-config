@@ -1,5 +1,5 @@
 # Currently not used as dedyn.io NS records cannot be modified
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, wanItf, ... }:
 let
   inherit (inputs.self.lib.network) publicIP publicIP6;
 in
@@ -32,6 +32,11 @@ in
                   IN      AAAA    ${publicIP6}
         '';
       };
+    };
+    # allow bind data on public interface
+    networking.firewall.interfaces."${wanItf}" = {
+      allowedUDPPorts = [ 53 ];
+      allowedTCPPorts = [ 53 ];
     };
   };
 }

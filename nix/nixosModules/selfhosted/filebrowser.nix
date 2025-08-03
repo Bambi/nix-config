@@ -11,13 +11,17 @@ in
       inherit port;
       root = "/data/filebrowser/data";
       database = "/data/filebrowser/database.db";
-      baseURL = "/fb/";
+      # baseURL = "/fb/";
     };
   };
-  services.caddy.virtualHosts."${config.networking.fqdn}" = {
+  services.caddy.virtualHosts."fb.${config.networking.domain}" = {
+    logFormat = ''
+      output file ${config.services.caddy.logDir}/access-fb.${config.networking.domain}.log {
+        mode 0644
+      }
+    '';
     extraConfig = ''
-      rewrite /fb /fb/
-      handle /fb/* {
+      handle * {
         reverse_proxy localhost:${toString port}
       }
     '';

@@ -15,13 +15,6 @@
     '';
     virtualHosts."${config.networking.fqdn}" = {
       extraConfig = ''
-        rewrite /calibre /calibre/
-        handle /calibre/* {
-          reverse_proxy [::1]:8083 {
-            header_up +X-Scheme        {http.request.scheme}
-            header_up +X-Script-Name   /calibre
-          }
-        }
         rewrite /dav /dav/
         handle /dav/* {
           basic_auth {

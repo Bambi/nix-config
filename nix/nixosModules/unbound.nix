@@ -82,9 +82,4 @@
     etc."unbound/blocklist".source = "${inputs.unbound-block-list}/unbound/pro.blacklist.conf";
     systemPackages = [ pkgs.cacert ];
   };
-  # allow bind data on public interface
-  networking.firewall.interfaces."${wanItf}" = {
-    allowedUDPPorts = [ 53 ];
-    allowedTCPPorts = [ 53 ];
-  };
 }
