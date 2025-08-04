@@ -3,7 +3,7 @@ _: {
     ./caddy.nix
     # ./vouch-proxy.nix
     ./calibre-web.nix
-    ./crowdsec.nix
+    ./reaction.nix
     ./filebrowser.nix
   ];
 }

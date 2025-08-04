@@ -19,7 +19,6 @@ in
         }
       '';
       extraConfig = ''
-        crowdsec
         handle * {
           reverse_proxy [::1]:8083 {
             header_up +X-Scheme        {http.request.scheme}
