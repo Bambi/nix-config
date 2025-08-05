@@ -77,18 +77,24 @@
             actions = banFor "${toString (30 * 24)}h";
           };
         };
+        caddy = {
+          cmd = [ "tail" "-n0" "-F" ] ++
+            (builtins.map (vh: "/var/log/caddy/access-${vh}.log") [
+              "calibre.as.dedyn.io"
+              "fb.as.dedyn.io"
+              "bambi.as.dedyn.io"
+            ]);
+          filters.bots = {
+            regex = (builtins.map (bot: ''^.*"remote_ip":"<ip>",.*?"User-Agent":\[".*${bot}.*"\],.*$'') [
+              "Googlebot/"
+              "GPTBot/"
+              "WanScannerBot/"
+              "TurnitinBot"
+            ]);
+            actions = banFor "${toString (30 * 24)}h";
+          };
+        };
       };
     };
   };
-  # users.users.reaction.extraGroups = [ "systemd-journal" ];
-  # security.sudo.extraRules = [
-  #   {
-  #     users = [ "reaction" ];
-  #     commands = [
-  #       { command = "${config.system.path}/bin/nft"; options = [ "NOPASSWD" ]; }
-  #       { command = "${config.system.path}/bin/nft46"; options = [ "NOPASSWD" ]; }
-  #     ];
-  #     runAs = "root";
-  #   }
-  # ];
 }
