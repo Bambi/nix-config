@@ -21,8 +21,8 @@ in
         isDefault = true;
         search = {
           force = true;
-          default = "duckduckgo";
-          order = [ "duckduckgo" "searx" "google" ];
+          default = "ddg";
+          order = [ "ddg" "searx" "google" ];
           engines = {
             nix-packages = {
               name = "Nix Packages";

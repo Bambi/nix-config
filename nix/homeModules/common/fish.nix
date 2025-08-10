@@ -76,9 +76,16 @@
     '';
   };
 
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
-    enableBashIntegration = true;
+  programs = {
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+    };
+    carapace = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+    };
   };
 }
