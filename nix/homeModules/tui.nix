@@ -13,6 +13,7 @@
     ./common/starship
     ./common/taskwarrior.nix
     ./common/nb.nix
+    ./common/nix.nix
   ]; # ++ pkgs.lib.optionals config.home.guiApps [ ./gui ];
 
   # enable unfree packages
