@@ -97,12 +97,12 @@
               "bambi.as.dedyn.io"
             ]);
           filters.bots = {
-            regex = (builtins.map (bot: ''^.*"remote_ip":"<ip>",.*?"User-Agent":\[".*${bot}.*"\],.*$'') [
+            regex = builtins.map (bot: ''^.*"remote_ip":"<ip>",.*?"User-Agent":\[".*${bot}.*"\],.*$'') [
               "Googlebot/"
               "GPTBot/"
               "WanScannerBot/"
               "TurnitinBot"
-            ]);
+            ];
             actions = banFor "${toString (30 * 24)}h";
           };
         };

@@ -56,13 +56,13 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    glf-os = {
-      url = "github:Gaming-Linux-FR/GLF-OS";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     crowdsec = {
       url = "git+https://codeberg.org/kampka/nix-flake-crowdsec.git";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    plymouth-themes = {
+      url = "github:adi1090x/plymouth-themes";
+      flake = false;
     };
   };
 

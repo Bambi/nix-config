@@ -171,7 +171,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_4"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -204,28 +204,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "flakelight",
-        "type": "github"
-      }
-    },
-    "glf-os": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "utils": "utils_2"
-      },
-      "locked": {
-        "lastModified": 1745206436,
-        "narHash": "sha256-KJ+22M+lS9cr5uUgznddJ+4Egcz70me1zLFF1nC9ecE=",
-        "owner": "Gaming-Linux-FR",
-        "repo": "GLF-OS",
-        "rev": "35e8057f067e126e77e669c82f8ed8427584b6b4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Gaming-Linux-FR",
-        "repo": "GLF-OS",
         "type": "github"
       }
     },
@@ -456,22 +434,6 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/5487e69da40cbd611ab2cadee0b4637225f7cfae.tar.gz"
       }
     },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1744098102,
-        "narHash": "sha256-tzCdyIJj9AjysC3OuKA+tMD/kDEDAF9mICPDU7ix0JA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "c8cd81426f45942bb2906d5ed2fe21d2f19d95b7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1656753965,
@@ -631,7 +593,7 @@
         "plugin-vim-startify": "plugin-vim-startify",
         "plugin-which-key": "plugin-which-key",
         "rnix-lsp": "rnix-lsp",
-        "systems": "systems_5"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1733321789,
@@ -2506,11 +2468,27 @@
         "type": "github"
       }
     },
+    "plymouth-themes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1692705644,
+        "narHash": "sha256-e3lRgIBzDkKcWEp5yyRCzQJM6yyTjYC5XmNUZZroDuw=",
+        "owner": "adi1090x",
+        "repo": "plymouth-themes",
+        "rev": "5d8817458d764bff4ff9daae94cf1bbaabf16ede",
+        "type": "github"
+      },
+      "original": {
+        "owner": "adi1090x",
+        "repo": "plymouth-themes",
+        "type": "github"
+      }
+    },
     "rnix-lsp": {
       "inputs": {
         "naersk": "naersk",
         "nixpkgs": "nixpkgs_2",
-        "utils": "utils_3"
+        "utils": "utils_2"
       },
       "locked": {
         "lastModified": 1669555118,
@@ -2533,7 +2511,6 @@
         "disko": "disko",
         "firefox-addons": "firefox-addons",
         "flakelight": "flakelight",
-        "glf-os": "glf-os",
         "home-manager": "home-manager",
         "namaka": "namaka",
         "nix-colors": "nix-colors",
@@ -2541,6 +2518,7 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
+        "plymouth-themes": "plymouth-themes",
         "sops-nix": "sops-nix",
         "unbound-block-list": "unbound-block-list",
         "yazi-plugins": "yazi-plugins",
@@ -2652,21 +2630,6 @@
         "type": "github"
       }
     },
-    "systems_5": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
     "unbound-block-list": {
       "flake": false,
       "locked": {
@@ -2702,24 +2665,6 @@
       }
     },
     "utils_2": {
-      "inputs": {
-        "systems": "systems_3"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "utils_3": {
       "locked": {
         "lastModified": 1656928814,
         "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
