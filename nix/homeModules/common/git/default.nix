@@ -52,6 +52,17 @@
           key = "/home/as/.ssh/id_ed25519_as";
         };
         ui.default-command = "log";
+        aliases = {
+          tug = ["bookmark" "move" "--from" "closest_bookmark(@)" "--to" "closest_nonempty(@)"];
+        };
+        revset-aliases = {
+          "closest_bookmark(to)" = "heads(::to & bookmarks())";
+          "closest_nonempty(to)" = "heads(::to ~ empty())";
+        };
+        colors = {
+          "diff removed token" = { bg = "#3F0001"; underline = false; };
+          "diff added token" = { bg = "#002800"; underline = false; };
+        };
       };
     };
   };

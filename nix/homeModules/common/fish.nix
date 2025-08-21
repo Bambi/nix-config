@@ -63,6 +63,7 @@
     ];
 
     shellAliases = {
+      cd = "z";
       lg = "lazygit";
       gs = "git status";
       weather = "curl \'wttr.in/92290?lang=fr\'";

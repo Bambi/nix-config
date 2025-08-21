@@ -17,8 +17,6 @@
         };
         file-picker = {
           hidden = false;
-          parents = false;
-          git-ignore = false;
         };
         indent-guides = {
           render = true;
