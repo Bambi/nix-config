@@ -96,3 +96,6 @@ Setup the flathub repo: `flatpak remote-add --if-not-exists flathub https://dl.f
 Add a package: `flatpak install flathub com.google.Chrome`
 
 Run Chrome under Wayland: `flatpak run com.google.Chrome --enable-features=UseOzonePlatform --ozone-platform=wayland`
+
+# troubleshooting
+- Fonts problems: run `rm -rf ~/.cache/fontconfig && fc-cache -vr`

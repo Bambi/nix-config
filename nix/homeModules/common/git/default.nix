@@ -53,7 +53,8 @@
         };
         ui.default-command = "log";
         aliases = {
-          tug = ["bookmark" "move" "--from" "closest_bookmark(@)" "--to" "closest_nonempty(@)"];
+          tug = [ "bookmark" "move" "--from" "closest_bookmark(@)" "--to" "closest_nonempty(@)" ];
+          difft = [ "diff" "--tool" "${pkgs.difftastic}/bin/difft" ];
         };
         revset-aliases = {
           "closest_bookmark(to)" = "heads(::to & bookmarks())";

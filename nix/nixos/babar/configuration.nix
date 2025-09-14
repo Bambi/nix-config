@@ -25,6 +25,7 @@ in
       inputs.self.nixosModules.dispm-greetd
       inputs.self.nixosModules.laptop
       inputs.self.nixosModules.nebula
+      inputs.self.nixosModules.hyprland
       # inputs.self.nixosModules.syncthing
       {
         _module.args = {

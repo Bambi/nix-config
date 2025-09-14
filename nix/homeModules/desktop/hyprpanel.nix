@@ -1,6 +1,6 @@
 _: {
   programs.hyprpanel = {
-    enable = true;
+    enable = false;
     # dontAssertNotificationDaemons = false;
     # Configure and theme almost all options from the GUI.
     # See 'https://hyprpanel.com/configuration/settings.html'.

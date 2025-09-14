@@ -24,7 +24,7 @@
         };
         statusline = {
           left = [ "mode" "diagnostics" ];
-          center = [ "file-name" ];
+          center = [ "file-modification-indicator" "file-name" "read-only-indicator" ];
           right = [ "selections" "file-type" "file-encoding" "position-percentage" "position" ];
         };
       };

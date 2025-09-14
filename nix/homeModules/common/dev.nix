@@ -1,7 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    mold
-    gcc13
-    gnumake
-  ];
+  home.file.".config/gdb/gdbinit".text = ''
+    set auto-load safe-path /
+  '';
 }
