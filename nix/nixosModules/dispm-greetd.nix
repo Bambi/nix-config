@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, wallpaper ? "${../../assets/wallpaper/canyon.jpg}", ... }:
 {
   # Enable Display Manager
   services.greetd = {
@@ -30,7 +30,7 @@
     enable = true;
     settings = {
       background = {
-        path = "${../../assets/wallpaper/canyon.jpg}";
+        path = wallpaper;
       };
       appearance.greeting_msg = "Bienvenue";
       widget.clock.format = "%A %d %B %Y - %H:%M";

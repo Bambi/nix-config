@@ -32,6 +32,7 @@ in
           LHMeshIP = inputs.self.lib.network.lighthouseItf.addr;
           bindIps = inputs.self.lib.network.nebulaBindIps;
           isLH = false;
+          wallpaper = "${../../../assets/wallpaper/canyon.jpg}";
         };
       }
     ];
