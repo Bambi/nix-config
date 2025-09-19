@@ -56,13 +56,13 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    crowdsec = {
-      url = "git+https://codeberg.org/kampka/nix-flake-crowdsec.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     plymouth-themes = {
       url = "github:adi1090x/plymouth-themes";
       flake = false;
+    };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -74,7 +74,7 @@
         systems = [ "x86_64-linux" ];
         withOverlays = [
           inputs.self.overlays.overrides
-          inputs.crowdsec.overlays.default
+          inputs.nur.overlays.default
         ];
         formatter = pkgs: pkgs.nixpkgs-fmt;
       } // {

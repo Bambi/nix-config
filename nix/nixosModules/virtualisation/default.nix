@@ -1,6 +1,7 @@
 _: {
   imports = [
     ./libvirt-networking.nix
+    ./waydroid.nix
   ];
   virtualisation = {
     podman = {
@@ -24,7 +25,6 @@ _: {
       };
     };
     # spiceUSBRedirection.enable = true;
-    waydroid.enable = true;
   };
 
   programs.virt-manager.enable = true;
