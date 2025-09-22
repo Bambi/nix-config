@@ -8,6 +8,7 @@
     ./usb.nix
     ./system.nix
     ./services.nix
+    ./cachix
   ];
   sops.defaultSopsFile = ../../nixos/${config.networking.hostName}/secrets.yaml;
 }

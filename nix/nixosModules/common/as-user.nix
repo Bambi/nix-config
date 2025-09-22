@@ -25,7 +25,7 @@ in
   };
   programs.fish.enable = true;
   # users with additional rights for the Nix daemon
-  nix.settings.trusted-users = [ "root" "as" ];
+  nix.settings.trusted-users = [ "as" ];
 
   # Useful to have git globally available
   environment.systemPackages = with pkgs; [ git ];
