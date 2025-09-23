@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, bootTheme ? "circle", ... }: {
   boot = {
     consoleLogLevel = 3;
     initrd.verbose = false;
@@ -11,7 +11,7 @@
     ];
     plymouth = {
       enable = true;
-      theme = "circle";
+      theme = bootTheme;
       themePackages = [ pkgs.plymouth-theme ];
       logo = "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
     };

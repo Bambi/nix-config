@@ -33,6 +33,7 @@ in
           bindIps = inputs.self.lib.network.nebulaBindIps;
           isLH = false;
           wallpaper = "${../../../assets/wallpaper/paint.jpg}";
+          bootTheme = "colorful_loop";
         };
       }
     ];

@@ -1,0 +1,21 @@
+# See https://developer.github.com/v3/repos/#edit for all available settings.
+repository:
+  name: "nix-config"
+  description: "NixOS Configuration Files for my Personal Machines"
+  topics: "nix, nix-modules, nix-configuration"
+
+  private: false
+  default_branch: "master"
+
+  has_issues: true
+  has_projects: false
+  has_wiki: false
+  has_downloads: false
+
+  allow_squash_merge: true
+  allow_merge_commit: false
+  allow_rebase_merge: true
+  delete_branch_on_merge: true
+
+  enable_automated_security_fixes: true
+  enable_vulnerability_alerts: true

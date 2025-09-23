@@ -270,8 +270,8 @@ with lib; {
       ExecStart = "${pkgs.writeShellScript "setwp" ''
         set -Eeuo pipefail
         TMPFIC=/tmp/.wp.jpg
-        ${pkgs.curl}/bin/curl --no-progress-meter -o $TMPFIC $(${pkgs.curl}/bin/curl --no-progress-meter https://peapix.com/bing/feed?country=fr | ${pkgs.jq}/bin/jq -r '.[0].imageUrl')
-        exec ${pkgs.wbg}/bin/wbg $TMPFIC
+        ${pkgs.curl}/bin/curl --no-progress-meter -o $TMPFIC $(${pkgs.curl}/bin/curl --no-progress-meter https://peapix.com/bing/feed?country=fr | ${pkgs.jq}/bin/jq -r '.[0].imageUrl') \
+        && exec ${pkgs.wbg}/bin/wbg $TMPFIC
       ''}";
       Restart = "on-failure";
       RestartSec = 5;

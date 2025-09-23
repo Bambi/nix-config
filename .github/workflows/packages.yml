@@ -8,7 +8,7 @@ env:
 on:
   push:
     paths:
-      - 'nix/packages'
+      - 'nix/packages/**'
   workflow_dispatch:
 
 jobs:

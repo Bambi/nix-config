@@ -33,6 +33,7 @@ in
           bindIps = inputs.self.lib.network.nebulaBindIps;
           isLH = false;
           wallpaper = "${../../../assets/wallpaper/canyon.jpg}";
+          bootTheme = "circle";
         };
       }
     ];
