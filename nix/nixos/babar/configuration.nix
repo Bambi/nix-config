@@ -26,6 +26,7 @@ in
       inputs.self.nixosModules.laptop
       inputs.self.nixosModules.nebula
       inputs.self.nixosModules.hyprland
+      inputs.self.nixosModules.bluetooth
       # inputs.self.nixosModules.syncthing
       {
         _module.args = {

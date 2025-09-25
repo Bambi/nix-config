@@ -12,7 +12,7 @@
     plymouth = {
       enable = true;
       theme = bootTheme;
-      themePackages = [ pkgs.plymouth-theme ];
+      themePackages = [ pkgs.plymouth-circle pkgs.plymouth-colorful_loop ];
       logo = "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
     };
   };
