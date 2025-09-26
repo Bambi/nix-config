@@ -34,6 +34,7 @@
       restic
       miniserve
       qrencode
+      bat-extras.core
     ];
 
     # add support for ~/.local/bin
