@@ -66,7 +66,7 @@
     };
     nix-sweep = {
       url = "github:jzbor/nix-sweep/v0.7.0";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
