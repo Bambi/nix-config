@@ -64,6 +64,10 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-sweep = {
+      url = "github:jzbor/nix-sweep/v0.7.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, flakelight, ... }@inputs:

@@ -19,5 +19,6 @@
     tcpdump
     trim-generations
     nix-tree
+    nix-sweep
   ];
 }

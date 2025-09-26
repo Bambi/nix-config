@@ -27,7 +27,7 @@ jobs:
     - name: Build packages
       run: |
         echo "🔨 Starting build for packages..."
-        nix build .#deploy-rs .#filebrowser-quantum
+        nix build .#deploy-rs .#filebrowser-quantum .#nix-sweep
         exit $?
     - name: Push to Cachix
       run: |
