@@ -4,4 +4,8 @@ _: {
     ./home.nix
     { home.stateVersion = "24.11"; }
   ];
+  home = {
+    username = "as";
+    homeDirectory = "/home/as";
+  };
 }

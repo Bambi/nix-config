@@ -27,8 +27,6 @@ in
     };
   };
   home = {
-    username = "as";
-    homeDirectory = "/home/as";
     file = {
       ".ssh/id_rsa_as.pub".source = ../../../identities/id_rsa_as.pub;
       ".ssh/id_rsa_as-cert.pub".source = ../../../identities/id_rsa_as-cert.pub;
