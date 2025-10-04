@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# Generate user key-pairs
+ssh-keygen -t ed25519 -C "$(whoami)$(hostname)" -f id_ed25519
+
+# Trust the CA for any @hostname identity
+(printf '*@$(hostname) cert-authority,namespaces="file,git" '; cat id_ed25519.pub) > allowed_signers

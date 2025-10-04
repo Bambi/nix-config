@@ -7,8 +7,4 @@
     { home.stateVersion = "25.05"; }
     inputs.sops-nix.homeManagerModules.sops
   ];
-  home = {
-    username = "asg";
-    homeDirectory = "/var/home/asg";
-  };
 }

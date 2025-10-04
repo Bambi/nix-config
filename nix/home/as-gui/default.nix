@@ -9,8 +9,4 @@
     inputs.sops-nix.homeManagerModules.sops
     { home.stateVersion = "23.11"; }
   ];
-  home = {
-    username = "as";
-    homeDirectory = "/home/as";
-  };
 }

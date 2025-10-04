@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   programs = {
     git = {
       enable = true;
@@ -21,7 +21,7 @@
           reflog = "delta";
           show = "delta";
         };
-        user.signingkey = "~/.ssh/id_ed25519_as";
+        user.signingkey = "~/.ssh/${config.my.sshIdFile}";
         commit.gpgSign = true;
         gpg.format = "ssh";
         gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
@@ -49,7 +49,7 @@
         signing = {
           behavior = "own";
           backend = "ssh";
-          key = "/home/as/.ssh/id_ed25519_as";
+          key = "/home/as/.ssh/${config.my.sshIdFile}";
         };
         ui.default-command = "log";
         aliases = {

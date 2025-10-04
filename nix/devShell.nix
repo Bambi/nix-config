@@ -6,5 +6,7 @@ pkgs: with pkgs; {
     namaka
     nixd
     deploy-rs
+    just
+    home-manager
   ];
 }

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 let
   hostnames = builtins.attrNames inputs.self.nixosConfigurations;
   localHostnames = builtins.map (x: x + ".local") hostnames;
@@ -12,7 +12,7 @@ in
     matchBlocks = {
       myhosts = {
         host = (builtins.concatStringsSep " " localHostnames) + " *.as.dedyn.io *.mesh";
-        identityFile = "~/.ssh/id_ed25519_as";
+        identityFile = "~/.ssh/${config.my.sshIdFile}";
         forwardAgent = true;
         extraOptions = {
           AddKeysToAgent = "yes";
@@ -22,7 +22,7 @@ in
         host = "github github.com";
         forwardAgent = true;
         hostname = "github.com";
-        identityFile = "~/.ssh/id_ed25519_as";
+        identityFile = "~/.ssh/${config.my.sshIdFile}";
       };
     };
   };
