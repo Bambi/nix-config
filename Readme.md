@@ -97,5 +97,11 @@ Add a package: `flatpak install flathub com.google.Chrome`
 
 Run Chrome under Wayland: `flatpak run com.google.Chrome --enable-features=UseOzonePlatform --ozone-platform=wayland`
 
+## Home-manager on Fedora Atomic
+Open problems:
+- missing fonts
+- ssh-agent.service missing
+- nh does not work, use `home-manager switch -b backup --flake .#asg@atomic` instead
+
 # troubleshooting
 - Fonts problems: run `rm -rf ~/.cache/fontconfig && fc-cache -vr`

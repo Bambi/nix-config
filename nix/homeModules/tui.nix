@@ -1,8 +1,7 @@
 # More terminal user configuration
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, config, ... }: {
   imports = [
     inputs.nvf.homeManagerModules.default
-    ./common/bash.nix
     ./common/kakoune.nix
     ./common/tmux
     ./common/dev.nix
@@ -14,7 +13,7 @@
     ./common/taskwarrior.nix
     ./common/nb.nix
     ./common/nix.nix
-  ]; # ++ pkgs.lib.optionals config.home.guiApps [ ./gui ];
+  ] ++ pkgs.lib.optionals config.home.my.bash [ ./common/bash.nix ];
 
   # enable unfree packages
   nixpkgs.config.allowUnfree = true;

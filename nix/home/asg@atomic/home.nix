@@ -1,4 +1,5 @@
 { config, ... }: {
+  my.bash = false;
   sops = {
     secrets = {
       taskwarrior_sync = { };
