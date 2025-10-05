@@ -9,10 +9,9 @@
     group = "git";
     openssh = {
       authorizedKeys.keys = [
-        (builtins.readFile ../../../identities/id_ed25519_as.pub)
         "cert-authority ${builtins.readFile ../../../identities/id_ed25519_ca_sk.pub}"
       ];
-      authorizedPrincipals = [ "as" ];
+      authorizedPrincipals = [ "as" "asg" ];
     };
   };
   users.groups.git = { };

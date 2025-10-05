@@ -1,24 +1,7 @@
 #!/usr/bin/env bash
-# Create and sign (generate a certificate) host/user ssh keys
+# @describe Create and sign (generate a certificate) host/user ssh keys
 set -Eeuo pipefail
 IFS=$'\n\t'
-
-usage () {
-  cat <<EOF
-$(basename "${BASH_SOURCE[0]}"): [-k <key>] [-h [<host name>]] [-u]
-
-Create and sign (generate a certificate) ssh keys pairs:
-  -k <key>        just sign the given key
-  -h [host name]  ssh key for host
-  -u              ssh key for a user
-EOF
-  exit 1
-}
-
-if [ "$1" = -k ]; then
-  KEYF=$2;
-  shift; shift
-fi
 
 [ -f ~/.ssh/id_ed25519_ca_sk ] && CAKEY=~/.ssh/id_ed25519_ca_sk || CAKEY=./identities/id_ed25519_ca_sk
 ROOTDIR=${ROOTDIR:-.}
@@ -26,25 +9,33 @@ ROOTDIR=${ROOTDIR:-.}
 
 [ -f "$CAKEY" ] || (echo No CA key >&2; exit 1)
 
-# host keys
-[ $1 = -h ] && (
-  HOST=${2:-$(hostname)}
-  [ -z "${KEYF:-''}" ] && ssh-keygen -t ed25519 -C "root@$HOST" -f $ROOTDIR/ssh_host_ed25519
+# @cmd Create and sign a host key
+# @option -k --key <key>         just sign the given key file
+# @option -H --host <hostname>   host name
+host() {
+  HOST=${argc_host:-$(hostname)}
+  [ -z "${argc_key:-''}" ] && ssh-keygen -t ed25519 -C "root@$HOST" -f $ROOTDIR/ssh_host_ed25519
   ssh-keygen -s "$CAKEY" \
        -I "$HOST host key" \
        -V -1m:+3650d \
        -h \
-       ${KEYF:-"$ROOTDIR/ssh_host_ed25519.pub"} && \
+       ${argc_key:-"$ROOTDIR/ssh_host_ed25519.pub"} && \
     echo $ROOTDIR/*-cert.pub |tr ' ' '\n' |xargs -L 1 ssh-keygen -L -f
-)
+}
 
-# user keys
-[ $1 = -u ] && (
-  [ -z "${KEYF:-''}" ] && ssh-keygen -f ~/.ssh/id_ed25519 -t ed25519
+# @cmd Create and sign a user key
+# @option -k --key <key>                  just sign the given key file
+# @option -i=`$(whoami)@$(hostname)` <ID> certificate identity
+# @option -n=`$(whoami)` <p,p,...>        principals
+user() {
+  [ -v argc_key ] || ssh-keygen -f id_ed25519 -t ed25519
+  # principals: must match user sysemd id on server hosts
   ssh-keygen -s "$CAKEY" \
-      -I "$(whoami)@$(hostname) user key" \
-      -n "$(whoami)" \
+      -I "$argc_i user key" \
+      -n "$argc_n" \
       -V -1m:+3650d \
-      ${KEYF:-~/.ssh/id_ed25519.pub} && \
-  ssh-keygen -L -f id_ed25519-cert.pub
-)
+      ${argc_key:-id_ed25519.pub} && \
+  ssh-keygen -L -f $(basename ${argc_key:-id_ed25519} .pub)-cert.pub
+}
+
+eval "$(argc --argc-eval "$0" "$@")"

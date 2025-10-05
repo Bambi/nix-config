@@ -8,5 +8,6 @@ pkgs: with pkgs; {
     deploy-rs
     just
     home-manager
+    argc
   ];
 }
