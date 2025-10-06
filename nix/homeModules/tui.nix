@@ -14,6 +14,7 @@
     ./common/taskwarrior.nix
     ./common/nb.nix
     ./common/nix.nix
+    ./common/navi.nix
   ]; # ++ pkgs.lib.optionals config.home.my.bash [ ./common/bash.nix ];
 
   # enable unfree packages

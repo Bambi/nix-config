@@ -75,7 +75,6 @@
       icons = "auto";
       extraOptions = [ "--group-directories-first" ];
     };
-    home-manager.enable = true;
   };
 
   targets.genericLinux.enable = true;

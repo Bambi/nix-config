@@ -88,5 +88,9 @@
       enableFishIntegration = true;
       enableBashIntegration = true;
     };
+    atuin = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 }

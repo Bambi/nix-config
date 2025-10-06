@@ -14,5 +14,6 @@ pkgs: with pkgs; {
     deploy-rs
     nebula
     nh
+    argc
   ];
 }
