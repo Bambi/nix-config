@@ -7,6 +7,7 @@
     ./common/lf
     ./common/helix.nix
     ./common/yazi.nix
+    ./common/fastfetch
   ];
   services.ssh-agent.enable = true;
   nix = {
@@ -29,7 +30,6 @@
       lnav
       curl
       procs
-      fastfetch
       tcpdump
       comma
       restic
