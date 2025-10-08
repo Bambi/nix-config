@@ -1,7 +1,8 @@
 { pkgs, ... }: {
   programs.helix = {
     enable = true;
-    # defaultEditor = true;
+    defaultEditor = true;
+    extraPackages = [ pkgs.marksman ];
     settings = {
       theme = "gruvbox";
       editor = {
@@ -9,7 +10,17 @@
         mouse = true;
         true-color = true;
         rulers = [ 80 120 ];
-        lsp.display-messages = true;
+        lsp = {
+          display-messages = true;
+          display-inlay-hints = true;
+        };
+        auto-save.after-delay.timeout = 1000;
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics = {
+          cursor-line = "warning";
+        };
+        jump-label-alphabet = "hjklabcdefgimnopqrstuvwxyz";
+        soft-wrap.enable = true;
         cursor-shape = {
           insert = "bar";
           normal = "block";
@@ -36,6 +47,18 @@
           Q = ":q!";
         };
         ret = [ "move_line_down" "goto_first_nonwhitespace" ];
+        space = {
+          E = [
+            ":sh rm -f /tmp/unique-file"
+            ":insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file"
+            ":insert-output echo \"\\x1b[?1049h\\x1b[?2004h\" > /dev/tty"
+            ":open %sh{cat /tmp/unique-file}"
+            ":redraw"
+          ];
+          space = {
+            b = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}";
+          };
+        };
       };
       keys.insert = {
         C-space = "completion";
