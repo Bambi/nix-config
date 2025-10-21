@@ -2,19 +2,34 @@
 # @describe Create and sign (generate a certificate) host/user ssh keys
 set -Eeuo pipefail
 IFS=$'\n\t'
+trap cleanup SIGINT SIGTERM ERR EXIT
 
-[ -f ~/.ssh/id_ed25519_ca_sk ] && CAKEY=~/.ssh/id_ed25519_ca_sk || CAKEY=./identities/id_ed25519_ca_sk
+# CA SK private key
+CAKEY=$(mktemp)
+echo '-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAASgAAABpzay1zc2
+gtZWQyNTUxOUBvcGVuc3NoLmNvbQAAACC6PGKq9lFOkONI8HZnRLQbUiEftLQwsqXepWo6
+M3TPUgAAAARzc2g6AAAA8Hde3Q53Xt0OAAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY2
+9tAAAAILo8Yqr2UU6Q40jwdmdEtBtSIR+0tDCypd6lajozdM9SAAAABHNzaDohAAAAhKMA
+WGDDo0UQYFnOk6qM8vJJ2ynxm8SfP3Iwmffpt6S0Mu8KZgnRlmZN/zS1hLQntU8fzZSdO0
+94ib79fZGO++4lrYcTeqmmz5asPrR/T9Pbf8KbkZToOMVtTsNM8SS+L/1iTHwBTJ1mKSBi
+ilNoRPoMsgJQN+2/7VtNGxq5ZWsRvA5UMwAAAAAAAAAIYXNAYmFtYmkBAgMEBQ==
+-----END OPENSSH PRIVATE KEY-----' >$CAKEY
+
 ROOTDIR=${ROOTDIR:-.}
 [ -d $ROOTDIR ] || mkdir -p "$ROOTDIR"
 
-[ -f "$CAKEY" ] || (echo No CA key >&2; exit 1)
+cleanup() {
+  trap - SIGINT SIGTERM ERR EXIT
+  rm -f $CAKEY
+}
 
 # @cmd Create and sign a host key
 # @option -k --key <key>         just sign the given key file
 # @option -H --host <hostname>   host name
 host() {
   HOST=${argc_host:-$(hostname)}
-  [ -z "${argc_key:-''}" ] && ssh-keygen -t ed25519 -C "root@$HOST" -f $ROOTDIR/ssh_host_ed25519
+  [ -z "${argc_key:-}" ] && ssh-keygen -t ed25519 -C "root@$HOST" -f $ROOTDIR/ssh_host_ed25519
   ssh-keygen -s "$CAKEY" \
        -I "$HOST host key" \
        -V -1m:+3650d \

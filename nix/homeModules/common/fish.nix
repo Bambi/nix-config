@@ -66,6 +66,7 @@
       cd = "z";
       lg = "lazygit";
       gs = "git status";
+      lt = "ls --tree";
       weather = "curl \'wttr.in/92290?lang=fr\'";
       weather2 = "${pkgs.wthrr}/bin/wthrr auto -u f,24h,c,mph -f d,w";
     };
