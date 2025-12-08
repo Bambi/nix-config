@@ -10,4 +10,8 @@
     };
     defaultSopsFile = ./secrets.yaml;
   };
+  home = {
+    username = "as";
+    homeDirectory = "/home/as";
+  };
 }
