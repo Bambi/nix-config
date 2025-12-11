@@ -2,19 +2,18 @@
   description = "NixOS/home-manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     flakelight = {
       url = "github:nix-community/flakelight";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     disko = {
       url = "github:nix-community/disko/v1.11.0";
@@ -39,7 +38,7 @@
       flake = false;
     };
     nixos-wsl = {
-      url = "github:nix-community/nixos-wsl/2411.6.0";
+      url = "github:nix-community/nixos-wsl/2505.7.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     yazi-plugins = {

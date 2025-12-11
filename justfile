@@ -15,6 +15,7 @@ o-install +HOST=`hostname`:
 
 h-install CONF:
 	nh home switch --configuration {{CONF}} .
+	# home-manager switch --flake '.#{{CONF}}'
 
 clochette:
 	nix build ./installers#nixosConfigurations.clochette.config.system.build.isoImage -o iso-installer

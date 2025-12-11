@@ -38,7 +38,7 @@
       # joshuto
       kmon
       trippy
-      moar
+      moor
       solo2-cli
       libfido2
       clipboard-jh

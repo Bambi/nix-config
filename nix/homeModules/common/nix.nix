@@ -12,6 +12,7 @@
           nix-search-tv
         ];
         text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+        excludeShellChecks = [ "SC2016" ];
       })
     ];
   };

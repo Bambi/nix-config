@@ -2,10 +2,11 @@
   programs = {
     git = {
       enable = true;
-      userName = "Antoine Sgambato";
-      userEmail = "176003+Bambi@users.noreply.github.com";
-      delta.enable = true;
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Antoine Sgambato";
+          email = "176003+Bambi@users.noreply.github.com";
+        };
         core = {
           editor = "hx";
         };
@@ -29,6 +30,10 @@
       includes = [
         { path = ./git-delta.conf; }
       ];
+    };
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
     };
     gh = {
       enable = true;
