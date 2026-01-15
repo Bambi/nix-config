@@ -5,7 +5,7 @@ let
 in
 {
   home.packages = [
-    pkgs.rofi-wayland
+    pkgs.rofi
     (import ./scripts/web-search.nix { inherit pkgs; })
   ];
   home.file.".config/rofi/config.rasi".text = ''

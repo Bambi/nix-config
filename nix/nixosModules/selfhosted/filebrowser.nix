@@ -3,8 +3,6 @@ let
   port = 8085;
 in
 {
-  imports = [ ./_filebrowser.nix ];
-
   services.filebrowser = {
     enable = true;
     settings = {

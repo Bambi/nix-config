@@ -34,10 +34,6 @@ with lib; {
         sensitivity = 0.2; # -1.0 - 1.0, 0 means no modification.
         accel_profile = "adaptive";
       };
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_fingers = 3;
-      };
       misc = {
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = false;
@@ -54,7 +50,6 @@ with lib; {
       };
       animations = {
         enabled = true;
-        first_launch_animation = true;
         bezier = [
           "wind, 0.05, 0.9, 0.1, 1.05"
           "winIn, 0.1, 1.1, 0.1, 1.1"

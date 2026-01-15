@@ -1,18 +1,16 @@
 { lib, config, pkgs, ... }: {
   services = {
     udev.packages = [ pkgs.gnome-settings-daemon ];
-    xserver = {
-      displayManager.gdm.enable = lib.mkDefault true;
-      desktopManager.gnome = {
-        enable = true;
+    displayManager.gdm.enable = lib.mkDefault true;
+    desktopManager.gnome = {
+      enable = true;
 
-        # Activation du Fractional Scaling
-        extraGSettingsOverridePackages = [ pkgs.mutter ];
-        extraGSettingsOverrides = ''
-          [org.gnome.mutter]
-          experimental-features=['scale-monitor-framebuffer']
-        '';
-      };
+      # Activation du Fractional Scaling
+      extraGSettingsOverridePackages = [ pkgs.mutter ];
+      extraGSettingsOverrides = ''
+        [org.gnome.mutter]
+        experimental-features=['scale-monitor-framebuffer']
+      '';
     };
     xrdp = {
       enable = true;

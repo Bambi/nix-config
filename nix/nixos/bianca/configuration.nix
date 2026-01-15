@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, ... }:
+{ inputs, lib, ... }:
 let
   disk-config = import ./disk-config.nix;
 in
@@ -49,6 +49,7 @@ in
     enable = true;
     user = "dm";
   };
+  programs.ssh.startAgent = lib.mkForce false;
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

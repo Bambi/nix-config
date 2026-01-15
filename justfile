@@ -12,6 +12,7 @@ check:
 
 o-install +HOST=`hostname`:
 	nh os switch --hostname {{HOST}} .
+	# nixos-rebuild switch --flake .#{{HOST}}
 
 h-install CONF:
 	nh home switch --configuration {{CONF}} .

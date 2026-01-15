@@ -1,3 +1,3 @@
 _: {
-  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.gdm.enable = true;
 }
