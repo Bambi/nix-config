@@ -13,6 +13,7 @@ in
     ./ghostty.nix
     ./zathura.nix
     ./flameshot.nix
+    ./photo
   ];
   colorScheme = lib.mkDefault colorSchemes.catppuccin-macchiato;
   home = {
@@ -51,6 +52,7 @@ in
     enable = true;
     userDirs = {
       enable = true;
+      setSessionVariables = true;
       documents = "${config.home.homeDirectory}/Documents";
       music = "${config.home.homeDirectory}/Musique";
       pictures = "${config.home.homeDirectory}/Photos";

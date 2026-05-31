@@ -66,10 +66,12 @@ in
     };
     services.resolved = {
       enable = true;
-      llmnr = "false";
-      dnssec = "true";
-      fallbackDns = [ "8.8.8.8" "2001:4860:4860::8844" ]; # fbx: fd0f:ee:b0::1
-      dnsovertls = "opportunistic";
+      settings.Resolve = {
+        LLMNR = "false";
+        DNSSEC = "true";
+        FallbackDNS = [ "8.8.8.8" "2001:4860:4860::8844" ]; # fbx: fd0f:ee:b0::1
+        DNSOverTLS = "opportunistic";
+      };
     };
     networking = {
       nftables.enable = true;

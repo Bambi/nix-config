@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  emanote = import (builtins.fetchTarball {
+  emanote = import (fetchTarball {
     url = "https://github.com/srid/emanote/archive/refs/tags/1.2.0.tar.gz";
     sha256 = "sha256:03b6wpl08r3h7r6wgxx6wbqkr95vn6w49z62ji19nw3i96r03idn";
   });

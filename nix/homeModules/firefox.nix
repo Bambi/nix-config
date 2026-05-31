@@ -1,4 +1,4 @@
-{ pkgs, inputs, FFextensions, ... }:
+{ config, pkgs, inputs, FFextensions, ... }:
 let
   lock-false = {
     Value = false;
@@ -13,6 +13,7 @@ in
   programs.firefox = {
     enable = true;
     languagePacks = [ "fr" "en-US" ];
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
 
     profiles = {
       principal = {

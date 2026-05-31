@@ -16,12 +16,12 @@
           branch = "auto";
           ui = true;
         };
-        pager = {
-          diff = "delta";
-          log = "delta";
-          reflog = "delta";
-          show = "delta";
-        };
+        # pager = {
+        #   diff = "delta";
+        #   log = "delta";
+        #   reflog = "delta";
+        #   show = "delta";
+        # };
         user.signingkey = "~/.ssh/${config.my.sshIdFile}";
         commit.gpgSign = true;
         gpg.format = "ssh";

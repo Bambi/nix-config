@@ -1,0 +1,23 @@
+[ART UserCommand]
+
+# the command label
+Label=Hugin
+
+# the actual command to execute (which we define below)
+Command=@HUGIN@
+
+# we want at least 2 files to stitch
+MinArgs=2
+
+# restrict to raw files
+FileType=raw
+
+# make sure that all shots come from the same camera/session
+MatchCamera=true
+MatchLens=true
+MatchShutter=true
+MatchAperture=true
+MatchFocalLen=true
+# we could also consider adding additional criteria, like
+# MatchISO=true
+# MatchDimensions=true

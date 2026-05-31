@@ -1,7 +1,7 @@
 { inputs, config, ... }:
 let
   hostnames = builtins.attrNames inputs.self.nixosConfigurations;
-  localHostnames = builtins.map (x: x + ".local") hostnames;
+  localHostnames = map (x: x + ".local") hostnames;
 in
 {
   imports = [
@@ -9,20 +9,38 @@ in
   ];
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
       myhosts = {
         host = (builtins.concatStringsSep " " localHostnames) + " *.as.dedyn.io *.mesh";
         identityFile = "~/.ssh/${config.my.sshIdFile}";
         forwardAgent = true;
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
+        # extraOptions = {
+        #   AddKeysToAgent = "yes";
+        # };
       };
       github = {
         host = "github github.com";
         forwardAgent = true;
         hostname = "github.com";
         identityFile = "~/.ssh/${config.my.sshIdFile}";
+      };
+      "*" = {
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
+      };
+    };
+    settings = {
+      myhosts = {
+        AddKeysToAgent = "yes";
       };
     };
   };
